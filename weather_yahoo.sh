@@ -6,6 +6,7 @@
 # 2. Find the weather for you location
 # 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the number "12796587"
 location="4118"
+location="CAXX0050"
 
 # Can be any of {c,f,k}.
 unit="c"

@@ -1,7 +1,12 @@
 set nocompatible
-let mapleader=","
+" let mapleader="\"
 " Load pathogen
 filetype off
+set smartcase
+set ignorecase
+set scrolloff=4
+
+set encoding=utf-8
 
 call pathogen#infect()
 call pathogen#helptags()
@@ -32,3 +37,6 @@ set laststatus=2
 " show tabs and trailing space
 set list
 set listchars=tab:>-,trail:.
+
+" Don't highlight
+nmap <C-h> :nohlsearch<cr>

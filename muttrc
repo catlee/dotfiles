@@ -82,10 +82,10 @@ macro index \eb ':toggle sidebar_visible^M'
 macro pager \eb ':toggle sidebar_visible^M'
 
 
-source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+#source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
 #source ~/.muttng/colors
-set alias_file=~/.mutt/aliases
-source ~/.mutt/aliases
+#set alias_file=~/.mutt/aliases
+#source ~/.mutt/aliases
 #source ~/.muttng/lists
 ################mailboxes `~/.muttng/mailboxes.sh`
 
@@ -110,8 +110,9 @@ macro pager G "!killall -SIGUSR1 offlineimap || :\n"
 folder-hook Junk 'push "D~d>2d"\n'
 folder-hook Trash 'push "D~d>2d"\n'
 
-# set query_command="abook --mutt-query '%s'"
-set query_command = "lbdbq %s 2>/dev/null"
+bind editor <Tab> complete-query
+bind editor ^T complete
+set query_command="abook --mutt-query %s || lbdbq %s 2>/dev/null"
 macro index,pager A "|abook --add-email\n" 'add sender to abook'
 macro index,pager a "s+Archives.`date +%Y`\n"
 macro pager \e1 ":set pager_index_lines=3\n" 'Windowsize 1'
@@ -134,7 +135,7 @@ set tmpdir="/tmp"
 bind index P parent-message
 bind pager P parent-message
 
-macro index,pager     .i      "l((~N|~O|~F)!~D)|(~d<1w!~Q)\n" 'Show messages not so old (1 week)'
+macro index,pager     .i       "l((~N|~O|~F)!~D)|(~d<1w!~Q)\n" 'Show messages not so old (1 week)'
 macro index,pager      .n      "l~N\n" 'Show new messages'
 macro index,pager      .o      "l(~N|~O)\n" 'Show old messages'
 macro index,pager      .a      "l~A\n" 'Show all messages'
@@ -274,3 +275,9 @@ score "~z 0-80000" 1
 
 # TODO: score by bz components
 # TODO: highlight bugzilla users
+
+# Encrypted bugmail
+message-hook '~s "\\(Secure bug .* updated\\)"' 'exec check-traditional-pgp'
+
+# Crypto
+source ~/.mutt/crypto
