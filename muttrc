@@ -69,7 +69,7 @@ set help=no
 
 set sidebar_visible="yes"
 set sidebar_width=35
-set sidebar_shortpath=yes
+#set sidebar_shortpath=yes
 set sidebar_delim="│"
 color sidebar_new yellow color234
 bind index \CP sidebar-prev
@@ -141,8 +141,8 @@ macro index,pager      .o      "l(~N|~O)\n" 'Show old messages'
 macro index,pager      .a      "l~A\n" 'Show all messages'
 macro index,pager      .t      "l~d<1d\n" 'Show messages from today'
 macro index,pager      .y      "l~d<2d ~d>1d\n" 'Show messages up to 1 year old'
-folder-hook     INBOX       push '.i'
-folder-hook     notmuch push '.a'
+folder-hook     INBOX       push '.n'
+#folder-hook     notmuch push '.a'
 folder-hook     .       push '.n'
 
 auto_view text/richtext

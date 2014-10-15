@@ -25,8 +25,16 @@ linux_get_bat ()
 {
     bf=$(cat $BAT_FULL)
     bn=$(cat $BAT_NOW)
+    bs=$(cat $STATUS)
+    if [ "$bs" = "Charging" ]; then
+        bs="↑ "
+    elif [ "$bs" = "Discharging" ]; then
+        bs="↓ "
+    else
+        bs=
+    fi
     BAT=`echo "100 * $bn / $bf" | bc`
-    echo $BAT
+    echo $bs$BAT
 }
 
 freebsd_get_bat ()

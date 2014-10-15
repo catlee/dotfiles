@@ -40,3 +40,9 @@ set listchars=tab:>-,trail:.
 
 " Don't highlight
 nmap <C-h> :nohlsearch<cr>
+
+" Disable rope
+let g:pymode_rope=0
+
+" Map jk to escape
+inoremap jk <Esc>

@@ -1,3 +1,5 @@
+export PATH=$HOME/bin:$PATH
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -5,7 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="candy"
+ZSH_THEME="af-magic"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -24,7 +26,7 @@ ZSH_THEME="candy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git mercurial git-extras tmux taskwarrior python virtualenv ssh-agent gpg-agent pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,11 +78,16 @@ compinit
 source ~/.aliases
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
-VIRTUALENVWRAPPER_PYTHON=$HOME/venv/bin/python
-source $HOME/venv/bin/virtualenvwrapper.sh
+#VIRTUALENVWRAPPER_PYTHON=$HOME/venv/bin/python
+#source $HOME/venv/bin/virtualenvwrapper.sh
+source /etc/bash_completion.d/virtualenvwrapper
 
 export HG_SHARE_BASE_DIR=$(readlink -f $HOME/repos)
 export GIT_SHARE_BASE_DIR=$(readlink -f $HOME/repos/git)
 #setopt print_exit_value
 export ARDUINO_INSTALL_DIR=$HOME/projects/arduino-1.0
 export REPORTTIME=60
+
+function ressh() {
+    eval `ressh.sh`
+}
