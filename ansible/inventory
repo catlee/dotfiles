@@ -1,0 +1,5 @@
+localhost ansible_connection=local
+
+[all:vars]
+HOME=/home/catlee
+DOTFILES=/home/catlee/projects/dotfiles
