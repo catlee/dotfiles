@@ -4,22 +4,21 @@
   name: manage the dotfiles 
 
   tasks:
-      - name: vim directories
-        file: state=directory dest={{HOME}}/{{item}}
+      - include: vim.yml
+
+      - name: oh-my-zsh
+        git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest={{HOME}}/.oh-my-zsh update=no
+
+      - name: i3_dir
+        file: dest={{HOME}}/.i3 state=directory
+
+      - name: symlinks
+        file: src={{DOTFILES}}/{{item.src}} dest={{HOME}}/{{item.dest}} state=link
         with_items:
-            - .vim
-            - .vim/bundles
-            - .vim/autoload
+            - {src: aliases, dest: .aliases}
+            - {src: xmodmap, dest: .xmodmap}
+            - {src: i3_config, dest: .i3/config}
+            - {src: zshrc, dest: .zshrc}
+            - {src: gitconfig, dest: .gitconfig}
 
-        # TODO: make update a parameter?
-      - name: pathogen.vim
-        git: repo=https://github.com/tpope/vim-pathogen dest={{HOME}}/.vim/bundles/vim-pathogen update=no
-
-      - name: python-mode
-        git: repo=https://github.com/klen/python-mode dest={{HOME}}/.vim/bundles/python-mode update=no
-
-      - name: pathogen autoload
-        file: dest={{HOME}}/.vim/autoload/pathogen.vim src={{HOME}}/.vim/bundles/vim-pathogen/autoload/pathogen.vim state=link
-
-      - name: vimrc
-        file: src={{ DOTFILES }}/vimrc dest={{HOME}}/.vimrc state=link
+- include: mozilla.yml

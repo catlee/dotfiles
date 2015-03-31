@@ -26,7 +26,7 @@ ZSH_THEME="af-magic"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial git-extras tmux taskwarrior python virtualenv ssh-agent gpg-agent pip)
+plugins=(git git-extras tmux taskwarrior python virtualenv ssh-agent gpg-agent pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,4 +90,9 @@ export REPORTTIME=60
 
 function ressh() {
     eval `ressh.sh`
+}
+
+function ruston() {
+    export PATH=/opt/rust/bin:$PATH
+    export LD_LIBRARY_PATH=/opt/rust/lib:$LD_LIBRARY_PATH
 }

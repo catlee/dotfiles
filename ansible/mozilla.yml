@@ -1,0 +1,18 @@
+---
+# Mozilla setup
+- hosts: all
+  vars:
+    mozilla_dir: "{{HOME}}/mozilla"
+
+  tasks:
+    - name: mozilla dir
+      file: dest={{HOME}}/mozilla state=directory
+
+    - name: buildbotcustom.git
+      git: repo=https://github.com/mozilla/build-buildbotcustom.git dest={{HOME}}/mozilla/buildbotcustom.git update=no
+
+    - name: buildbotcustom.hg
+      hg: repo=https://hg.mozilla.org/build/buildbotcustom dest={{HOME}}/mozilla/buildbotcustom.hg
+
+    - name: buildbotcustom symlink
+      file: dest={{HOME}}/mozilla/buildbotcustom src={{HOME}}/mozilla/buildbotcustom.git state=link

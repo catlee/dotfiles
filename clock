@@ -2,6 +2,7 @@
 DATEFMT=%H:%M%Z
 echo -n "$(TZ=US/Pacific date +$DATEFMT) "
 echo -n "$(TZ=US/Eastern date +$DATEFMT) "
+echo -n "$(TZ=UTC date +$DATEFMT) "
 echo -n "$(TZ=Europe/Berlin date +$DATEFMT) "
 echo -n "$(TZ=Pacific/Auckland date +$DATEFMT) "
 echo -n "$(date +$DATEFMT) "

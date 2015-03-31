@@ -1,0 +1,23 @@
+---
+# Set up vim stuff
+- name: vim directories
+  file: state=directory dest={{HOME}}/{{item}}
+  with_items:
+    - .vim
+    - .vim/bundles
+    - .vim/autoload
+
+# TODO: make update a parameter?
+- name: pathogen.vim
+  git: repo=https://github.com/tpope/vim-pathogen dest={{HOME}}/.vim/bundles/vim-pathogen update=no
+
+- name: python-mode
+  git: repo=https://github.com/klen/python-mode dest={{HOME}}/.vim/bundles/python-mode update=no
+
+- name: pathogen autoload
+  file: dest={{HOME}}/.vim/autoload/pathogen.vim src={{HOME}}/.vim/bundles/vim-pathogen/autoload/pathogen.vim state=link
+
+- name: symlinks
+  file: src={{DOTFILES}}/{{item.src}} dest={{HOME}}/{{item.dest}} state=link
+  with_items:
+    - {src: vimrc, dest: .vimrc}

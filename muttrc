@@ -1,7 +1,7 @@
 set mbox_type = Maildir
-set folder = ~/.offlineimap-mozilla
+set folder = ~/.offlineimap-google
 
-set spoolfile = ~/.offlineimap-mozilla/INBOX
+set spoolfile = ~/.offlineimap-google/INBOX
 source ~/.mutt/muttmailboxes
 set record=+Sent
 set postponed=+Drafts
