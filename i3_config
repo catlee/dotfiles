@@ -161,5 +161,6 @@ bindsym $mod+p exec i3-sensible-terminal --execute python
 bindsym $mod+shift+v exec i3-sensible-terminal --execute vim
 
 exec gnome-screensaver
-
-
+exec nm-applet 
+exec xmodmap ~/.xmodmap
+exec pidgin

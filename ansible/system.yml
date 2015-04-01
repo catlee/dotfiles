@@ -22,3 +22,9 @@
           - apt-file
           - qalculate
           - silversearcher-ag
+          - openvpn
+          - openssh-server
+          - network-manager-openvpn-gnome
+          - unzip
+          - gnupg-agent
+
