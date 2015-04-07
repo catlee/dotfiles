@@ -1,0 +1,15 @@
+[ui]
+username = "Chris AtLee"
+email = "catlee@mozilla.com"
+
+[diff]
+git = 1
+unified = 20
+
+[extensions]
+color=
+mq=
+pager=
+purge=
+rebase=
+share=

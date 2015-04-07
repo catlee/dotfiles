@@ -78,13 +78,12 @@ compinit
 source ~/.aliases
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
-#VIRTUALENVWRAPPER_PYTHON=$HOME/venv/bin/python
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 #source $HOME/venv/bin/virtualenvwrapper.sh
 source /etc/bash_completion.d/virtualenvwrapper
 
 export HG_SHARE_BASE_DIR=$(readlink -f $HOME/repos)
 export GIT_SHARE_BASE_DIR=$(readlink -f $HOME/repos/git)
-#setopt print_exit_value
 export ARDUINO_INSTALL_DIR=$HOME/projects/arduino-1.0
 export REPORTTIME=60
 
@@ -96,3 +95,8 @@ function ruston() {
     export PATH=/opt/rust/bin:$PATH
     export LD_LIBRARY_PATH=/opt/rust/lib:$LD_LIBRARY_PATH
 }
+
+#export PYENV_ROOT=$HOME/.pyenv
+#export PATH=$PYENV_ROOT/bin:$PATH
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"

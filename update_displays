@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+from subprocess import check_output, check_call
+import re
+
+
+class Display(object):
+    edid = None
+    connected = False
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return "<Display {} {}>".format(self.name, "connected" if self.connected else "disconnected")
+
+
+def get_displays():
+    output = check_output(['xrandr', '--verbose'])
+
+    current = None
+    current_edid = None
+    in_edid = False
+    displays = {}
+    for line in output.splitlines():
+        m = re.match(b"(\S+) (connected|disconnected).*", line)
+        if m:
+            current = m.group(1)
+            d = Display(current)
+            d.connected = m.group(2) == b'connected'
+            displays[current] = d
+            continue
+
+        if in_edid:
+            m = re.match(b"\s+([0-91-f]+)", line)
+            if m:
+                current_edid += m.group(1)
+            else:
+                displays[current].edid = current_edid
+                in_edid = False
+                current_edid = None
+
+        if b"EDID:" in line:
+            in_edid = True
+            current_edid = b""
+
+    return displays
+
+
+def is_office(displays):
+    try:
+        office_monitor = b'00ffffffffffff0010ac2ba05357473320130104a534207822b325ac5130b426105054a54b008180a940714f01010101010101010101283c80a070b023403020360007402100001a000000ff004732383348393834334757530a000000fc0044454c4c20323430385746500a000000fd00384c1e5311010a202020202020007cB'
+        d = displays[b'DP1']
+        return all((
+            displays[b'DP1'].edid == office_monitor,
+            displays[b'DP1'].connected,
+        ))
+    except KeyError:
+        return False
+
+
+def do_office(displays):
+    # Put DP1 to the right of eDP1, disconnect everything else
+    print("setting up displays for office")
+    cmd = ['xrandr']
+    for d in displays.values():
+        if d.connected:
+            if d.name == b'eDP1':
+                cmd.extend(['--output', d.name, '--auto'])
+            elif d.name == b'DP1':
+                cmd.extend(['--output', d.name, '--auto', '--right-of', 'eDP1'])
+            else:
+                cmd.extend(['--output', d.name, '--off'])
+
+    check_call(cmd)
+
+
+def is_home(displays):
+    try:
+        home_monitor = b'00ffffffffffff0010ac17f04c4539340d160104b53420783a1ec5ae4f34b1260e5054a54b008180a940d100714f0101010101010101283c80a070b023403020360006442100001a000000ff00433539324d3233523439454c0a000000fc0044454c4c2055323431300a2020000000fd00384c1e5111000a20202020202001e302031df15090050403020716011f121314201511062309070783010000023a801871382d40582c450006442100001e011d8018711c1620582c250006442100009e011d007251d01e206e28550006442100001e8c0ad08a20e02d10103e9600064421000018000000000000000000000000000000000000000000000000000021B'
+        d = displays[b'DP1']
+        return all((
+            displays[b'DP1'].edid == home_monitor,
+            displays[b'DP1'].connected,
+        ))
+    except KeyError:
+        return False
+
+
+def do_home(displays):
+    # Put DP1 to the left of eDP1, disconnect everything else
+    print("setting up displays for home")
+    cmd = ['xrandr']
+    for d in displays.values():
+        if d.connected:
+            if d.name == b'eDP1':
+                cmd.extend(['--output', d.name, '--auto'])
+            elif d.name == b'DP1':
+                cmd.extend(['--output', d.name, '--auto', '--left-of', 'eDP1'])
+            else:
+                cmd.extend(['--output', d.name, '--off'])
+
+    check_call(cmd)
+
+
+def is_standalone(displays):
+    connected = [d for d in displays.values() if d.connected]
+    # Ignore VGA-0
+    connected = [d for d in connected if d.name != b'VGA-0']
+    return all((
+        len(connected) == 1,
+        connected[0].name == b'eDP1',
+    ))
+
+
+def do_standalone(displays):
+    print("setting up displays for standalone")
+    # Turn off all connected outputs except for eDP1
+    cmd = ['xrandr']
+    for d in displays.values():
+        if d.connected:
+            if d.name == b'eDP1':
+                cmd.extend(['--output', d.name, '--auto'])
+            else:
+                cmd.extend(['--output', d.name, '--off'])
+        else:
+            cmd.extend(['--output', d.name, '--off'])
+
+    check_call(cmd)
+
+
+def main():
+    displays = get_displays()
+    if is_office(displays):
+        do_office(displays)
+    elif is_standalone(displays):
+        do_standalone(displays)
+    elif is_home(displays):
+        do_home(displays)
+    else:
+        print("couldn't figure out what to do")
+        print(displays)
+
+if __name__ == '__main__':
+    main()

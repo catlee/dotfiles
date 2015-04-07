@@ -2,11 +2,15 @@
 - hosts: all
   name: manage the system!
   tasks:
+      - name: apt pinning preferences
+        copy: dest=/etc/apt/preferences.d/pinning src={{DOTFILES}}/apt_pinning
+
       - name: apt repositories
         apt_repository: repo='{{item}}' state=present
         with_items:
             - "deb http://ftp.debian.org/debian/ testing main contrib non-free"
             - "deb http://security.debian.org/ testing/updates main contrib non-free"
+            - "deb http://ftp.debian.org/debian/ unstable main contrib non-free"
 
       - name: packages
         apt: update_cache=yes cache_valid_time=3600 name={{item}}
@@ -15,8 +19,14 @@
           - gnome-screensaver
           - zsh
           - python3.4
+          - python3.4-dev
+          - python3.4-doc
+          - python2.7
+          - python2.7-dev
+          - python2.7-doc
           - tmux
           - vim
+          - vim-gtk  # For X11 clipboard awareness
           - vlc
           - i3
           - apt-file
@@ -27,4 +37,16 @@
           - network-manager-openvpn-gnome
           - unzip
           - gnupg-agent
-
+          - htop
+          - pavucontrol
+          - xclip
+          - flashplugin-nonfree
+          - zlib1g-dev
+          - libreadline-dev
+          - libbz2-dev
+          - libsqlite3-dev
+          - libssl-dev
+          - awscli
+          - pmount
+          - libreoffice
+          - gdb

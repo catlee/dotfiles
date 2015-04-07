@@ -20,5 +20,11 @@
             - {src: i3_config, dest: .i3/config}
             - {src: zshrc, dest: .zshrc}
             - {src: gitconfig, dest: .gitconfig}
+            - {src: update_displays, dest: bin/update_displays}
+            - {src: open_in_bugzilla.sh, dest: bin/open_in_bugzilla.sh}
+            - {src: firefox, dest: bin/firefox}
+            - {src: firefox-moz, dest: bin/firefox-moz}
+            - {src: git-mkpatch, dest: bin/git-mkpatch}
+            - {src: hgrc, dest: .hgrc}
 
 - include: mozilla.yml

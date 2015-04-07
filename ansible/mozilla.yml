@@ -16,3 +16,24 @@
 
     - name: buildbotcustom symlink
       file: dest={{HOME}}/mozilla/buildbotcustom src={{HOME}}/mozilla/buildbotcustom.git state=link
+
+    - name: tools.git
+      git: repo=https://github.com/mozilla/build-tools.git dest={{HOME}}/mozilla/tools.git update=no
+
+    - name: tools symlink
+      file: dest={{HOME}}/mozilla/tools src={{HOME}}/mozilla/tools.git state=link
+
+    - name: buildbot-configs.git
+      git: repo=https://github.com/mozilla/build-buildbot-configs.git dest={{HOME}}/mozilla/buildbot-configs.git update=no
+
+    - name: buildbot-configs.hg
+      hg: repo=https://hg.mozilla.org/build/buildbot-configs dest={{HOME}}/mozilla/buildbot-configs.hg
+
+    - name: buildbot-configs symlink
+      file: dest={{HOME}}/mozilla/buildbot-configs src={{HOME}}/mozilla/buildbot-configs.git state=link
+
+    - name: puppet
+      git: repo=https://github.com/mozilla/build-puppet.git dest={{HOME}}/mozilla/puppet.git update=no
+
+    - name: puppet symlink
+      file: dest={{HOME}}/mozilla/puppet src={{HOME}}/mozilla/puppet.git state=link
