@@ -13,3 +13,4 @@ pager=
 purge=
 rebase=
 share=
+mkpatch = $HOME/projects/dotfiles/mkpatch.py

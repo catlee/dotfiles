@@ -32,8 +32,14 @@
     - name: buildbot-configs symlink
       file: dest={{HOME}}/mozilla/buildbot-configs src={{HOME}}/mozilla/buildbot-configs.git state=link
 
-    - name: puppet
+    - name: puppet.git
       git: repo=https://github.com/mozilla/build-puppet.git dest={{HOME}}/mozilla/puppet.git update=no
+
+    - name: puppet.hg
+      hg: repo=https://hg.mozilla.org/build/puppet dest={{HOME}}/mozilla/puppet.hg
 
     - name: puppet symlink
       file: dest={{HOME}}/mozilla/puppet src={{HOME}}/mozilla/puppet.git state=link
+
+    - name: mozharness.hg
+      hg: repo=https://hg.mozilla.org/build/mozharness dest={{HOME}}/mozilla/mozharness.hg

@@ -18,6 +18,7 @@
             - {src: aliases, dest: .aliases}
             - {src: xmodmap, dest: .xmodmap}
             - {src: i3_config, dest: .i3/config}
+            - {src: i3status.conf, dest: .i3status.conf}
             - {src: zshrc, dest: .zshrc}
             - {src: gitconfig, dest: .gitconfig}
             - {src: update_displays, dest: bin/update_displays}
