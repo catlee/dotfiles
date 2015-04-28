@@ -63,3 +63,6 @@
           - mtr
           - darktable
           - gimp
+          - pv
+          - xbacklight
+          - subversion

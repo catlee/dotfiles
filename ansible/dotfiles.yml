@@ -27,5 +27,6 @@
             - {src: firefox-moz, dest: bin/firefox-moz}
             - {src: git-mkpatch, dest: bin/git-mkpatch}
             - {src: hgrc, dest: .hgrc}
+            - {src: tmux_attach, dest: bin/tmux_attach}
 
 - include: mozilla.yml
