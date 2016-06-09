@@ -64,10 +64,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+minus split h
+#bindsym $mod+minus split h
 
 # split in vertical orientation
-bindsym $mod+bar split v
+#bindsym $mod+bar split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -79,6 +79,8 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -149,12 +151,11 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command exec ~/.i3/i3pystatus/bin/py3status
 }
 
 for_window [class="VidyoDesktop"] floating enable
 for_window [class="Qalculate"] floating enable
-#for_window [class="Pidgin" window_role="conversation"] floating enable
 
 bindsym Ctrl+mod1+l exec gnome-screensaver-command --lock
 bindsym $mod+q exec qalculate
@@ -168,14 +169,24 @@ set $out_sink alsa_output.pci-0000_00_1b.0.analog-stereo
 # from `pactl list sources | grep Name`
 set $in_source alsa_input.pci-0000_00_1b.0.analog-stereo
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $out_sink -- '+5%' && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $out_sink -- '-5%' && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $out_sink '+5%' && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $out_sink '-5%' && killall -SIGUSR1 i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $out_sink toggle && killall -SIGUSR1 i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute $in_source toggle
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec '10%'
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc '10%'
 
-exec gnome-screensaver
-exec nm-applet 
-exec xmodmap ~/.xmodmap
-exec pidgin
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+bindsym $mod+u exec update_displays
+bindsym ctrl+mod1+r exec i3-sensible-terminal --working-dir /home/catlee/mozilla/tools/buildfarm/maintenance --execute /home/catlee/mozilla/tools/buildfarm/maintenance/end_to_end_reconfig.sh
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xmodmap ~/.xmodmap
+exec --no-startup-id xflux -l 43.7000 -g -79.4000
+exec --no-startup-id dropbox start
+exec --no-startup-id crashplan/bin/crashplan start
+exec --no-startup-id xset dpms 300
+exec --no-startup-id gnome-screensaver
+exec --no-startup-id xautolock -time 5 -locker "gnome-screensaver-command --lock"
+exec --no-startup-id /home/catlee/bin/wallpaper.sh

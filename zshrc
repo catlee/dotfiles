@@ -1,4 +1,5 @@
 export PATH=$HOME/bin:$PATH
+export PATH=/home/catlee/.local/bin:$PATH
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -7,7 +8,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+#ZSH_THEME="af-magic"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -91,12 +95,14 @@ function ressh() {
     eval `ressh.sh`
 }
 
-function ruston() {
-    export PATH=/opt/rust/bin:$PATH
-    export LD_LIBRARY_PATH=/opt/rust/lib:$LD_LIBRARY_PATH
-}
+#function ruston() {
+    #export PATH=/opt/rust/bin:$PATH
+    #export LD_LIBRARY_PATH=/opt/rust/lib:$LD_LIBRARY_PATH
+#}
 
 #export PYENV_ROOT=$HOME/.pyenv
 #export PATH=$PYENV_ROOT/bin:$PATH
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
+#if [ -e /home/catlee/.nix-profile/etc/profile.d/nix.sh ]; then . /home/catlee/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+

@@ -11,9 +11,13 @@
             - "deb http://ftp.debian.org/debian/ testing main contrib non-free"
             - "deb http://security.debian.org/ testing/updates main contrib non-free"
             - "deb http://ftp.debian.org/debian/ unstable main contrib non-free"
+            - "deb http://download.virtualbox.org/virtualbox/debian jessie contrib non-free"
+            - "deb http://toolbelt.heroku.com/ubuntu ./"
+            - "deb http://ppa.launchpad.net/kilian/f.lux/ubuntu trusty main"
+            - "deb http://www.deb-multimedia.org testing main non-free"
 
       - name: packages
-        apt: update_cache=yes cache_valid_time=3600 name={{item}}
+        apt: update_cache=yes name={{item}}
         with_items:
           - pulseaudio
           - gnome-screensaver
@@ -66,3 +70,6 @@
           - pv
           - xbacklight
           - subversion
+          - heroku-toolbelt
+          - ruby
+          - fluxgui

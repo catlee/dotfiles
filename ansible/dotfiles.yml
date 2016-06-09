@@ -1,7 +1,7 @@
 ---
 - hosts: all
 
-  name: manage the dotfiles 
+  name: manage the dotfiles
 
   tasks:
       - include: vim.yml
@@ -19,6 +19,7 @@
             - {src: xmodmap, dest: .xmodmap}
             - {src: i3_config, dest: .i3/config}
             - {src: i3status.conf, dest: .i3status.conf}
+            - {src: i3status.py, dest: .i3/i3status.py}
             - {src: zshrc, dest: .zshrc}
             - {src: gitconfig, dest: .gitconfig}
             - {src: update_displays, dest: bin/update_displays}
@@ -28,5 +29,8 @@
             - {src: git-mkpatch, dest: bin/git-mkpatch}
             - {src: hgrc, dest: .hgrc}
             - {src: tmux_attach, dest: bin/tmux_attach}
+            - {src: tmux.conf, dest: .tmux.conf}
+            - {src: sattap.sh, dest: bin/sattap}
 
+- include: i3status.yml
 - include: mozilla.yml

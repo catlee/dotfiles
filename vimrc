@@ -1,6 +1,6 @@
 set nocompatible
+colorscheme zellner
 " let mapleader="\"
-" Load pathogen
 filetype off
 set smartcase
 set ignorecase
@@ -8,12 +8,43 @@ set scrolloff=4
 
 set encoding=utf-8
 
-call pathogen#infect()
-call pathogen#helptags()
+" Load pathogen
+" call pathogen#infect()
+" call pathogen#helptags()
+
+" Load Vundle
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tmhedberg/SimpylFold'
+let g:SimplyFold_docstring_preview=1
+set foldmethod=indent
+set foldlevel=99
+
+Plugin 'vim-scripts/indentpython.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'nvie/vim-flake8'
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_show_in_gutter=1
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'ntpeters/vim-better-whitespace'
+
+call vundle#end()
+
+let python_highlight_all=1
 
 filetype plugin indent on
 syntax on
-colorscheme zellner
 
 " Tabs are evil
 set et

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 sessions=$(tmux list-sessions -F '#{session_id} #{session_attached}' | grep ' 0$')
 if [ -n "$sessions" ]; then
     exec tmux attach
