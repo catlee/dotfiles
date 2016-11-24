@@ -1,6 +1,7 @@
 [user]
         name = Chris AtLee
         email = catlee@mozilla.com
+	signingKey = 84CD7E19
 
 [color]
         diff = auto
@@ -19,3 +20,5 @@
 
 [include]
         path = ~/.gitsecrets
+[commit]
+	gpgsign = true

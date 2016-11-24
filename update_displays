@@ -68,7 +68,7 @@ def do_office(displays):
             if d.name == b'eDP1':
                 cmd.extend(['--output', d.name, '--auto'])
             elif d.name == b'DP1':
-                cmd.extend(['--output', d.name, '--auto', '--right-of', 'eDP1'])
+                cmd.extend(['--output', d.name, '--auto', '--left-of', 'eDP1'])
             else:
                 cmd.extend(['--output', d.name, '--off'])
 

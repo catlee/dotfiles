@@ -9,6 +9,8 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="af-magic"
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:*' enable git
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
@@ -30,7 +32,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras tmux taskwarrior python virtualenv ssh-agent gpg-agent pip)
+export WORKON_HOME=$HOME/.virtualenvs
+plugins=(git git-extras tmux taskwarrior python virtualenv virtualenvwrapper ssh-agent gpg-agent pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,9 +44,6 @@ export PAGER=less
 # Debian stuff
 export DEBEMAIL="chris@atlee.ca"
 export DEBFULLNAME="Chris AtLee"
-
-# Python stuff
-#export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 # Ctrl-H runs man
 bindkey "^H" run-help
@@ -80,11 +80,7 @@ autoload -U compinit
 compinit
 
 source ~/.aliases
-export WORKON_HOME=$HOME/.virtualenvs
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
-VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-#source $HOME/venv/bin/virtualenvwrapper.sh
-source /etc/bash_completion.d/virtualenvwrapper
 
 export HG_SHARE_BASE_DIR=$(readlink -f $HOME/repos)
 export GIT_SHARE_BASE_DIR=$(readlink -f $HOME/repos/git)
@@ -106,3 +102,6 @@ function ressh() {
 #eval "$(pyenv virtualenv-init -)"
 #if [ -e /home/catlee/.nix-profile/etc/profile.d/nix.sh ]; then . /home/catlee/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+
+export NVM_DIR="/home/catlee/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

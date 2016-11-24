@@ -28,7 +28,7 @@ set foldlevel=99
 Plugin 'vim-scripts/indentpython.vim'
 
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 autocmd BufWritePost *.py call Flake8()
 let g:flake8_show_in_gutter=1
@@ -38,6 +38,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
