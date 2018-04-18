@@ -26,3 +26,6 @@ alias top=htop
 function mkchdir() {
     mkdir "$1" && chdir "$1"
 }
+
+alias vi=nvim
+alias vim=nvim

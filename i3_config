@@ -183,12 +183,10 @@ bindsym ctrl+mod1+r exec i3-sensible-terminal --execute $HOME/bin/reconfig.sh
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xmodmap ~/.xmodmap
-#exec --no-startup-id xflux -l 43.7000 -g -79.4000
 exec --no-startup-id dropbox start
-exec --no-startup-id crashplan/bin/crashplan start
 exec --no-startup-id xset dpms 300
 exec --no-startup-id gnome-screensaver
 exec --no-startup-id xautolock -time 5 -locker "gnome-screensaver-command --lock"
 exec --no-startup-id /home/catlee/bin/wallpaper.sh
 exec --no-startup-id redshift-gtk
-exec --no-startup-id xrandr --dpi 144
+exec --no-startup-id blueman-applet

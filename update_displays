@@ -82,11 +82,12 @@ def do_office(displays):
 
 def is_home(displays):
     try:
+        #home_monitor = b'00ffffffffffff0010ac16f04c4539340d16010380342078ea1ec5ae4f34b1260e5054a54b008180a940d100714f0101010101010101283c80a070b023403020360006442100001a000000ff00433539324d3233523439454c0a000000fc0044454c4c2055323431300a2020000000fd00384c1e5111000a202020202020016a020329f15090050403020716011f121314201511062309070767030c001000382d83010000e3050301023a801871382d40582c450006442100001e011d8018711c1620582c250006442100009e011d007251d01e206e28550006442100001e8c0ad08a20e02d10103e960006442100001800000000000000000000000000003ea'
         home_monitor = b'00ffffffffffff0010ac17f04c4539340d160104b53420783a1ec5ae4f34b1260e5054a54b008180a940d100714f0101010101010101283c80a070b023403020360006442100001a000000ff00433539324d3233523439454c0a000000fc0044454c4c2055323431300a2020000000fd00384c1e5111000a20202020202001e302031df15090050403020716011f121314201511062309070783010000023a801871382d40582c450006442100001e011d8018711c1620582c250006442100009e011d007251d01e206e28550006442100001e8c0ad08a20e02d10103e9600064421000018000000000000000000000000000000000000000000000000000021'
         d = displays[b'DP1']
         return all((
-            displays[b'DP1'].edid == home_monitor,
-            displays[b'DP1'].connected,
+            d.edid == home_monitor,
+            d.connected,
         ))
     except KeyError:
         return False
@@ -107,6 +108,7 @@ def do_home(displays):
 
     check_call(['xrandr', '--output', 'eDP1', '--scale', '1x1'])
     check_call(cmd)
+    check_call(['xrandr', '--output', 'eDP1', '--scale', '0.7x0.7'])
     check_call(['i3-msg', 'workspace 2'])
     check_call(['i3-msg', 'move workspace to output DP1'])
     check_call(['i3-msg', 'workspace 1'])
@@ -137,7 +139,7 @@ def do_standalone(displays):
             cmd.extend(['--output', d.name, '--off'])
 
     check_call(cmd)
-    check_call(['xrandr', '--output', 'eDP1', '--scale', '1x1'])
+    check_call(['xrandr', '--output', 'eDP1', '--scale', '0.7x0.7'])
 
 
 def main():

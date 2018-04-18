@@ -20,17 +20,16 @@ share =
 histedit = 
 transplant = 
 reviewboard = /home/catlee/.mozbuild/version-control-tools/hgext/reviewboard/client.py
-bzexport = /home/catlee/.mozbuild/version-control-tools/hgext/bzexport
 #bzpost = /home/catlee/.mozbuild/version-control-tools/hgext/bzpost
 firefoxtree = /home/catlee/.mozbuild/version-control-tools/hgext/firefoxtree
 bundleclone = /home/catlee/.mozbuild/version-control-tools/hgext/bundleclone
 push-to-try = /home/catlee/.mozbuild/version-control-tools/hgext/push-to-try
 mqext = /home/catlee/.mozbuild/version-control-tools/hgext/mqext
 qimportbz = /home/catlee/.mozbuild/version-control-tools/hgext/qimportbz
-bzpost = /home/catlee/.mozbuild/version-control-tools/hgext/bzpost
 #reviewboard = $HOME/mozilla/version-control-tools/hgext/reviewboard/client.py
 mozext = ~/.mozbuild/version-control-tools/hgext/mozext
 #fsmonitor =
+shelve=
 
 [mozilla]
 ircnick = catlee

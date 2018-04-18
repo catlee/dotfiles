@@ -82,26 +82,14 @@ compinit
 source ~/.aliases
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
 
-export HG_SHARE_BASE_DIR=$(readlink -f $HOME/repos)
-export GIT_SHARE_BASE_DIR=$(readlink -f $HOME/repos/git)
-export ARDUINO_INSTALL_DIR=$HOME/projects/arduino-1.0
-export REPORTTIME=60
-
-function ressh() {
-    eval `ressh.sh`
-}
-
-#function ruston() {
-    #export PATH=/opt/rust/bin:$PATH
-    #export LD_LIBRARY_PATH=/opt/rust/lib:$LD_LIBRARY_PATH
-#}
-
 #export PYENV_ROOT=$HOME/.pyenv
 #export PATH=$PYENV_ROOT/bin:$PATH
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
+
 #if [ -e /home/catlee/.nix-profile/etc/profile.d/nix.sh ]; then . /home/catlee/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+#export NVM_DIR="/home/catlee/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export NVM_DIR="/home/catlee/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
