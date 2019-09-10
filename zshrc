@@ -12,8 +12,9 @@ ZSH=$HOME/.oh-my-zsh
 zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' enable git
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='awesome-patched'
+#POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_jobs history time)
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,7 +34,9 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 export WORKON_HOME=$HOME/.virtualenvs
-plugins=(git git-extras tmux taskwarrior python virtualenv virtualenvwrapper ssh-agent gpg-agent pip)
+zstyle :omz:plugins:ssh-agent lifetime 4h
+#plugins=(git git-extras tmux python virtualenv virtualenvwrapper ssh-agent gpg-agent pip vi-mode)
+plugins=(git git-extras python virtualenv virtualenvwrapper vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,14 +85,15 @@ compinit
 source ~/.aliases
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
 
-#export PYENV_ROOT=$HOME/.pyenv
-#export PATH=$PYENV_ROOT/bin:$PATH
-#eval "$(pyenv init -)"
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
-#if [ -e /home/catlee/.nix-profile/etc/profile.d/nix.sh ]; then . /home/catlee/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-#export NVM_DIR="/home/catlee/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#VIM!
+#bindkey -v
+
+# Taskcluster
+export TASKCLUSTER_ROOT_URL=https://taskcluster.net

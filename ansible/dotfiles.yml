@@ -16,21 +16,12 @@
         file: src={{DOTFILES}}/{{item.src}} dest={{HOME}}/{{item.dest}} state=link
         with_items:
             - {src: aliases, dest: .aliases}
-            - {src: xmodmap, dest: .xmodmap}
             - {src: i3_config, dest: .i3/config}
             - {src: i3status.conf, dest: .i3status.conf}
             - {src: i3status.py, dest: .i3/i3status.py}
             - {src: zshrc, dest: .zshrc}
             - {src: gitconfig, dest: .gitconfig}
-            - {src: update_displays, dest: bin/update_displays}
             - {src: open_in_bugzilla.sh, dest: bin/open_in_bugzilla.sh}
-            - {src: firefox, dest: bin/firefox}
-            - {src: firefox-moz, dest: bin/firefox-moz}
-            - {src: git-mkpatch, dest: bin/git-mkpatch}
             - {src: hgrc, dest: .hgrc}
             - {src: tmux_attach, dest: bin/tmux_attach}
             - {src: tmux.conf, dest: .tmux.conf}
-            - {src: sattap.sh, dest: bin/sattap}
-
-- include: i3status.yml
-- include: mozilla.yml

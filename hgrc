@@ -2,6 +2,8 @@
 
 [ui]
 username = Chris AtLee <catlee@mozilla.com>
+tweakdefaults = true
+interface = curses
 #traceback = true
 
 [diff]
@@ -10,26 +12,30 @@ unified = 8
 showfunc = 1
 
 [extensions]
-color = 
 mq = 
-pager = 
 purge = 
 rebase = 
 share = 
 #mkpatch = /home/catlee/projects/dotfiles/mkpatch.py
 histedit = 
 transplant = 
-reviewboard = /home/catlee/.mozbuild/version-control-tools/hgext/reviewboard/client.py
-#bzpost = /home/catlee/.mozbuild/version-control-tools/hgext/bzpost
 firefoxtree = /home/catlee/.mozbuild/version-control-tools/hgext/firefoxtree
-bundleclone = /home/catlee/.mozbuild/version-control-tools/hgext/bundleclone
 push-to-try = /home/catlee/.mozbuild/version-control-tools/hgext/push-to-try
 mqext = /home/catlee/.mozbuild/version-control-tools/hgext/mqext
 qimportbz = /home/catlee/.mozbuild/version-control-tools/hgext/qimportbz
-#reviewboard = $HOME/mozilla/version-control-tools/hgext/reviewboard/client.py
 mozext = ~/.mozbuild/version-control-tools/hgext/mozext
 #fsmonitor =
-shelve=
+shelve = 
+show = 
+phabricator =
+#mozphab = ~/.mozbuild/phab/mozphab.py
+evolve = /home/catlee/.mozbuild/evolve/hgext3rd/evolve
+blackbox = 
+record =
+
+[phabricator]
+url = https://phabricator.services.mozilla.com/
+callsign = MOZILLACENTRAL
 
 [mozilla]
 ircnick = catlee
@@ -40,5 +46,24 @@ review = ssh://reviewboard-hg.mozilla.org/autoreview
 mqcommit = auto
 [defaults]
 qnew = -U
-[hostfingerprints]
-bugzilla.mozilla.org = 7c:7a:c4:6c:91:3b:6b:89:cf:f2:8c:13:b8:02:c4:25:bd:1e:25:17
+
+[revsetalias]
+wip = (parents(not public()) or not public() or . or (head() and branch(default))) and (not obsolete() or orphan()^) and not closed() and not (fxheads() - date(-90))
+
+[templates]
+wip = '{label("wip.branch", if(branches,"{branches} "))}{label(ifeq(graphnode,"x","wip.obsolete","wip.{phase}"),"{rev}:{node|short}")}{label("wip.user", " {author|user}")}{label("wip.tags", if(tags," {tags}"))}{label("wip.tags", if(fxheads," {fxheads}"))}{if(bookmarks," ")}{label("wip.bookmarks", if(bookmarks,bookmarks))}{label(ifcontains(rev, revset("parents()"), "wip.here"), " {desc|firstline}")}'
+
+[alias]
+wip = log --graph --rev=wip --template=wip
+
+[color]
+wip.bookmarks = yellow underline
+wip.branch = yellow
+wip.draft = green
+wip.here = red
+wip.obsolete = none
+wip.public = blue
+wip.tags = yellow
+wip.user = magenta
+[experimental]
+graphshorten = true

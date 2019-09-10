@@ -21,4 +21,4 @@
 [include]
         path = ~/.gitsecrets
 [commit]
-        gpgsign = true
+        #gpgsign = true

@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -83,7 +83,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+s sticky toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -156,18 +156,23 @@ bar {
 
 for_window [class="VidyoDesktop"] floating enable
 for_window [class="Qalculate"] floating enable
+for_window [class="zoom"] floating enable
+
+workspace 1 output HDMI1
+workspace 2 output HDMI1
 
 bindsym Ctrl+mod1+l exec gnome-screensaver-command --lock
 bindsym $mod+q exec qalculate
 bindsym $mod+p exec i3-sensible-terminal --execute python
-bindsym $mod+shift+v exec i3-sensible-terminal --execute vim
+bindsym $mod+shift+v exec i3-sensible-terminal --execute nvim
 bindsym $mod+shift+b exec open_in_bugzilla.sh
 bindsym $mod+o move workspace to output right
+bindsym $mod+shift+o move workspace to output left
 
 # from `pactl list sinks| grep Name`
-set $out_sink alsa_output.pci-0000_00_1b.0.analog-stereo
+set $out_sink alsa_output.pci-0000_00_1f.3.analog-stereo
 # from `pactl list sources | grep Name`
-set $in_source alsa_input.pci-0000_00_1b.0.analog-stereo
+set $in_source @DEFAULT_SOURCE@
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $out_sink '+5%' && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $out_sink '-5%' && killall -SIGUSR1 i3status
@@ -175,18 +180,24 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $out_sink toggle 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute $in_source toggle
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec '10%'
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc '10%'
+bindsym $mod+space exec --no-startup-id pactl set-source-mute $in_source toggle
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+u exec update_displays
-bindsym ctrl+mod1+r exec i3-sensible-terminal --execute $HOME/bin/reconfig.sh
+bindsym $mod+u exec autorandr --batch --change
 
 exec --no-startup-id nm-applet
-exec --no-startup-id xmodmap ~/.xmodmap
+#exec --no-startup-id xmodmap ~/.xmodmap
 exec --no-startup-id dropbox start
 exec --no-startup-id xset dpms 300
 exec --no-startup-id gnome-screensaver
 exec --no-startup-id xautolock -time 5 -locker "gnome-screensaver-command --lock"
-exec --no-startup-id /home/catlee/bin/wallpaper.sh
+exec --no-startup-id /home/catlee/bin/wallpaper.sh -bg
 exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
+#exec --no-startup-id run_keybase
+# Trackpoint configuration
+exec --no-startup-id xinput set-prop "TPPS/2 Elan TrackPoint" 300 -1
+
+exec --no-startup-id autorandr --change
+exec --no-startup-id xset b off
