@@ -1,5 +1,5 @@
-export PATH=$HOME/bin:$PATH
-export PATH=/home/catlee/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+typeset -U PATH
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -8,7 +8,6 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="af-magic"
 zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' enable git
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -33,10 +32,10 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_job
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-export WORKON_HOME=$HOME/.virtualenvs
+#export WORKON_HOME=$HOME/.virtualenvs
 zstyle :omz:plugins:ssh-agent lifetime 4h
 #plugins=(git git-extras tmux python virtualenv virtualenvwrapper ssh-agent gpg-agent pip vi-mode)
-plugins=(git git-extras python virtualenv virtualenvwrapper vi-mode)
+plugins=(git git-extras python virtualenv virtualenvwrapper vi-mode pyenv pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,12 +87,38 @@ export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #VIM!
-#bindkey -v
+bindkey -v
+export KEYTIMEOUT=1
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Taskcluster
-export TASKCLUSTER_ROOT_URL=https://taskcluster.net
+export TASKCLUSTER_ROOT_URL='https://firefox-ci-tc.services.mozilla.com/'
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

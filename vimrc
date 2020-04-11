@@ -15,7 +15,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'rust-lang/rust.vim'
 Plugin 'w0rp/ale'
 Plugin 'junegunn/fzf.vim'
-set rtp+=~/.fzf
+source /usr/share/doc/fzf/examples/fzf.vim
 Plugin 'junegunn/seoul256.vim'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'machakann/vim-highlightedyank'
@@ -29,6 +29,8 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'takac/vim-hardtime'
 Plugin 'mbbill/undotree'
+Plugin 'cespare/vim-toml'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 call vundle#end()
 " }}}
 
@@ -77,9 +79,6 @@ nnoremap <C-h> :nohlsearch<cr>
 
 " Map jk to escape
 inoremap jk <Esc>
-
-" Map X to :xa
-cnoremap X xa
 
 " Map Ctrl-F to convert to f-string
 inoremap <C-f> <Esc>ma?['"]<CR>:nohlsearch<CR>if<Esc>`ala
