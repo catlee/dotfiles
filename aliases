@@ -1,7 +1,2 @@
-# alias ls="ls --color=auto"
-# alias ll="ls -l --color=auto"
-alias grep="grep --color=auto"
-alias rgrep="rgrep --exclude '*.svn*' --color=auto"
-alias less="less -R"
 alias vi=nvim
 alias vim=nvim

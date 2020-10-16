@@ -1,40 +1,33 @@
-" Vundle plugin management {{{
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plugin management {{{
+call plug#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" Plugin 'vim-airline/vim-airline'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'rust-lang/rust.vim'
-Plugin 'dense-analysis/ale'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
-set rtp+=~/.fzf
-Plugin 'junegunn/seoul256.vim'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'machakann/vim-highlightedyank'
-Plugin 'ambv/black'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" Plugin 'garbas/vim-snipmate'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'PeterRincker/vim-argumentative'
-Plugin 'jamessan/vim-gnupg'
-Plugin 'mileszs/ack.vim'
-Plugin 'justinmk/vim-sneak'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'takac/vim-hardtime'
-Plugin 'mbbill/undotree'
-Plugin 'Shopify/shadowenv.vim'
-call vundle#end()
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'jamessan/vim-gnupg'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'lifepillar/vim-solarized8'
+Plug 'machakann/vim-highlightedyank'
+Plug 'mbbill/undotree'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'peterrincker/vim-argumentative'
+Plug 'psf/black', {'tag': '19.10b0'}
+Plug 'rust-lang/rust.vim'
+Plug 'sirver/ultisnips'
+Plug 'sunaku/tmux-navigate'
+Plug 'takac/vim-hardtime'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'dense-analysis/ale'
+Plug 'Shopify/shadowenv.vim'
+call plug#end()
 " }}}
 
 " Plugin settings {{{
@@ -43,26 +36,40 @@ let g:ale_python_mypy_options='--ignore-missing-imports --cache-dir=/dev/null'
 let g:ackprg = "ag --vimgrep"
 let g:ale_python_flake8_options = "--max-line-length=89"
 " let g:hardtime_default_on = 1
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_tags_command = 'ctags -R'
+" Border color
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+let $FZF_DEFAULT_COMMAND="fd --type f --exclude '**/*.pyc'"
 " }}}
 
 " Standard settings {{{
 set nocompatible
 filetype plugin indent on
-syntax on
+syntax enable
 
 " Tabs are evil
 set et
+set smarttab
 
 set hlsearch
 set incsearch
 set sts=4
 set sw=4
 set number
+set relativenumber
 set smartcase
 set ignorecase
 set scrolloff=4
 set encoding=utf-8
 set complete+=i
+set showtabline=2
+set noshowmode
 
 set background=dark
 colorscheme solarized8
@@ -74,7 +81,7 @@ set listchars=tab:>-,trail:.
 
 " Keybindings {{{
 " Editing/sourcing vimrc
-noremap <leader>s :source ~/.vimrc<cr>
+noremap <leader>S :source ~/.vimrc<cr>
 noremap <leader>e :new ~/.vimrc<cr>
 
 " Don't highlight
@@ -83,22 +90,63 @@ nnoremap <C-h> :nohlsearch<cr>
 " Map jk to escape
 inoremap jk <Esc>
 
-" Map X to :xa
-cnoremap X xa
+" Map H/L to move to the beginning/end of a line
+nnoremap H ^
+nnoremap L g_
 
 " Map Ctrl-F to convert to f-string
 inoremap <C-f> <Esc>ma?['"]<CR>:nohlsearch<CR>if<Esc>`ala
 
 " Move between warnings easily
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-"
-" Intelligently navigate tmux panes and Vim splits using the same keys.
-" See https://sunaku.github.io/tmux-select-pane.html for documentation.
-let progname = substitute($VIM, '.*[/\\]', '', '')
-set title titlestring=%{progname}\ %f\ +%l\ #%{tabpagenr()}.%{winnr()}
-if &term =~ '^screen' && !has('nvim') | exe "set t_ts=\e]2; t_fs=\7" | endif
+" Use TAB/Shift-TAB to move between tabs
+nnoremap <TAB> :tabnext<CR>
+nnoremap <S-TAB> :tabprevious<CR>
+
+" Better tabbing in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Commenting
+nnoremap <leader>/ :Commentary<CR>
+vnoremap <leader>/ :Commentary<CR>
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command, '--header', '$FILE']}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+map <leader>f :Files<CR>
+map <leader>b :Buffers<CR>
+map <leader>g :RG<CR>
+
+nnoremap <c-n> :cnext<cr>
+nnoremap <c-p> :cprev<cr>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" path text objects
+" -----------------
+" i/ a/
+function! VisualPath()
+    " find the end of the current path segment
+    call search('[^/: "=]\+', 'ceW')
+    silent! normal! v
+    " find the beginning of the current path segment
+    call search('[^/: "=]\+', 'bW')
+endfunction
+xnoremap i/ :<C-u>silent! call VisualPath()<CR>
+onoremap i/ :<C-u>silent! normal vi/<CR>
+xnoremap a/ :<C-u>silent! call VisualPath()<CR>
+onoremap a/ :<C-u>silent! normal va/<CR>
 
 " }}}
 
@@ -137,10 +185,10 @@ augroup END
 if has('nvim')
     " Make Esc exit out of terminal mode
     " Use Alt-[ or Ctrl-V Esc to pass escape to terminal
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <M-[> <Esc>
-    tnoremap <C-v><Esc> <Esc>
-    tnoremap <C-v><Esc> <Esc>
+    " tnoremap <Esc> <C-\><C-n>
+    " tnoremap <M-[> <Esc>
+    " tnoremap <C-v><Esc> <Esc>
+    " tnoremap <C-v><Esc> <Esc>
 
     " Move between windows
     tnoremap <A-h> <C-\><C-n><C-w>h
@@ -151,6 +199,11 @@ if has('nvim')
     noremap <A-j> <C-w>j
     noremap <A-k> <C-w>k
     noremap <A-l> <C-w>l
+    " Use ctrl + hjkl to resize windows
+    nnoremap <C-j>    :resize -2<CR>
+    nnoremap <C-k>    :resize +2<CR>
+    " nnoremap <C-h>    :vertical resize -2<CR>
+    " nnoremap <C-l>    :vertical resize +2<CR>
 
     " Show effects of a command incrementally
     set inccommand=split

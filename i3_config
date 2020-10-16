@@ -27,7 +27,8 @@ font pango:DejaVu Sans Mono 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal -x tmux_attach
+#bindsym $mod+Return exec i3-sensible-terminal -x tmux_attach
+bindsym $mod+Return exec i3-sensible-terminal tmux_attach
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -158,8 +159,10 @@ for_window [class="VidyoDesktop"] floating enable
 for_window [class="Qalculate"] floating enable
 for_window [class="zoom"] floating enable
 
-workspace 1 output HDMI1
-workspace 2 output HDMI1
+workspace 1 output DP2
+workspace 2 output DP2
+workspace 3 output DP2
+workspace 5 output HDMI1
 
 bindsym Ctrl+mod1+l exec gnome-screensaver-command --lock
 bindsym $mod+q exec qalculate
@@ -170,7 +173,8 @@ bindsym $mod+o move workspace to output right
 bindsym $mod+shift+o move workspace to output left
 
 # from `pactl list sinks| grep Name`
-set $out_sink alsa_output.pci-0000_00_1f.3.analog-stereo
+#set $out_sink alsa_output.pci-0000_00_1f.3.analog-stereo
+set $out_sink @DEFAULT_SINK@
 # from `pactl list sources | grep Name`
 set $in_source @DEFAULT_SOURCE@
 
@@ -180,6 +184,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $out_sink toggle 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute $in_source toggle
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec '10%'
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc '10%'
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+space exec --no-startup-id pactl set-source-mute $in_source toggle
 
 bindsym $mod+Shift+minus move scratchpad
@@ -187,7 +195,6 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+u exec autorandr --batch --change
 
 exec --no-startup-id nm-applet
-#exec --no-startup-id xmodmap ~/.xmodmap
 exec --no-startup-id dropbox start
 exec --no-startup-id xset dpms 300
 exec --no-startup-id gnome-screensaver
@@ -195,9 +202,18 @@ exec --no-startup-id xautolock -time 5 -locker "gnome-screensaver-command --lock
 exec --no-startup-id /home/catlee/bin/wallpaper.sh -bg
 exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
-#exec --no-startup-id run_keybase
 # Trackpoint configuration
 exec --no-startup-id xinput set-prop "TPPS/2 Elan TrackPoint" 300 -1
 
 exec --no-startup-id autorandr --change
 exec --no-startup-id xset b off
+exec --no-startup-id i3-sensible-terminal --execute tmux_start.sh
+exec --no-startup-id sudo /usr/local/bin/disable_ir_camera.sh
+exec --no-startup-id signal-desktop
+exec --no-startup-id spotify
+exec --no-startup-id pavucontrol
+
+for_window [class="Signal"] move window to workspace 4
+for_window [class="pavucontrol"] move window to workspace 4
+for_window [title="tmux_start.sh"] move scratchpad
+for_window [class="Spotify"] move scratchpad
