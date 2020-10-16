@@ -24,7 +24,7 @@ push-to-try = /home/catlee/.mozbuild/version-control-tools/hgext/push-to-try
 #mqext = /home/catlee/.mozbuild/version-control-tools/hgext/mqext
 #qimportbz = /home/catlee/.mozbuild/version-control-tools/hgext/qimportbz
 mozext = ~/.mozbuild/version-control-tools/hgext/mozext
-#fsmonitor =
+fsmonitor =
 shelve = 
 show = 
 phabricator =
@@ -67,3 +67,6 @@ wip.tags = yellow
 wip.user = magenta
 [experimental]
 graphshorten = true
+
+[pager]
+ignore = status

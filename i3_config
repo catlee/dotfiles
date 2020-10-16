@@ -184,6 +184,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $out_sink toggle 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute $in_source toggle
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec '10%'
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc '10%'
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+space exec --no-startup-id pactl set-source-mute $in_source toggle
 
 bindsym $mod+Shift+minus move scratchpad
@@ -205,3 +209,11 @@ exec --no-startup-id autorandr --change
 exec --no-startup-id xset b off
 exec --no-startup-id i3-sensible-terminal --execute tmux_start.sh
 exec --no-startup-id sudo /usr/local/bin/disable_ir_camera.sh
+exec --no-startup-id signal-desktop
+exec --no-startup-id spotify
+exec --no-startup-id pavucontrol
+
+for_window [class="Signal"] move window to workspace 4
+for_window [class="pavucontrol"] move window to workspace 4
+for_window [title="tmux_start.sh"] move scratchpad
+for_window [class="Spotify"] move scratchpad

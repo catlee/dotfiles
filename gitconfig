@@ -22,3 +22,8 @@
         path = ~/.gitsecrets
 [commit]
         #gpgsign = true
+[cinnabar]
+	version-check = 1591392480
+	helper = /home/catlee/src/git-cinnabar/git-cinnabar-helper
+[pull]
+	ff = only

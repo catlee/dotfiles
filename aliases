@@ -1,13 +1,6 @@
-alias tkd="tkdiff"
-alias svu="svn update"
-alias svs="svn status -q"
-alias svsu="svn status -qu"
-alias cvu="cvs update"
-alias cvn="cvs -qn update"
 alias hgu="hg pull -u"
 alias hgs="hg status -q"
 alias hgd="hg diff"
-alias mi="make install"
 alias ls="ls --color=auto"
 alias ll="ls -l --color=auto"
 alias grep="grep --color=auto"
@@ -19,13 +12,12 @@ function svl() {
 }
 alias vg="valgrind --tool=memcheck --quiet --trace-children=yes --num-callers=12 --suppressions=$HOME/.valgrind.supp"
 alias -g L="2>&1 | less"
-alias ':q'=exit
 alias xclip='xclip -selection clipboard'
 alias firefox_test='firefox -no-remote -P test'
 alias top=htop
 function mkchdir() {
     mkdir "$1" && chdir "$1"
 }
-
 alias vi=nvim
 alias vim=nvim
+alias fd=fdfind

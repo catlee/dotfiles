@@ -32,10 +32,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_job
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#export WORKON_HOME=$HOME/.virtualenvs
 zstyle :omz:plugins:ssh-agent lifetime 4h
 #plugins=(git git-extras tmux python virtualenv virtualenvwrapper ssh-agent gpg-agent pip vi-mode)
-plugins=(git git-extras python virtualenv virtualenvwrapper vi-mode pyenv pip)
+plugins=(git git-extras python vi-mode pyenv pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,8 +116,17 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Taskcluster
-export TASKCLUSTER_ROOT_URL='https://firefox-ci-tc.services.mozilla.com/'
+export TASKCLUSTER_ROOT_URL='https://firefox-ci-tc.services.mozilla.com'
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+export FZF_CTRL_T_COMMAND="fdfind --type f --exclude '**/*.pyc'"
+export FZF_DEFAULT_COMMAND="fdfind --type f"
+
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Cargo
+export PATH=$HOME/.cargo/bin:$PATH
