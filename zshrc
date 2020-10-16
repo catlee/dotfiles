@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export PATH=$HOME/bin:$PATH
 export PATH=/home/catlee/.local/bin:$PATH
 
@@ -11,10 +18,10 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="af-magic"
 zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' enable git
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 #POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_jobs history time)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs virtualenv)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_jobs history time)
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,15 +40,15 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_job
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-export WORKON_HOME=$HOME/.virtualenvs
-zstyle :omz:plugins:ssh-agent lifetime 4h
+#export WORKON_HOME=$HOME/.virtualenvs
+#zstyle :omz:plugins:ssh-agent lifetime 4h
 #plugins=(git git-extras tmux python virtualenv virtualenvwrapper ssh-agent gpg-agent pip vi-mode)
-plugins=(git git-extras python virtualenv virtualenvwrapper vi-mode)
+plugins=(git git-extras python vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export EDITOR=vim
+export EDITOR=nvim
 export PAGER=less
 
 # Debian stuff
@@ -95,5 +102,8 @@ eval "$(pyenv init -)"
 #VIM!
 #bindkey -v
 
-# Taskcluster
-export TASKCLUSTER_ROOT_URL=https://taskcluster.net
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+if [ -e /Users/chrisatlee/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/chrisatlee/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

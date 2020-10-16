@@ -13,15 +13,19 @@ Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'rust-lang/rust.vim'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 set rtp+=~/.fzf
 Plugin 'junegunn/seoul256.vim'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'ambv/black'
-" Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'PeterRincker/vim-argumentative'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'mileszs/ack.vim'
@@ -29,6 +33,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'takac/vim-hardtime'
 Plugin 'mbbill/undotree'
+Plugin 'Shopify/shadowenv.vim'
 call vundle#end()
 " }}}
 
@@ -115,7 +120,16 @@ augroup END
 augroup filetype_py
     autocmd!
     autocmd FileType python let b:ale_linters = ['flake8']
-    "autocmd BufWritePre *.py execute ':Black'
+augroup END
+function! AddRubyHeader()
+    if ! filereadable(expand("%"))
+        call append("0", "# typed: false")
+        call append("1", "# frozen_string_literal: false")
+    endif
+endfunction
+augroup filetype_rb
+    autocmd!
+    autocmd FileType ruby call AddRubyHeader()
 augroup END
 " }}}
 
@@ -143,6 +157,6 @@ if has('nvim')
 
     " Use the host's python
     let g:python_host_prog = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
+    " let g:python3_host_prog = '/usr/bin/python3'
 endif
 " }}}
