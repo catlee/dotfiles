@@ -14,7 +14,7 @@ Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'peterrincker/vim-argumentative'
-Plug 'psf/black', {'tag': '19.10b0'}
+" Plug 'psf/black', {'tag': '19.10b0'}
 Plug 'rust-lang/rust.vim'
 Plug 'sirver/ultisnips'
 Plug 'sunaku/tmux-navigate'
@@ -24,9 +24,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rails'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'dense-analysis/ale'
 Plug 'Shopify/shadowenv.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'sgeb/vim-diff-fold'
+Plug 'vim-ruby/vim-ruby'
+Plug 'preservim/nerdtree'
 call plug#end()
 " }}}
 
@@ -35,6 +41,9 @@ let g:ultisnips_python_style='google'
 let g:ale_python_mypy_options='--ignore-missing-imports --cache-dir=/dev/null'
 let g:ackprg = "ag --vimgrep"
 let g:ale_python_flake8_options = "--max-line-length=89"
+let g:ruby_indent_assignment_style = 'variable'
+
+
 " let g:hardtime_default_on = 1
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -46,6 +55,7 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 let $FZF_DEFAULT_COMMAND="fd --type f --exclude '**/*.pyc'"
+
 " }}}
 
 " Standard settings {{{
@@ -168,16 +178,6 @@ augroup END
 augroup filetype_py
     autocmd!
     autocmd FileType python let b:ale_linters = ['flake8']
-augroup END
-function! AddRubyHeader()
-    if ! filereadable(expand("%"))
-        call append("0", "# typed: false")
-        call append("1", "# frozen_string_literal: false")
-    endif
-endfunction
-augroup filetype_rb
-    autocmd!
-    autocmd FileType ruby call AddRubyHeader()
 augroup END
 " }}}
 
