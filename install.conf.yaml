@@ -1,0 +1,18 @@
+- defaults:
+    link:
+        relink: true
+
+- clean: ['~f']
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.vimrc: vimrc
+    ~/.aliases: aliases
+    ~/.zshrc: zshrc
+    ~/.gitconfig: gitconfig
+
+# TODO:
+# Vim plugins
+# fzf
+# p10k
+# fdfind
