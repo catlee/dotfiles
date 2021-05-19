@@ -6,11 +6,9 @@
 [color]
         diff = auto
 
-[core]
-        excludesfile = ~/.gitignore
-
 [diff]
         renames = true
+        algorithm = patience
 
 [alias]
         di = diff -U8 --patch-with-stat
@@ -20,10 +18,19 @@
 
 [include]
         path = ~/.gitsecrets
-[commit]
-        #gpgsign = true
-[cinnabar]
-	version-check = 1591392480
-	helper = /home/catlee/src/git-cinnabar/git-cinnabar-helper
+
 [pull]
-	ff = only
+        ff = only
+
+[credential]
+        helper =
+        helper = store --file /opt/dev/var/private/git_credential_store
+
+[core]
+        commitGraph = true
+
+[gc]
+        writeCommitGraph = true
+
+[protocol]
+        version = 2
