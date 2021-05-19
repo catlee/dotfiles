@@ -5,3 +5,12 @@
 [submodule "vim/vim-plug"]
 	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
+	shallow = true
+[submodule "shell/ohmyzsh"]
+	path = shell/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+	shallow = true
+[submodule "shell/powerlevel10k"]
+	path = shell/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
+	shallow = true

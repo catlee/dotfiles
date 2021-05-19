@@ -2,17 +2,34 @@
     link:
         relink: true
 
-- clean: ['~f']
+- clean: ['~']
+
+- create:
+    - ~/bin
+    - ~/.config/nvim
+    - ~/.vim/autoload
+
+- shell:
+    - brew install fzf fd nvim
 
 - link:
-    ~/.tmux.conf: tmux.conf
-    ~/.vimrc: vimrc
-    ~/.aliases: aliases
-    ~/.zshrc: zshrc
+    ~/.tmux.conf: shell/tmux.conf
+    ~/.aliases: shell/aliases
+    ~/.zshrc: shell/zshrc
+    ~/.fzf.zsh: shell/fzf.zsh
+    ~/.oh-my-zsh: shell/ohmyzsh/
     ~/.gitconfig: gitconfig
+    ~/.vimrc: vim/vimrc
+    ~/.config/nvim/init.vim: vim/nvim_init.vim
+    ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
+
+# Force this to happen after the initial symlink is setup
+- link:
+    ~/.oh-my-zsh/custom/themes/powerlevel10k: shell/powerlevel10k/
+
+- shell:
+    - nvim +PlugInstall +qall
 
 # TODO:
-# Vim plugins
-# fzf
-# p10k
-# fdfind
+# fdfind alias
+# linux/mac differences
