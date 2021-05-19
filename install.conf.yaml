@@ -15,6 +15,7 @@
     ~/.zshrc: shell/zshrc
     ~/.fzf.zsh: shell/fzf.zsh
     ~/.oh-my-zsh: shell/ohmyzsh/
+    ~/.p10k.zsh: shell/p10k.zsh
     ~/.gitconfig: gitconfig
     ~/.vimrc: vim/vimrc
     ~/.config/nvim/init.vim: vim/nvim_init.vim
