@@ -9,9 +9,6 @@
     - ~/.config/nvim
     - ~/.vim/autoload
 
-- shell:
-    - brew install fzf fd nvim
-
 - link:
     ~/.tmux.conf: shell/tmux.conf
     ~/.aliases: shell/aliases
