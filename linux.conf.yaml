@@ -1,0 +1,9 @@
+---
+- defaults:
+    link:
+        relink: true
+
+- link:
+    ~/bin/disable_screensaver: linux/disable_screensaver
+    ~/bin/tmux_attach: linux/tmux_attach
+    ~/bin/update_displays: linux/update_displays

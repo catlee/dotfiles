@@ -21,6 +21,6 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive --depth 1
 
-for CONFIG in ${CONFIGS[@]}; do
+for CONFIG in "${CONFIGS[@]}"; do
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 done

@@ -207,11 +207,11 @@ exec --no-startup-id xinput set-prop "TPPS/2 Elan TrackPoint" 300 -1
 
 exec --no-startup-id autorandr --change
 exec --no-startup-id xset b off
-exec --no-startup-id i3-sensible-terminal --execute tmux_start.sh
+# exec --no-startup-id i3-sensible-terminal --execute tmux_start.sh
 exec --no-startup-id sudo /usr/local/bin/disable_ir_camera.sh
-exec --no-startup-id signal-desktop
-exec --no-startup-id spotify
-exec --no-startup-id pavucontrol
+# exec --no-startup-id signal-desktop
+# exec --no-startup-id spotify
+# exec --no-startup-id pavucontrol
 
 for_window [class="Signal"] move window to workspace 4
 for_window [class="pavucontrol"] move window to workspace 4

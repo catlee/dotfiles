@@ -1,3 +1,4 @@
+---
 - defaults:
     link:
         relink: true
@@ -30,4 +31,3 @@
 
 # TODO:
 # fdfind alias
-# linux/mac differences

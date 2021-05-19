@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+#set -x
+
+finish() {
+    echo 'reenabling dpms and xautolock'
+    #echo 'reenabling dpms'
+    xset +dpms
+    xset s on
+    killall -CONT xautolock
+}
+
+trap "finish" EXIT
+
+CMD="$@"
+
+echo 'disabling dpms and xautolock'
+#echo 'disabling dpms'
+xset -dpms
+xset s off
+killall -STOP xautolock
+
+if [ -n "$CMD" ]; then
+    $CMD
+else
+    read -p "press enter to re-enable screensaver: "
+fi
