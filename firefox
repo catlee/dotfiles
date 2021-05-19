@@ -1,3 +1,0 @@
-#!/bin/sh
-cd ~/minefield
-exec ./firefox $* >> firefox.log 2>&1

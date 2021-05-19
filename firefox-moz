@@ -1,2 +1,0 @@
-#!/bin/sh
-exec firefox --no-remote --profile /home/catlee/.mozilla/firefox/kr7ngjmo.Mozilla
