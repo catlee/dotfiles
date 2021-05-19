@@ -28,6 +28,3 @@
 
 - shell:
     - nvim +PlugInstall +qall
-
-# TODO:
-# fdfind alias
