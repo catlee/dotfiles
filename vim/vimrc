@@ -208,7 +208,7 @@ if has('nvim')
     set inccommand=split
 
     " Use the host's python
-    let g:python_host_prog = '/usr/bin/python'
+    " let g:python_host_prog = '/usr/bin/python'
     " let g:python3_host_prog = '/usr/bin/python3'
 endif
 " }}}
