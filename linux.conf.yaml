@@ -8,3 +8,6 @@
     ~/bin/tmux_attach: linux/tmux_attach
     ~/bin/update_displays: linux/update_displays
     ~/bin/fd: linux/fd
+
+- shell:
+    - sudo apt install fd-find ripgrep fzf
