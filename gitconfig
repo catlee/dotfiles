@@ -18,6 +18,7 @@
 
 [include]
         path = ~/.gitsecrets
+        path = ~/.gitconfig.local
 
 [pull]
         ff = only
@@ -29,9 +30,6 @@
 
 [protocol]
         version = 2
-[credential]
-	helper = 
-	helper = store --file /opt/dev/var/private/git_credential_store
 [url "https://github.com/Shopify/"]
 	insteadOf = git@github.com:Shopify/
 	insteadOf = git@github.com:shopify/

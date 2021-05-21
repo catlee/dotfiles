@@ -19,6 +19,7 @@
     ~/.oh-my-zsh: shell/ohmyzsh/
     ~/.p10k.zsh: shell/p10k.zsh
     ~/.gitconfig: gitconfig
+    ~/.gitconfig.local: gitconfig.local
     ~/.vimrc: vim/vimrc
     ~/.config/nvim/init.vim: vim/nvim_init.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
