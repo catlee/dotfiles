@@ -13,8 +13,9 @@
 [alias]
         di = diff -U8 --patch-with-stat
         st = status -uno
+        fpush = push --force-with-lease
 [push]
-        default = simple
+	default = current
 
 [include]
         path = ~/.gitsecrets

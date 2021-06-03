@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
@@ -32,6 +33,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'sgeb/vim-diff-fold'
 Plug 'vim-ruby/vim-ruby'
 Plug 'preservim/nerdtree'
+Plug 'chaoren/vim-wordmotion'
 call plug#end()
 " }}}
 
@@ -41,6 +43,7 @@ let g:ale_python_mypy_options='--ignore-missing-imports --cache-dir=/dev/null'
 let g:ackprg = "ag --vimgrep"
 let g:ale_python_flake8_options = "--max-line-length=89"
 let g:ruby_indent_assignment_style = 'variable'
+let g:wordmotion_prefix = ','
 
 
 " let g:hardtime_default_on = 1
@@ -62,16 +65,20 @@ set nocompatible
 filetype plugin indent on
 syntax enable
 
+set hidden
+
 " Tabs are evil
 set et
 set smarttab
+set sts=4
+set sw=4
 
 set hlsearch
 set incsearch
-set sts=4
-set sw=4
+
 set number
 set relativenumber
+
 set smartcase
 set ignorecase
 set scrolloff=4
@@ -81,7 +88,9 @@ set showtabline=2
 set noshowmode
 
 set background=dark
-colorscheme solarized8
+colorscheme solarized8_low
+" Use black background
+highlight Normal ctermbg=0
 
 " show tabs and trailing space
 set list
