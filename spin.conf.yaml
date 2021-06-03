@@ -5,3 +5,4 @@
 
 - link:
     ~/.gitconfig.local: gitconfig.spin
+    ~/.tmux.conf: shell/tmux.conf.spin
