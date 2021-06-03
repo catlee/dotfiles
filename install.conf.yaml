@@ -29,4 +29,4 @@
     ~/.oh-my-zsh/custom/themes/powerlevel10k: shell/powerlevel10k/
 
 - shell:
-    - nvim +PlugInstall +qall
+    - nvim +PlugInstall +qall || true
