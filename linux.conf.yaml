@@ -10,4 +10,4 @@
     ~/bin/fd: linux/fd
 
 - shell:
-    - sudo apt install fd-find ripgrep fzf
+    - sudo apt -y install fd-find ripgrep fzf

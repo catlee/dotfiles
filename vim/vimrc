@@ -1,39 +1,49 @@
 " Plugin management {{{
 call plug#begin()
 
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
-Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'justinmk/vim-sneak'
+" Plug 'jamessan/vim-gnupg'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'justinmk/vim-sneak'
 Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'peterrincker/vim-argumentative'
-" Plug 'psf/black', {'tag': '19.10b0'}
-Plug 'rust-lang/rust.vim'
-Plug 'sirver/ultisnips'
+" " Plug 'psf/black', {'tag': '19.10b0'}
+" Plug 'rust-lang/rust.vim'
+" Plug 'sirver/ultisnips'
 Plug 'sunaku/tmux-navigate'
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rails'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'dense-analysis/ale'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-liquid'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'dense-analysis/ale'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'sgeb/vim-diff-fold'
 Plug 'vim-ruby/vim-ruby'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 Plug 'chaoren/vim-wordmotion'
+
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Plug 'neovim/nvim-lspconfig'
+Plug 'ggandor/lightspeed.nvim'
+" Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 " }}}
 
@@ -115,10 +125,6 @@ nnoremap L g_
 " Map Ctrl-F to convert to f-string
 inoremap <C-f> <Esc>ma?['"]<CR>:nohlsearch<CR>if<Esc>`ala
 
-" Move between warnings easily
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 " Use TAB/Shift-TAB to move between tabs
 nnoremap <TAB> :tabnext<CR>
 nnoremap <S-TAB> :tabprevious<CR>
@@ -131,20 +137,22 @@ vnoremap > >gv
 nnoremap <leader>/ :Commentary<CR>
 vnoremap <leader>/ :Commentary<CR>
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command, '--header', '$FILE']}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+" Better search navigation
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" Better join
+nnoremap J mzJ`z
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" Yank to end of line
+nnoremap Y y$
 
-map <leader>f :Files<CR>
-map <leader>b :Buffers<CR>
-map <leader>g :RG<CR>
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap <space> <space><c-g>u
 
+" Move through error list
 nnoremap <c-n> :cnext<cr>
 nnoremap <c-p> :cprev<cr>
 
@@ -221,3 +229,29 @@ if has('nvim')
     " let g:python3_host_prog = '/usr/bin/python3'
 endif
 " }}}
+
+" Experimental stuff
+" lua << EOF
+" require('lspconfig').solargraph.setup {
+"     cmd={"/Users/chrisatlee/bin/solargraph", "stdio"},
+"     on_attach=require('completion').on_attach
+" }
+" EOF
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>ex <cmd>Telescope file_browser<cr>

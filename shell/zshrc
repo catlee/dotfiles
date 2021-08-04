@@ -7,7 +7,8 @@ fi
 
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH="/usr/local/opt/ruby/bin:$PATH" # For homebrew ruby
+# export PATH="/usr/local/opt/ruby/bin:$PATH" # For homebrew ruby
+# export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH=$HOME/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh configuration.
@@ -93,7 +94,7 @@ export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
 if [ -d $HOME/.pyenv ]; then
     export PYENV_ROOT=$HOME/.pyenv
     export PATH=$PYENV_ROOT/bin:$PATH
-    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
 fi
 
 #VIM!
@@ -136,3 +137,11 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 # cloudplatform: add Shopify clusters to your local kubernetes config
 export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/chrisatlee/.kube/config:/Users/chrisatlee/.kube/config.shopify.cloudplatform
 [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
+### NNN
+export NNN_BMS="s:$HOME/src/github.com/Shopify"
+export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
+export NNN_PLUG="o:fzopen;c:fzcd"
+alias nnn='nnn -c -a'
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
