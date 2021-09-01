@@ -38,11 +38,13 @@ Plug 'chaoren/vim-wordmotion'
 
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Plug 'neovim/nvim-lspconfig'
+if has('nvim-0.5')
 Plug 'ggandor/lightspeed.nvim'
 " Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+end
 
 call plug#end()
 " }}}
