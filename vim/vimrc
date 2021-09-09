@@ -4,8 +4,6 @@ call plug#begin()
 " Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 " Plug 'jamessan/vim-gnupg'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'justinmk/vim-sneak'
 Plug 'lifepillar/vim-solarized8'
@@ -39,11 +37,14 @@ Plug 'chaoren/vim-wordmotion'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Plug 'neovim/nvim-lspconfig'
 if has('nvim-0.5')
-Plug 'ggandor/lightspeed.nvim'
-" Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+    Plug 'ggandor/lightspeed.nvim'
+    " Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+else
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 end
 
 call plug#end()
@@ -253,7 +254,13 @@ set shortmess+=c
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
-nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>ex <cmd>Telescope file_browser<cr>
+if has('nvim-0.5')
+    nnoremap <leader>f <cmd>Telescope find_files<cr>
+    nnoremap <leader>g <cmd>Telescope live_grep<cr>
+    nnoremap <leader>b <cmd>Telescope buffers<cr>
+    nnoremap <leader>ex <cmd>Telescope file_browser<cr>
+else
+    nnoremap <leader>f <cmd>Files<cr>
+    nnoremap <leader>g <cmd>Rg<cr>
+    nnoremap <leader>b <cmd>Buffers<cr>
+end
