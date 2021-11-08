@@ -6,3 +6,7 @@
 - link:
     ~/.gitconfig.local: gitconfig.spin
     ~/.tmux.conf: shell/tmux.conf.spin
+
+- shell:
+    - echo 'AddressFamily inet' | sudo tee -a /etc/ssh/sshd_config
+    - sudo service ssh restart
