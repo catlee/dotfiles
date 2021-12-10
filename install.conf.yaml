@@ -10,6 +10,7 @@
     - ~/bin
     - ~/.config/nvim
     - ~/.vim/autoload
+    - ~/.tmux/plugins
 
 - link:
     ~/.tmux.conf: shell/tmux.conf
@@ -29,4 +30,6 @@
     ~/.oh-my-zsh/custom/themes/powerlevel10k: shell/powerlevel10k/
 
 - shell:
+    - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    - ~/.tmux/plugins/tpm/bin/install_plugins
     - nvim +PlugInstall +qall --headless || true
