@@ -3,7 +3,7 @@
       relink: true
 
 - link:
-  ~/.config/kitty/kitty.conf: mac/kitty.con
+    ~/.config/kitty/kitty.conf: mac/kitty.conf
 
 - shell:
     - brew install fzf fd nvim
