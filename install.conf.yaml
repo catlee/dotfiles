@@ -31,5 +31,5 @@
 
 - shell:
     - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    - ~/.tmux/plugins/tpm/bin/install_plugins
+    - ~/.tmux/plugins/tpm/bin/install_plugins || true
     - nvim +PlugInstall +qall --headless || true
