@@ -1,7 +1,6 @@
 " Plugin management {{{
 call plug#begin()
 
-" Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 " Plug 'jamessan/vim-gnupg'
 " Plug 'junegunn/seoul256.vim'
@@ -16,6 +15,10 @@ Plug 'peterrincker/vim-argumentative'
 " " Plug 'psf/black', {'tag': '19.10b0'}
 " Plug 'rust-lang/rust.vim'
 " Plug 'sirver/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 Plug 'sunaku/tmux-navigate'
 " Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-commentary'
@@ -242,8 +245,8 @@ endif
 " EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
@@ -264,3 +267,13 @@ else
     nnoremap <leader>g <cmd>Rg<cr>
     nnoremap <leader>b <cmd>Buffers<cr>
 end
+
+" Advent of code helpers
+function! s:InitializeRubyAoc()
+    call append("0", "hhellow rold")
+endfunction
+augroup adventofcode
+    autocmd!
+    autocmd BufNewFile day*.rb SnipMateLoadScope ruby-aoc
+augroup END
+let g:snipMate = { 'snippet_version' : 1 }
