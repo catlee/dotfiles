@@ -24,6 +24,7 @@
     ~/.vimrc: vim/vimrc
     ~/.config/nvim/init.vim: vim/nvim_init.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
+    ~/.vim/snippets: vim/snippets
 
 # Force this to happen after the initial symlink is setup
 - link:
