@@ -34,14 +34,15 @@ Plug 'tpope/vim-surround'
 " Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'sgeb/vim-diff-fold'
 Plug 'vim-ruby/vim-ruby'
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'chaoren/vim-wordmotion'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Plug 'neovim/nvim-lspconfig'
 if has('nvim-0.5')
     Plug 'ggandor/lightspeed.nvim'
-    " Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-lua/completion-nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -179,6 +180,9 @@ xnoremap i/ :<C-u>silent! call VisualPath()<CR>
 onoremap i/ :<C-u>silent! normal vi/<CR>
 xnoremap a/ :<C-u>silent! call VisualPath()<CR>
 onoremap a/ :<C-u>silent! normal va/<CR>
+
+" Open NerdTree at the current file
+nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
 
 " }}}
 
