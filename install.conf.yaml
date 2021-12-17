@@ -11,6 +11,7 @@
     - ~/.config/nvim
     - ~/.vim/autoload
     - ~/.tmux/plugins
+    - ~/.terminfo/x
 
 - link:
     ~/.tmux.conf: shell/tmux.conf
@@ -25,6 +26,7 @@
     ~/.config/nvim/init.vim: vim/nvim_init.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
     ~/.vim/snippets: vim/snippets
+    ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
 
 # Force this to happen after the initial symlink is setup
 - link:
