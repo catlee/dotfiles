@@ -39,6 +39,8 @@ end
 
 if has('nvim-0.6')
     Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter-refactor'
 end
 
 call plug#end()
