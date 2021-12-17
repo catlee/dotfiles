@@ -23,6 +23,7 @@
     ~/.gitconfig: gitconfig
     ~/.gitconfig.local: gitconfig.local
     ~/.vimrc: vim/vimrc
+    ~/.config/nvim/nvim.vim: vim/nvim.vim
     ~/.config/nvim/init.vim: vim/nvim_init.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
     ~/.vim/snippets: vim/snippets

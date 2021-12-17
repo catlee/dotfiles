@@ -2,44 +2,29 @@
 call plug#begin()
 
 Plug 'itchyny/lightline.vim'
-" Plug 'jamessan/vim-gnupg'
-" Plug 'junegunn/seoul256.vim'
-" Plug 'justinmk/vim-sneak'
 Plug 'lifepillar/vim-solarized8'
-" Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'peterrincker/vim-argumentative'
-" " Plug 'psf/black', {'tag': '19.10b0'}
-" Plug 'rust-lang/rust.vim'
-" Plug 'sirver/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'sunaku/tmux-navigate'
-" Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-liquid'
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'dense-analysis/ale'
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'sgeb/vim-diff-fold'
 Plug 'vim-ruby/vim-ruby'
 Plug 'preservim/nerdtree'
 Plug 'chaoren/vim-wordmotion'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'sheerun/vim-polyglot'
 
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-" Plug 'neovim/nvim-lspconfig'
 if has('nvim-0.5')
     Plug 'ggandor/lightspeed.nvim'
     Plug 'nvim-lua/completion-nvim'
@@ -55,25 +40,8 @@ call plug#end()
 " }}}
 
 " Plugin settings {{{
-let g:ultisnips_python_style='google'
-let g:ale_python_mypy_options='--ignore-missing-imports --cache-dir=/dev/null'
-let g:ackprg = "ag --vimgrep"
-let g:ale_python_flake8_options = "--max-line-length=89"
 let g:ruby_indent_assignment_style = 'variable'
 let g:wordmotion_prefix = ','
-
-
-" let g:hardtime_default_on = 1
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-let g:fzf_tags_command = 'ctags -R'
-" Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="fd --type f --exclude '**/*.pyc'"
 
 " }}}
 
@@ -114,10 +82,19 @@ set list
 set listchars=tab:>-,trail:.
 " }}}
 
+" {{{ nvim settings
+if has("nvim")
+    source ~/.config/nvim/nvim.vim
+end
+" }}}
+
 " Keybindings {{{
 " Editing/sourcing vimrc
 noremap <leader>S :source ~/.vimrc<cr>
 noremap <leader>e :new ~/.vimrc<cr>
+
+" Allow gf to open non-existent files
+map gf :edit <cfile><cr>
 
 " Don't highlight
 nnoremap <C-h> :nohlsearch<cr>
@@ -207,51 +184,6 @@ augroup filetype_py
 augroup END
 " }}}
 
-" Neovim settings {{{
-if has('nvim')
-    " Make Esc exit out of terminal mode
-    " Use Alt-[ or Ctrl-V Esc to pass escape to terminal
-    " tnoremap <Esc> <C-\><C-n>
-    " tnoremap <M-[> <Esc>
-    " tnoremap <C-v><Esc> <Esc>
-    " tnoremap <C-v><Esc> <Esc>
-
-    " Move between windows
-    tnoremap <A-h> <C-\><C-n><C-w>h
-    tnoremap <A-j> <C-\><C-n><C-w>j
-    tnoremap <A-k> <C-\><C-n><C-w>k
-    tnoremap <A-l> <C-\><C-n><C-w>l
-    noremap <A-h> <C-w>h
-    noremap <A-j> <C-w>j
-    noremap <A-k> <C-w>k
-    noremap <A-l> <C-w>l
-    " Use ctrl + hjkl to resize windows
-    nnoremap <C-j>    :resize -2<CR>
-    nnoremap <C-k>    :resize +2<CR>
-    " nnoremap <C-h>    :vertical resize -2<CR>
-    " nnoremap <C-l>    :vertical resize +2<CR>
-
-    " Show effects of a command incrementally
-    set inccommand=split
-
-    " Use the host's python
-    " let g:python_host_prog = '/usr/bin/python'
-    " let g:python3_host_prog = '/usr/bin/python3'
-endif
-" }}}
-
-" Experimental stuff
-" lua << EOF
-" require('lspconfig').solargraph.setup {
-"     cmd={"/Users/chrisatlee/bin/solargraph", "stdio"},
-"     on_attach=require('completion').on_attach
-" }
-" EOF
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
@@ -259,18 +191,6 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
-
-" Find files using Telescope command-line sugar.
-if has('nvim-0.5')
-    nnoremap <leader>f <cmd>Telescope find_files<cr>
-    nnoremap <leader>g <cmd>Telescope live_grep<cr>
-    nnoremap <leader>b <cmd>Telescope buffers<cr>
-    nnoremap <leader>ex <cmd>Telescope file_browser<cr>
-else
-    nnoremap <leader>f <cmd>Files<cr>
-    nnoremap <leader>g <cmd>Rg<cr>
-    nnoremap <leader>b <cmd>Buffers<cr>
-end
 
 " Advent of code helpers
 function! s:InitializeRubyAoc()
