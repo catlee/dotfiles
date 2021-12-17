@@ -24,6 +24,7 @@ Plug 'preservim/nerdtree'
 Plug 'chaoren/vim-wordmotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'vim-test/vim-test'
 
 if has('nvim-0.5')
     Plug 'ggandor/lightspeed.nvim'
@@ -34,6 +35,10 @@ if has('nvim-0.5')
 else
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+end
+
+if has('nvim-0.6')
+    Plug 'neovim/nvim-lspconfig'
 end
 
 call plug#end()

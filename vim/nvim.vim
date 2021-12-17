@@ -42,3 +42,7 @@ else
     let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
     let $FZF_DEFAULT_COMMAND="fd --type f --exclude '**/*.pyc'"
 end
+
+if has('nvim-0.6')
+    source ~/.config/nvim/lsp.vim
+end

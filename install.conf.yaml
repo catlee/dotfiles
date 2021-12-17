@@ -23,8 +23,9 @@
     ~/.gitconfig: gitconfig
     ~/.gitconfig.local: gitconfig.local
     ~/.vimrc: vim/vimrc
-    ~/.config/nvim/nvim.vim: vim/nvim.vim
     ~/.config/nvim/init.vim: vim/nvim_init.vim
+    ~/.config/nvim/nvim.vim: vim/nvim.vim
+    ~/.config/nvim/lsp.vim: vim/lsp.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
     ~/.vim/snippets: vim/snippets
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
