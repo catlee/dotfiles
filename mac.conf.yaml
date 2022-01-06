@@ -6,5 +6,5 @@
     ~/.config/kitty/kitty.conf: mac/kitty.conf
 
 - shell:
-    - brew install fzf fd nvim tmux
+    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty
 
