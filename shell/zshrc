@@ -95,6 +95,7 @@ if [ -d $HOME/.pyenv ]; then
     export PYENV_ROOT=$HOME/.pyenv
     export PATH=$PYENV_ROOT/bin:$PATH
     eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
 fi
 
 #VIM!
@@ -145,5 +146,10 @@ export NNN_PLUG="o:fzopen;c:fzcd"
 alias nnn='nnn -c -a'
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+if [ -d /usr/local/opt/chruby/ ]; then
+    source /usr/local/opt/chruby/share/chruby/chruby.sh
+    source /usr/local/opt/chruby/share/chruby/auto.sh
+fi
 
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)

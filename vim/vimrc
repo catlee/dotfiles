@@ -25,7 +25,6 @@ Plug 'preservim/nerdtree'
 Plug 'chaoren/vim-wordmotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-test/vim-test'
 
 if has('nvim-0.5')
     Plug 'ggandor/lightspeed.nvim'
@@ -51,7 +50,7 @@ call plug#end()
 
 " Plugin settings {{{
 let g:ruby_indent_assignment_style = 'variable'
-let g:wordmotion_prefix = ','
+let g:wordmotion_prefix = '<Leader>'
 let g:solarized_extra_hi_groups = 1
 
 " }}}
@@ -102,7 +101,7 @@ end
 " Keybindings {{{
 " Editing/sourcing vimrc
 noremap <leader>S :source ~/.vimrc<cr>
-noremap <leader>e :new ~/.vimrc<cr>
+noremap <leader>E :new ~/.vimrc<cr>
 
 " Allow gf to open non-existent files
 map gf :edit <cfile><cr>
@@ -116,9 +115,6 @@ inoremap jk <Esc>
 " Map H/L to move to the beginning/end of a line
 nnoremap H ^
 nnoremap L g_
-
-" Map Ctrl-F to convert to f-string
-inoremap <C-f> <Esc>ma?['"]<CR>:nohlsearch<CR>if<Esc>`ala
 
 " Use TAB/Shift-TAB to move between tabs
 nnoremap <TAB> :tabnext<CR>
@@ -204,9 +200,6 @@ set shortmess+=c
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 
 " Advent of code helpers
-function! s:InitializeRubyAoc()
-    call append("0", "hhellow rold")
-endfunction
 augroup adventofcode
     autocmd!
     autocmd BufNewFile day*.rb SnipMateLoadScope ruby-aoc
