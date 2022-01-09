@@ -50,9 +50,9 @@ end
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
     ensure_installed = "maintained",
-    -- highlight = { enable = true, },
+    highlight = { enable = true, },
     -- incremental_selection = { } ,
-    indent = { enable = true },
+    -- indent = { enable = true },
     refactor = {
         -- highlight_definitions = { enable = true },
         -- highlight_current_scope = { enable = true },
@@ -61,6 +61,33 @@ require("nvim-treesitter.configs").setup {
             keymaps = { smart_rename = "grr", },
         },
     },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["aa"] = "@parameter.outer",
+                ["ia"] = "@parameter.inner",
+            },
+        },
+        swap = {
+            enable = true,
+            swap_next = {
+                ["<leader>a"] = "@parameter.inner",
+            },
+            swap_previous = {
+                ["<leader>A"] = "@parameter.inner",
+            },
+        },
+    },
+    textsubjects = {
+        enable = true,
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+        },
+    },
 }
-
 EOF
