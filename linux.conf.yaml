@@ -16,4 +16,4 @@
     ~/.config/py3status/config: linux/i3status.conf
 
 - shell:
-    - sudo apt -y install fd-find ripgrep fzf nvim tmux hyperfine kitty
+    - sudo apt -y install fd-find ripgrep fzf neovim tmux
