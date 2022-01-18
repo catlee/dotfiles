@@ -16,4 +16,4 @@
     ~/.config/py3status/config: linux/i3status.conf
 
 - shell:
-    - sudo apt -y install fd-find ripgrep fzf neovim tmux
+    - sudo apt -o DPkg::Lock::Timeout=60 -y install fd-find ripgrep fzf neovim tmux
