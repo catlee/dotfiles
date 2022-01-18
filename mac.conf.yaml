@@ -2,9 +2,13 @@
     link:
       relink: true
 
+- create:
+    - ~/.hammerspoon/Spoons
+
 - link:
     ~/.config/kitty/kitty.conf: mac/kitty.conf
+    ~/.hammerspoon/init.lua: mac/hammerspoon_init.lua
 
 - shell:
-    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty
-
+    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty hammerspoon
+    - unzip -f -o mac/ReloadConfiguration.spoon.zip -d ~/.hammerspoon/Spoons
