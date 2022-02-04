@@ -2,7 +2,7 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 hs.hotkey.bind({"cmd", "shift"}, "return", function()
-    io.popen("/opt/homebrew/bin/kitty -d $HOME /opt/homebrew/bin/tmux")
+    hs.execute("nohup kitty -d $HOME $HOME/bin/tmux_attach < /dev/null &> /dev/null &", true)
 end)
 
 hs.hotkey.bind({"cmd", "shift"}, "h", function()

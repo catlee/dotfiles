@@ -9,7 +9,6 @@
 
 - link:
     ~/bin/disable_screensaver: linux/disable_screensaver
-    ~/bin/tmux_attach: linux/tmux_attach
     ~/bin/update_displays: linux/update_displays
     ~/bin/fd: linux/fd
     ~/.config/i3/config: linux/i3_config

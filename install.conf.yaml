@@ -29,6 +29,7 @@
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
     ~/.vim/snippets: vim/snippets
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
+    ~/bin/tmux_attach: linux/tmux_attach
 
 # Force this to happen after the initial symlink is setup
 - link:
