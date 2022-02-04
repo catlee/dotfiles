@@ -117,8 +117,8 @@ nnoremap H ^
 nnoremap L g_
 
 " Use TAB/Shift-TAB to move between tabs
-nnoremap <TAB> :tabnext<CR>
-nnoremap <S-TAB> :tabprevious<CR>
+" nnoremap <TAB> :tabnext<CR>
+" nnoremap <S-TAB> :tabprevious<CR>
 
 " Better tabbing in visual mode
 vnoremap < <gv

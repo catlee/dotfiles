@@ -31,12 +31,25 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
 
+local configs = require 'lspconfig.configs'
+if not configs.rubocop_lsp then
+ configs.rubocop_lsp = {
+   default_config = {
+     cmd = {'bundle', 'exec', 'rubocop-lsp'};
+     filetypes = {'ruby'};
+     root_dir = function(fname)
+       return nvim_lsp.util.find_git_ancestor(fname)
+     end;
+     settings = {};
+   };
+ }
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'solargraph' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'rubocop_lsp' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
