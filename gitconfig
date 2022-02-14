@@ -8,7 +8,6 @@
 
 [diff]
         renames = true
-        algorithm = patience
 
 [alias]
         di = diff -U8 --patch-with-stat
@@ -19,22 +18,9 @@
 
 [include]
         path = ~/.gitsecrets
-        path = ~/.gitconfig.local
+        path = /Users/catlee/.config/dev/gitconfig
 
 [pull]
         ff = only
-[core]
-        commitGraph = true
-
-[gc]
-        writeCommitGraph = true
-
-[protocol]
-        version = 2
-[url "https://github.com/Shopify/"]
-	insteadOf = git@github.com:Shopify/
-	insteadOf = git@github.com:shopify/
-	insteadOf = ssh://git@github.com/Shopify/
-	insteadOf = ssh://git@github.com/shopify/
 [rebase]
 	autoStash = true
