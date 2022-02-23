@@ -4,10 +4,6 @@
         relink: true
 
 - link:
-    ~/.gitconfig.local:
-      path: gitconfig.spin
-      relink: true
-      force: true
     ~/.tmux.conf: shell/tmux.conf.spin
 
 - shell:
