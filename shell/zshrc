@@ -131,19 +131,13 @@ if [ -e /Users/chrisatlee/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/chr
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export FZF_CTRL_T_COMMAND="fd --type f --exclude '**/*.pyc'"
-export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_CTRL_T_COMMAND="fdfind --type f --exclude '**/*.pyc'"
+export FZF_DEFAULT_COMMAND="fdfind --type f"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # cloudplatform: add Shopify clusters to your local kubernetes config
 export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/chrisatlee/.kube/config:/Users/chrisatlee/.kube/config.shopify.cloudplatform
 [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-
-### NNN
-export NNN_BMS="s:$HOME/src/github.com/Shopify"
-export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
-export NNN_PLUG="o:fzopen;c:fzcd"
-alias nnn='nnn -c -a'
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
 
@@ -153,3 +147,8 @@ if [ -d /usr/local/opt/chruby/ ]; then
 fi
 
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+# if [ -n "$SSH_CLIENT" -a -z "$TMUX" ]; then
+#     typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+#     exec tmux new -As0
+# fi
