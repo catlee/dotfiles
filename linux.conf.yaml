@@ -15,4 +15,4 @@
     ~/.config/py3status/config: linux/i3status.conf
 
 - shell:
-    - sudo apt -o DPkg::Lock::Timeout=60 -y install fd-find ripgrep fzf neovim tmux xsel
+    - sudo apt -o DPkg::Lock::Timeout=60 -y install fd-find ripgrep fzf neovim tmux xsel cmake
