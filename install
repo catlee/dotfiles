@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+exec &> >(tee -a $HOME/.dotfile-install.log)
 set -e
 set -x
-
 
 CONFIGS=("install.conf.yaml")
 
