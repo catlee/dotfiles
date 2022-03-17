@@ -131,8 +131,8 @@ if [ -e /Users/chrisatlee/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/chr
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export FZF_CTRL_T_COMMAND="fdfind --type f --exclude '**/*.pyc'"
-export FZF_DEFAULT_COMMAND="fdfind --type f"
+export FZF_CTRL_T_COMMAND="fd --type f --exclude '**/*.pyc'"
+export FZF_DEFAULT_COMMAND="fd --type f"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # cloudplatform: add Shopify clusters to your local kubernetes config
@@ -147,6 +147,9 @@ if [ -d /usr/local/opt/chruby/ ]; then
 fi
 
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+[[ "$TERM" == "screen" && -n "$TMUX" ]] && export TERM=screen-256color
+# [[ "$TERM" == "xterm-kitty" ]] && export TERM=xterm-256color
 
 # Attach to a tmux session if we're running on a remote session
 # if [ -n "$SSH_CLIENT" -a -z "$TMUX" ]; then
