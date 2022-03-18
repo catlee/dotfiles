@@ -40,4 +40,4 @@
     - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     - TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins || true
     - nvim +PlugInstall +qall --headless || true
-    - nvim +"TSInstallSync all" +qall --headless || true
+    - nvim +"TSInstallSync! ruby python" +qall --headless || true
