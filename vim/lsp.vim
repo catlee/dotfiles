@@ -59,21 +59,12 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
     ensure_installed = "maintained",
     highlight = { enable = true, },
     -- incremental_selection = { } ,
     -- indent = { enable = true },
-    refactor = {
-        -- highlight_definitions = { enable = true },
-        -- highlight_current_scope = { enable = true },
-        smart_rename = {
-            enable = true,
-            keymaps = { smart_rename = "grr", },
-        },
-    },
     textobjects = {
         select = {
             enable = true,
@@ -88,10 +79,29 @@ require("nvim-treesitter.configs").setup {
         swap = {
             enable = true,
             swap_next = {
-                ["<leader>a"] = "@parameter.inner",
+                [">,"] = "@parameter.inner",
             },
             swap_previous = {
-                ["<leader>A"] = "@parameter.inner",
+                ["<,"] = "@parameter.inner",
+            },
+        },
+        move = {
+            enable = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+              ["]M"] = "@function.outer",
+              ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+              ["[M"] = "@function.outer",
+              ["[]"] = "@class.outer",
             },
         },
     },
