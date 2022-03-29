@@ -10,7 +10,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sunaku/tmux-navigate'
 Plug 'tpope/vim-commentary'
@@ -190,6 +190,8 @@ augroup filetype_py
 augroup END
 " }}}
 
+let g:UltiSnipsExpandTrigger="<tab>"
+
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
@@ -203,7 +205,6 @@ augroup adventofcode
     autocmd!
     autocmd BufNewFile day*.rb SnipMateLoadScope ruby-aoc
 augroup END
-let g:snipMate = { 'snippet_version' : 1 }
 
 " Clipboard integration in spin
 if $SPIN == 1

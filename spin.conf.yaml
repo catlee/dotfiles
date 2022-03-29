@@ -5,12 +5,3 @@
 
 - link:
     ~/.tmux.conf: shell/tmux.conf.spin
-
-- shell:
-    - echo 'AddressFamily inet' | sudo tee -a /etc/ssh/sshd_config
-    - sudo service ssh restart
-    - sudo apt -o DPkg::Lock::Timeout=60 purge -y neovim
-    - sudo apt-add-repository ppa:neovim-ppa/unstable
-    - sudo apt -o DPkg::Lock::Timeout=60 update
-    - sudo apt -o DPkg::Lock::Timeout=60 install -y neovim
-    - nvim +PlugInstall +qall --headless || true
