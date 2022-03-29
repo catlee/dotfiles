@@ -20,7 +20,7 @@ hs.hotkey.bind({"cmd", "shift"}, "l", function()
 end)
 
 --- Shift volume up/down for changing Spotify volume
-hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function(event)
+spotify_volume_handler = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function(event)
     local currentMods = event:getFlags()
     local data = event:systemKey()
 
@@ -41,7 +41,7 @@ hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function(event)
 end):start()
 
 --- Mouse wheel zoom in Chrome
-hs.eventtap.new({hs.eventtap.event.types.scrollWheel}, function(event)
+chrome_mouse_handler = hs.eventtap.new({hs.eventtap.event.types.scrollWheel}, function(event)
     local currentMods = event:getFlags()
 
     if not currentMods["cmd"] then
