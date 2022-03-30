@@ -27,7 +27,7 @@ if has('nvim-0.5')
     nnoremap <leader>f <cmd>Telescope find_files<cr>
     nnoremap <leader>g <cmd>Telescope live_grep<cr>
     nnoremap <leader>B <cmd>Telescope buffers<cr>
-    nnoremap <leader>ex <cmd>Telescope file_browser<cr>
+    nnoremap <leader>G <cmd>Telescope grep_string<cr>
 else
     nnoremap <leader>f <cmd>Files<cr>
     nnoremap <leader>g <cmd>Rg<cr>
