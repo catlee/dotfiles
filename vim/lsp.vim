@@ -61,7 +61,7 @@ end
 
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = "maintained",
+    ensure_installed = { "bash", "json", "make", "markdown", "python", "ruby", "rust", "vim", "yaml" },
     highlight = { enable = true, },
     -- incremental_selection = { } ,
     -- indent = { enable = true },
