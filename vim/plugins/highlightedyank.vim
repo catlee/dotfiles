@@ -1,0 +1,1 @@
+Plug 'machakann/vim-highlightedyank'

@@ -27,7 +27,7 @@
     ~/.config/nvim/nvim.vim: vim/nvim.vim
     ~/.config/nvim/lsp.vim: vim/lsp.vim
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
-    ~/.vim/snippets: vim/snippets
+    ~/.vim/plugins: vim/plugins
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
     ~/.pryrc: shell/pryrc

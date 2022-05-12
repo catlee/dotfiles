@@ -1,97 +1,13 @@
 " Plugin management {{{
 call plug#begin()
 
-Plug 'itchyny/lightline.vim'
-Plug 'lifepillar/vim-solarized8'
-Plug 'RRethy/nvim-base16'
-Plug 'machakann/vim-highlightedyank'
-Plug 'mbbill/undotree'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'sunaku/tmux-navigate'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-liquid'
-Plug 'tpope/vim-projectionist'
-Plug 'sgeb/vim-diff-fold'
-Plug 'vim-ruby/vim-ruby'
-Plug 'preservim/nerdtree'
-Plug 'chaoren/vim-wordmotion'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-test/vim-test'
+for plugin in glob('~/.vim/plugins/*.vim', 0, 1)
+    execute "source " . plugin
+endfor
 
-if has('nvim-0.5')
-    Plug 'ggandor/lightspeed.nvim'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-else
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-end
-
-if has('nvim-0.6')
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'RRethy/nvim-treesitter-textsubjects'
-end
-
+" Plug 'vim-ruby/vim-ruby'
 call plug#end()
-" }}}
-
-" Plugin settings {{{
-let g:ruby_indent_assignment_style = 'variable'
-let g:wordmotion_prefix = '<Leader>'
-let g:solarized_extra_hi_groups = 1
-
-" }}}
-
-" Standard settings {{{
-set nocompatible
-filetype plugin indent on
-syntax enable
-
-set hidden
-
-" Tabs are evil
-set et
-set smarttab
-set sts=4
-set sw=4
-
-set hlsearch
-set incsearch
-
-set number
-set relativenumber
-
-set smartcase
-set ignorecase
-set scrolloff=4
-set encoding=utf-8
-set complete+=i
-set showtabline=2
-set noshowmode
-
-set background=dark
-colorscheme solarized8_low
-" Use black background
-highlight Normal ctermbg=0
-
-" show tabs and trailing space
-set list
-set listchars=tab:>-,trail:.
+doautocmd User PlugLoaded
 " }}}
 
 " {{{ nvim settings
@@ -99,6 +15,42 @@ if has("nvim")
     source ~/.config/nvim/nvim.vim
 end
 " }}}
+
+" Standard settings {{{
+" set nocompatible
+" filetype plugin indent on
+" syntax enable
+
+" set hidden
+
+" " Tabs are evil
+" set et
+" set smarttab
+" set sts=4
+" set sw=4
+
+" set hlsearch
+" set incsearch
+
+" set number
+" set relativenumber
+
+" set smartcase
+" set ignorecase
+" set scrolloff=4
+" set encoding=utf-8
+" set complete+=i
+" set showtabline=2
+" set noshowmode
+
+" " Use black background
+" highlight Normal ctermbg=0
+
+" " show tabs and trailing space
+" set list
+" set listchars=tab:>-,trail:.
+" }}}
+
 
 " Keybindings {{{
 " Editing/sourcing vimrc
@@ -115,8 +67,8 @@ nnoremap <C-h> :nohlsearch<cr>
 inoremap jk <Esc>
 
 " Map H/L to move to the beginning/end of a line
-nnoremap H ^
-nnoremap L g_
+" nnoremap H ^
+" nnoremap L g_
 
 " Use TAB/Shift-TAB to move between tabs
 " nnoremap <TAB> :tabnext<CR>
@@ -125,10 +77,6 @@ nnoremap L g_
 " Better tabbing in visual mode
 vnoremap < <gv
 vnoremap > >gv
-
-" Commenting
-nnoremap <leader>/ :Commentary<CR>
-vnoremap <leader>/ :Commentary<CR>
 
 " Better search navigation
 nnoremap n nzzzv
@@ -140,35 +88,18 @@ nnoremap J mzJ`z
 nnoremap Y y$
 
 " Undo break points
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap <space> <space><c-g>u
+" inoremap , ,<c-g>u
+" inoremap . .<c-g>u
+" inoremap ! !<c-g>u
+" inoremap <space> <space><c-g>u
 
 " Move through error list
-nnoremap <c-n> :cnext<cr>
-nnoremap <c-p> :cprev<cr>
+" nnoremap <c-n> :cnext<cr>
+" nnoremap <c-p> :cprev<cr>
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" path text objects
-" -----------------
-" i/ a/
-function! VisualPath()
-    " find the end of the current path segment
-    call search('[^/: "=]\+', 'ceW')
-    silent! normal! v
-    " find the beginning of the current path segment
-    call search('[^/: "=]\+', 'bW')
-endfunction
-xnoremap i/ :<C-u>silent! call VisualPath()<CR>
-onoremap i/ :<C-u>silent! normal vi/<CR>
-xnoremap a/ :<C-u>silent! call VisualPath()<CR>
-onoremap a/ :<C-u>silent! normal va/<CR>
-
-" Open NerdTree at the current file
-nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
 
 " }}}
 
@@ -193,15 +124,12 @@ augroup filetype_py
 augroup END
 " }}}
 
-let g:UltiSnipsExpandTrigger="<tab>"
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
-set shortmess+=c
-
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+" set shortmess+=c
 
 " Advent of code helpers
 augroup adventofcode
