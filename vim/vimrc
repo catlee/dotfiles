@@ -5,7 +5,6 @@ for plugin in glob('~/.vim/plugins/*.vim', 0, 1)
     execute "source " . plugin
 endfor
 
-" Plug 'vim-ruby/vim-ruby'
 call plug#end()
 doautocmd User PlugLoaded
 " }}}
@@ -32,12 +31,12 @@ end
 " set hlsearch
 " set incsearch
 
-" set number
-" set relativenumber
+set number
+set relativenumber
 
 " set smartcase
 " set ignorecase
-" set scrolloff=4
+set scrolloff=4
 " set encoding=utf-8
 " set complete+=i
 " set showtabline=2
@@ -46,14 +45,14 @@ end
 " " Use black background
 " highlight Normal ctermbg=0
 
-" " show tabs and trailing space
-" set list
-" set listchars=tab:>-,trail:.
+" show tabs and trailing space
+set list
+set listchars=tab:>-,trail:.
 " }}}
-
 
 " Keybindings {{{
 " Editing/sourcing vimrc
+let mapleader = "\<space>"
 noremap <leader>S :source ~/.vimrc<cr>
 noremap <leader>E :new ~/.vimrc<cr>
 
@@ -62,9 +61,6 @@ map gf :edit <cfile><cr>
 
 " Don't highlight
 nnoremap <C-h> :nohlsearch<cr>
-
-" Map jk to escape
-inoremap jk <Esc>
 
 " Map H/L to move to the beginning/end of a line
 " nnoremap H ^
@@ -78,14 +74,18 @@ inoremap jk <Esc>
 vnoremap < <gv
 vnoremap > >gv
 
-" Better search navigation
+" Better search navigation; keep the match centered on the screen
 nnoremap n nzzzv
 nnoremap N Nzzzv
-" Better join
+" Better join; keep the cursor at the original position
 nnoremap J mzJ`z
 
 " Yank to end of line
 nnoremap Y y$
+
+" https://ddrscott.github.io/blog/2016/yank-without-jank/
+" Keep the cursor at its original position when doing a visual yank
+vnoremap <expr>y "my\"" . v:register . "y`y"
 
 " Undo break points
 " inoremap , ,<c-g>u
