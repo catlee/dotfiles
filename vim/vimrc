@@ -1,3 +1,5 @@
+let mapleader = "\<space>"
+
 " Plugin management {{{
 call plug#begin()
 
@@ -22,7 +24,7 @@ end
 
 " set hidden
 
-" " Tabs are evil
+" Tabs are evil
 " set et
 " set smarttab
 " set sts=4
@@ -34,8 +36,8 @@ end
 set number
 set relativenumber
 
-" set smartcase
-" set ignorecase
+set smartcase
+set ignorecase
 set scrolloff=4
 " set encoding=utf-8
 " set complete+=i
@@ -52,12 +54,11 @@ set listchars=tab:>-,trail:.
 
 " Keybindings {{{
 " Editing/sourcing vimrc
-let mapleader = "\<space>"
 noremap <leader>S :source ~/.vimrc<cr>
 noremap <leader>E :new ~/.vimrc<cr>
 
 " Allow gf to open non-existent files
-map gf :edit <cfile><cr>
+noremap gf :edit <cfile><cr>
 
 " Don't highlight
 nnoremap <C-h> :nohlsearch<cr>
