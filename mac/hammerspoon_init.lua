@@ -39,30 +39,3 @@ spotify_volume_handler = hs.eventtap.new({hs.eventtap.event.types.systemDefined}
     end
     return true
 end):start()
-
---- Mouse wheel zoom in Chrome
-chrome_mouse_handler = hs.eventtap.new({hs.eventtap.event.types.scrollWheel}, function(event)
-    local currentMods = event:getFlags()
-
-    if not currentMods["cmd"] then
-        return false, nil
-    end
-
-    local window = hs.window.focusedWindow()
-
-    if window:application():name() ~= "Google Chrome" then
-        return false, nil
-    end
-
-    local direction = event:getProperty(hs.eventtap.event.properties.scrollWheelEventFixedPtDeltaAxis1)
-
-    local key
-    if direction > 0 then
-        key = "="
-    else
-        key = "-"
-    end
-
-    hs.eventtap.keyStroke({"cmd"}, key, 100)
-    return true, nil
-end):start()

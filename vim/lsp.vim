@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>F', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 local configs = require 'lspconfig.configs'
@@ -61,7 +61,7 @@ end
 
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = { "bash", "json", "make", "markdown", "python", "ruby", "rust", "vim", "yaml" },
+    ensure_installed = { "bash", "json", "lua", "make", "markdown", "python", "ruby", "rust", "vim", "yaml" },
     highlight = { enable = true, },
     -- incremental_selection = { } ,
     -- indent = { enable = true },
@@ -112,5 +112,6 @@ require("nvim-treesitter.configs").setup {
             [';'] = 'textsubjects-container-outer',
         },
     },
+    endwise = { enable = true },
 }
 EOF
