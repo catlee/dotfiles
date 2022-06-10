@@ -24,4 +24,4 @@ set inccommand=split
 
 if has('nvim-0.6')
     source ~/.config/nvim/lsp.vim
-end
+endif
