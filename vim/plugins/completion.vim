@@ -6,7 +6,7 @@ Plug 'hrsh7th/nvim-cmp'
 
 set completeopt=menu,menuone,noselect
 
-func s:setupComp()
+func s:setup()
 lua <<EOF
 require('cmp').setup({
 sources = {
@@ -20,6 +20,5 @@ endfunc
 
 augroup Complete
     autocmd!
-    autocmd User PlugLoaded ++nested call s:setupComp()
+    autocmd User PlugLoaded ++nested call s:setup()
 augroup END
-

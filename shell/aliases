@@ -3,3 +3,5 @@ alias vim=nvim
 alias :q=exit
 alias dt="dev test --include-branch-commits"
 alias ds="dev style --include-branch-commits"
+alias dc="dev typecheck"
+alias da="dt && ds && dc"
