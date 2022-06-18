@@ -4,4 +4,5 @@ if has('nvim-0.6')
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'RRethy/nvim-treesitter-textsubjects'
     Plug 'RRethy/nvim-treesitter-endwise'
+    Plug 'nvim-treesitter/playground'
 end
