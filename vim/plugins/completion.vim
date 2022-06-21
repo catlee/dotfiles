@@ -1,3 +1,4 @@
+if has('nvim-0.7')
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -80,3 +81,4 @@ augroup Complete
     autocmd!
     autocmd User PlugLoaded ++nested call s:setup()
 augroup END
+end

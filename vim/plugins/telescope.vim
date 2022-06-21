@@ -1,4 +1,6 @@
-if has('nvim-0.5')
+if has('nvim-0.7')
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     nnoremap <leader>f <cmd>Telescope find_files<cr>

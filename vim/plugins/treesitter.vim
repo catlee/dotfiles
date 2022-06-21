@@ -1,4 +1,4 @@
-if has('nvim-0.6')
+if has('nvim-0.7')
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'

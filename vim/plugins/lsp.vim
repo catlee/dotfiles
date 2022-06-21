@@ -1,3 +1,4 @@
+if has('nvim-0.7')
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
@@ -72,3 +73,4 @@ augroup LSP
     autocmd!
     autocmd User PlugLoaded ++nested call s:setup()
 augroup END
+end
