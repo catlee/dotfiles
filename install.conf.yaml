@@ -25,7 +25,6 @@
     ~/.vimrc: vim/vimrc
     ~/.config/nvim/init.vim: vim/nvim_init.vim
     ~/.config/nvim/nvim.vim: vim/nvim.vim
-    ~/.config/nvim/lsp.lua: vim/lsp.lua
     ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
     ~/.vim/plugins: vim/plugins
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
