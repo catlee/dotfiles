@@ -1,1 +1,0 @@
-Plug 'vimpostor/vim-tpipeline'

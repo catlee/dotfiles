@@ -1,2 +1,0 @@
-Plug 'sunaku/tmux-navigate'
-

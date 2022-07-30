@@ -8,8 +8,6 @@
 
 - create:
     - ~/bin
-    - ~/.config/nvim
-    - ~/.vim/autoload
     - ~/.tmux/plugins
     - ~/.terminfo/x
 
@@ -22,11 +20,7 @@
     ~/.oh-my-zsh: shell/ohmyzsh/
     ~/.p10k.zsh: shell/p10k.zsh
     ~/.gitconfig: gitconfig
-    ~/.vimrc: vim/vimrc
-    ~/.config/nvim/init.vim: vim/nvim_init.vim
-    ~/.config/nvim/nvim.vim: vim/nvim.vim
-    ~/.vim/autoload/plug.vim: vim/vim-plug/plug.vim
-    ~/.vim/plugins: vim/plugins
+    ~/.config/nvim: vim/astronvim
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
     ~/.pryrc: shell/pryrc
@@ -38,6 +32,4 @@
 - shell:
     - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     - TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins || true
-    - python3 -m pip install --user --upgrade pyvim
-    - nvim +PlugInstall +qall --headless || true
-    - nvim +"TSInstallSync! ruby python" +qall --headless || true
+    - nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

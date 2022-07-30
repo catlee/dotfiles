@@ -1,5 +1,5 @@
-alias vi=nvim
-alias vim=nvim
+alias vi=neovide
+alias vim=neovide
 alias :q=exit
 alias dt="dev test --include-branch-commits"
 alias drt="dev retest"

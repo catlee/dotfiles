@@ -11,5 +11,3 @@
   - sudo apt-add-repository ppa:neovim-ppa/unstable
   - sudo apt -o DPkg::Lock::Timeout=60 update
   - sudo apt -o DPkg::Lock::Timeout=60 install -y neovim
-  - nvim +PlugInstall +qall --headless || true
-  - nvim +"TSInstallSync! ruby python" +qall --headless || true
