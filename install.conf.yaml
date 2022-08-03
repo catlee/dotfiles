@@ -10,6 +10,7 @@
     - ~/bin
     - ~/.tmux/plugins
     - ~/.terminfo/x
+    - ~/.config/nvim/lua/user
 
 - link:
     ~/.tmux.conf: shell/tmux.conf
@@ -21,7 +22,9 @@
     ~/.p10k.zsh: shell/p10k.zsh
     ~/.gitconfig: gitconfig
     ~/.config/nvim: vim/astronvim
-    ~/.config/nvim/lua/user/init.lua: vim/user_init.lua
+    ~/.config/nvim/lua/user/init.lua:
+        create: true
+        path: vim/user_init.lua
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
     ~/.pryrc: shell/pryrc

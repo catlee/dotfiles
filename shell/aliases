@@ -1,6 +1,10 @@
-alias vi=neovide
-alias vim=neovide
-alias :q=exit
+if [ -z "$SPIN" ]; then
+  alias vi=neovide
+  alias vim=neovide
+else
+  alias vi=nvim
+  alias vim=nvim
+fi
 alias dt="dev test --include-branch-commits"
 alias drt="dev retest"
 alias ds="dev style --include-branch-commits"
