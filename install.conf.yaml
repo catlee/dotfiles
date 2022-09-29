@@ -32,8 +32,3 @@
 # Force this to happen after the initial symlink is setup
 - link:
     ~/.oh-my-zsh/custom/themes/powerlevel10k: shell/powerlevel10k/
-
-- shell:
-    - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    - TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins || true
-    - nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

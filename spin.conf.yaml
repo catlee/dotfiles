@@ -7,4 +7,6 @@
     ~/.tmux.conf: shell/tmux.conf.spin
 
 - shell:
-    # - sudo dpkg -i =(curl -L https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb)
+    - sudo apt purge -y neovim neovim-runtime
+    - sudo zsh -c 'dpkg -i =(curl -L https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb)'
+    - sudo apt autoremove -y

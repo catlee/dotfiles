@@ -18,6 +18,8 @@ if [ -n "$SPIN" ]; then
     CONFIGS+=("spin.conf.yaml")
 fi
 
+CONFIGS+=("after.conf.yaml")
+
 DOTBOT_DIR="dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
