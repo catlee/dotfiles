@@ -137,3 +137,5 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 [[ "$TERM" == "screen" && -n "$TMUX" ]] && export TERM=screen-256color
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
