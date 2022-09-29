@@ -15,6 +15,6 @@
     ~/.config/py3status/config: linux/i3status.conf
 
 - shell:
-    - sudo apt -o DPkg::Lock::Timeout=60 -y install fd-find ripgrep fzf neovim tmux xsel cmake
+    - sudo apt -o DPkg::Lock::Timeout=300 -y install fd-find ripgrep fzf neovim tmux xsel cmake
     - test -n "$SPIN" || (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile default -y)
     - test -n "$SPIN" || ~/.cargo/bin/cargo install --git https://github.com/neovide/neovide
