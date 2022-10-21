@@ -7,10 +7,18 @@ return {
       { "tpope/vim-repeat" },
       { "wellle/targets.vim" },
       { "machakann/vim-textobj-delimited" },
+      { "vim-test/vim-test" },
     },
     treesitter = {
       endwise = { enable = true },
     },
+  },
+
+  mappings = {
+    n = {
+      ["<leader>TA"] = { "<cmd>TestSuite<cr>", desc = "Test Suite" },
+      ["<leader>TT"] = { "<cmd>TestLast<cr>", desc = "Test Last" },
+    }
   },
 
   polish = function()
