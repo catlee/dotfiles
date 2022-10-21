@@ -1,4 +1,7 @@
 return {
+  updater = {
+    channel = "stable",
+  },
   plugins = {
     init = {
       { "RRethy/nvim-treesitter-endwise" },
