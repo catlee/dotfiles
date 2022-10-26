@@ -11,6 +11,7 @@ return {
       { "wellle/targets.vim" },
       { "machakann/vim-textobj-delimited" },
       { "vim-test/vim-test" },
+      { "justinmk/vim-sneak" },
     },
     treesitter = {
       endwise = { enable = true },
@@ -24,7 +25,7 @@ return {
       ["<leader>TA"] = { "<cmd>TestSuite<cr>", desc = "Test Suite" },
       ["<leader>TT"] = { "<cmd>TestLast<cr>", desc = "Test Last" },
       ["<leader>Tt"] = { "<cmd>TestNearest<cr>", desc = "Test Nearest" },
-      ["<leader>Tf"] = { "<cmd>TestFile<cr>", desc = "Test File" },
+      ["<leader>TF"] = { "<cmd>TestFile<cr>", desc = "Test File" },
     },
     t = {
       -- Ctrl-O in terminal to enter normal mode
@@ -34,6 +35,8 @@ return {
 
   polish = function()
     vim.g['test#strategy'] = 'neovim'
+    vim.g['sneak#label'] = 1
+    vim.api.nvim_set_option('cmdheight', 1) -- avoid annoying prompts to hit enter
     if vim.env.SPIN == '1' then
       -- Enable copy/paste on spin
       vim.cmd([[
