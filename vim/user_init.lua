@@ -12,11 +12,18 @@ return {
       { "machakann/vim-textobj-delimited" },
       { "vim-test/vim-test" },
       { "justinmk/vim-sneak" },
+      { "folke/tokyonight.nvim" },
     },
     treesitter = {
+      ensure_installed = {
+        "rust", "python", "ruby", "vim", "yaml", "make",
+        "diff", "regex", "sql", "json", "json5", "lua"
+      },
       endwise = { enable = true },
     },
   },
+
+  colorscheme = "tokyonight-night",
 
   mappings = {
     n = {
@@ -48,4 +55,7 @@ return {
         ]])
       end
     end,
+    ["mason-lspconfig"] = {
+      ensure_installed = { "rust_analyzer" },
+    }
   }

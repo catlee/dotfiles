@@ -4,5 +4,4 @@
 - shell:
     - test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     - TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins || true
-    - nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-    - nvim --headless +TSInstallSync +qall
+    - nvim --headless +'autocmd User PackerComplete quitall' +PackerSync
