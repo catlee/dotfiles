@@ -21,6 +21,9 @@ return {
       },
       endwise = { enable = true },
     },
+    ["mason-lspconfig"] = {
+      ensure_installed = { "rust_analyzer" },
+    }
   },
 
   colorscheme = "tokyonight-night",
@@ -55,7 +58,4 @@ return {
         ]])
       end
     end,
-    ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer" },
-    }
   }
