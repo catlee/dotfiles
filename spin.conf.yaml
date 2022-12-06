@@ -8,5 +8,5 @@
 
 - shell:
     - sudo apt purge -y neovim neovim-runtime
-    - sudo zsh -c 'dpkg -i =(curl -L https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb)'
+    - linux/safe_install 5774c0d299a27a77e4e497c018cbcc9d4291c3b019ada28880d08d1f3040e779 https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
     - sudo apt autoremove -y

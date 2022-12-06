@@ -1,0 +1,16 @@
+#!/bin/zsh
+set -e
+HASH=$1
+URL=$2
+
+TMP=$(mktemp -d)
+trap 'rm -rf -- "$TMP"' EXIT
+
+curl -o $TMP/data -L "$URL"
+if echo "$HASH data" | (cd $TMP; sha256sum -c) then;
+  sudo dpkg -i $TMP/data
+else
+  echo "Checksum failed"
+  exit 1
+fi
+
