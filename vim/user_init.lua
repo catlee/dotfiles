@@ -14,6 +14,7 @@ return {
       { "justinmk/vim-sneak" },
       { "folke/tokyonight.nvim" },
       { "junegunn/vim-easy-align" },
+      (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
     },
     treesitter = {
       ensure_installed = {
