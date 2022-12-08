@@ -13,6 +13,7 @@ return {
       { "vim-test/vim-test" },
       { "justinmk/vim-sneak" },
       { "folke/tokyonight.nvim" },
+      { "junegunn/vim-easy-align" },
     },
     treesitter = {
       ensure_installed = {
@@ -30,12 +31,17 @@ return {
 
   mappings = {
     n = {
-      ["<leader>E"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },
-
+      ["<leader>E"]  = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },
       ["<leader>TA"] = { "<cmd>TestSuite<cr>", desc = "Test Suite" },
       ["<leader>TT"] = { "<cmd>TestLast<cr>", desc = "Test Last" },
       ["<leader>Tt"] = { "<cmd>TestNearest<cr>", desc = "Test Nearest" },
       ["<leader>TF"] = { "<cmd>TestFile<cr>", desc = "Test File" },
+      ["n"]          = { "nzz" },
+      ["N"]          = { "Nzz" },
+    },
+    -- Visual mode
+    x = {
+      ["ga"] = { "<Plug>(EasyAlign)" },
     },
     t = {
       -- Ctrl-O in terminal to enter normal mode
