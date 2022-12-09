@@ -14,6 +14,8 @@ return {
       { "justinmk/vim-sneak" },
       { "folke/tokyonight.nvim" },
       { "junegunn/vim-easy-align" },
+      { "michaeljsmith/vim-indent-object" },
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
       (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
     },
     treesitter = {
@@ -22,6 +24,16 @@ return {
         "diff", "regex", "sql", "json", "json5", "lua"
       },
       endwise = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+          }
+        }
+      }
     },
     ["mason-lspconfig"] = {
       ensure_installed = { "rust_analyzer" },
