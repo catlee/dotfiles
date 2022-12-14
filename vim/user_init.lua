@@ -21,7 +21,7 @@ return {
     treesitter = {
       ensure_installed = {
         "rust", "python", "ruby", "vim", "yaml", "make",
-        "diff", "regex", "sql", "json", "json5", "lua"
+        "diff", "regex", "json", "json5", "lua"
       },
       endwise = { enable = true },
       textobjects = {
