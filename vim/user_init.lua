@@ -35,6 +35,23 @@ return {
         }
       }
     },
+    ["null-ls"] = function(config)
+      local null_ls = require "null-ls"
+      config.sources = {
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.rubocop.with({
+          command = "bundle",
+          args = { "exec", "rubocop", "-f", "json", "--force-exclusion", "--stdin", "$FILENAME" },
+          timeout = 10000,
+        }),
+        null_ls.builtins.formatting.rubocop.with({
+          command = "bundle",
+          args = { "exec", "rubocop", "--autocorrect", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
+          timeout = 10000,
+        }),
+      }
+      return config
+    end,
     ["mason-lspconfig"] = {
       ensure_installed = { "rust_analyzer" },
     }
@@ -59,6 +76,12 @@ return {
     t = {
       -- Ctrl-O in terminal to enter normal mode
       ["<C-O>"] = { "<C-\\><C-n>" },
+    }
+  },
+
+  lsp = {
+    formatting = {
+      timeout_ms = 10000,
     }
   },
 
