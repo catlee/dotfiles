@@ -35,25 +35,8 @@ return {
         }
       }
     },
-    ["null-ls"] = function(config)
-      local null_ls = require "null-ls"
-      config.sources = {
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.rubocop.with({
-          command = "bundle",
-          args = { "exec", "rubocop", "-f", "json", "--force-exclusion", "--stdin", "$FILENAME" },
-          timeout = 10000,
-        }),
-        null_ls.builtins.formatting.rubocop.with({
-          command = "bundle",
-          args = { "exec", "rubocop", "--autocorrect", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
-          timeout = 10000,
-        }),
-      }
-      return config
-    end,
     ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer" },
+      ensure_installed = { "rust_analyzer", "ruby_ls" },
     }
   },
 
@@ -82,6 +65,12 @@ return {
   lsp = {
     formatting = {
       timeout_ms = 10000,
+    },
+    ["server-settings"] = {
+      ["ruby_ls"] = {
+        -- TODO: Only run this if we have a Gemfile with ruby-lsp in it
+        cmd = { "bundle", "exec", "ruby-lsp" }
+      }
     }
   },
 
