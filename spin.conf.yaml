@@ -1,12 +1,7 @@
 ---
 - defaults:
     link:
-        relink: true
+      relink: true
 
 - link:
     ~/.tmux.conf: shell/tmux.conf.spin
-
-- shell:
-    - sudo apt purge -y neovim neovim-runtime
-    - linux/safe_install a2d82dd169a11408921db90060c93cafdec43507898fbb36bc9e88e483ee3dfa https://github.com/neovim/neovim/releases/download/v0.8.2/nvim-linux64.deb
-    - sudo apt autoremove -y
