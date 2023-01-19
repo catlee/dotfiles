@@ -91,12 +91,6 @@ compinit
 source ~/.aliases
 export PIP_DOWNLOAD_CACHE=$WORKON_HOME/pip_cache
 
-if [ -d $HOME/.pyenv ]; then
-    export PYENV_ROOT=$HOME/.pyenv
-    export PATH=$PYENV_ROOT/bin:$PATH
-    eval "$(pyenv init -)"
-fi
-
 #VIM!
 bindkey -v
 export KEYTIMEOUT=1
@@ -139,3 +133,9 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 [[ "$TERM" == "screen" && -n "$TMUX" ]] && export TERM=screen-256color
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+if [ -d $HOME/.pyenv ]; then
+    export PYENV_ROOT=$HOME/.pyenv
+    export PATH=$PYENV_ROOT/bin:$PATH
+    eval "$(pyenv init -)"
+fi
