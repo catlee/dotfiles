@@ -20,7 +20,7 @@ return {
     },
     treesitter = {
       ensure_installed = {
-        "rust", "python", "ruby", "vim", "yaml", "make",
+        "rust", "python", "vim", "yaml", "make", "ruby",
         "diff", "regex", "json", "json5", "lua"
       },
       endwise = { enable = true },
@@ -33,11 +33,20 @@ return {
             ["if"] = "@function.inner",
           }
         }
+      },
+      incremental_selection = {
+        keymaps = {
+          init_selection = "<c-space>",
+          node_incremental = "<c-space>",
+          scope_incremental = "<c-s>",
+          node_decremental = '<c-backspace>',
+
+        }
       }
     },
     ["mason-lspconfig"] = {
       ensure_installed = { "rust_analyzer", "ruby_ls" },
-    }
+    },
   },
 
   colorscheme = "tokyonight-night",
@@ -70,7 +79,7 @@ return {
       ["ruby_ls"] = {
         -- TODO: Only run this if we have a Gemfile with ruby-lsp in it
         cmd = { "bundle", "exec", "ruby-lsp" }
-      }
+      },
     }
   },
 
