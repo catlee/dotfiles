@@ -16,6 +16,7 @@ return {
       { "junegunn/vim-easy-align" },
       { "michaeljsmith/vim-indent-object" },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "https://github.com/github/copilot.vim" },
       (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
     },
     treesitter = {
