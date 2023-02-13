@@ -1,10 +1,5 @@
-if [ -z "$SSH_CLIENT" ]; then
-  alias vi=neovide
-  alias vim=neovide
-else
-  alias vi=nvim
-  alias vim=nvim
-fi
+alias vi=nvim
+alias vim=nvim
 alias dt="dev test --include-branch-commits"
 alias drt="dev retest"
 alias ds="dev style --include-branch-commits"

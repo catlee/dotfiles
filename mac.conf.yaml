@@ -10,5 +10,5 @@
     ~/.hammerspoon/init.lua: mac/hammerspoon_init.lua
 
 - shell:
-    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty hammerspoon bash reattach-to-user-namespace cmake pyenv neovide
+    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty hammerspoon bash reattach-to-user-namespace cmake pyenv
     - unzip -f -o mac/ReloadConfiguration.spoon.zip -d ~/.hammerspoon/Spoons

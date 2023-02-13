@@ -17,6 +17,8 @@ return {
       { "michaeljsmith/vim-indent-object" },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "https://github.com/github/copilot.vim" },
+      { "windwp/nvim-autopairs" },
+      { "windwp/nvim-ts-autotag" },
       (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
     },
     treesitter = {
@@ -25,6 +27,7 @@ return {
         "diff", "regex", "json", "json5", "lua"
       },
       endwise = { enable = true },
+      autotag = { enable = true },
       textobjects = {
         select = {
           enable = true,
@@ -46,8 +49,8 @@ return {
       }
     },
     ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer", "ruby_ls" },
-    },
+      ensure_installed = { "rust_analyzer", "ruby_ls", "tsserver", "eslint", "html", "cssls" },
+    }
   },
 
   colorscheme = "tokyonight-night",
