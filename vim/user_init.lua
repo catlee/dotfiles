@@ -100,6 +100,12 @@ return {
         \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
         \ 'cache_enabled': 1 }
         ]])
-      end
-    end,
-  }
+    end
+  end,
+
+  options = {
+    opt = {
+      clipboard = "",
+    }
+  },
+}
