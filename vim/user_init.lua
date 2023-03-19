@@ -3,7 +3,6 @@ return {
     channel = "stable",
   },
   plugins = {
-    init = {
       { "RRethy/nvim-treesitter-endwise" },
       { "andymass/vim-matchup" },
       { "tpope/vim-surround" },
@@ -20,37 +19,6 @@ return {
       { "windwp/nvim-autopairs" },
       { "windwp/nvim-ts-autotag" },
       (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
-    },
-    treesitter = {
-      ensure_installed = {
-        "rust", "python", "vim", "yaml", "make", "ruby",
-        "diff", "regex", "json", "json5", "lua"
-      },
-      endwise = { enable = true },
-      autotag = { enable = true },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-          }
-        }
-      },
-      incremental_selection = {
-        keymaps = {
-          init_selection = "<c-space>",
-          node_incremental = "<c-space>",
-          scope_incremental = "<c-s>",
-          node_decremental = '<c-backspace>',
-
-        }
-      }
-    },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer", "ruby_ls", "tsserver", "eslint", "html", "cssls" },
-    }
   },
 
   colorscheme = "tokyonight-night",
@@ -79,7 +47,7 @@ return {
     formatting = {
       timeout_ms = 10000,
     },
-    ["server-settings"] = {
+    config = {
       ["ruby_ls"] = {
         -- TODO: Only run this if we have a Gemfile with ruby-lsp in it
         cmd = { "bundle", "exec", "ruby-lsp" }
