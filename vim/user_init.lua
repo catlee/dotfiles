@@ -10,7 +10,7 @@ return {
       { "wellle/targets.vim" },
       { "machakann/vim-textobj-delimited" },
       { "vim-test/vim-test" },
-      { "justinmk/vim-sneak" },
+      { "justinmk/vim-sneak", lazy=false },
       { "folke/tokyonight.nvim" },
       { "junegunn/vim-easy-align" },
       { "michaeljsmith/vim-indent-object" },
