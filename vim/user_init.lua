@@ -34,6 +34,12 @@ return {
         require("leap").add_default_mappings()
       end,
     },
+    {
+      "ggandor/flit.nvim",
+      init = function()
+        require("flit").setup()
+      end
+    },
     { "folke/tokyonight.nvim" },
     { "junegunn/vim-easy-align" },
     { "michaeljsmith/vim-indent-object" },
