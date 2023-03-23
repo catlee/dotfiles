@@ -1,3 +1,22 @@
+local function get_clipboard()
+  if vim.env.spin == "1" then
+    return {
+      name = 'pbcopy',
+      copy = {
+        ['+'] = 'pbcopy',
+        ['*'] = 'pbcopy'
+      },
+      paste = {
+        ['+'] = 'pbpaste',
+        ['*'] = 'pbpaste'
+      },
+      cache_enabled = 1,
+    }
+  else
+    return ""
+  end
+end
+
 return {
   updater = {
     channel = "stable",
@@ -5,8 +24,8 @@ return {
   plugins = {
     { "RRethy/nvim-treesitter-endwise" },
     { "andymass/vim-matchup" },
-    { "tpope/vim-surround" },
-    { "tpope/vim-repeat" },
+    { "tpope/vim-surround",             lazy = false },
+    { "tpope/vim-repeat",               lazy = false },
     { "wellle/targets.vim" },
     { "machakann/vim-textobj-delimited" },
     {
@@ -22,6 +41,22 @@ return {
     { "https://github.com/github/copilot.vim" },
     { "windwp/nvim-autopairs" },
     { "windwp/nvim-ts-autotag" },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = {
+          "lua_ls",
+          "jsonls",
+          "yamlls"
+        }
+      }
+    },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = {
+        ensure_installed = { "lua" },
+      },
+    },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
   colorscheme = "tokyonight-night",
@@ -57,21 +92,8 @@ return {
   },
   options = {
     opt = {
-      clipboard = "",
-      cmdhegiht = 1,
+      clipboard = get_clipboard(),
+      cmdheight = 1,
     }
   },
-  polish = function()
-    vim.api.nvim_set_option('cmdheight', 1) -- avoid annoying prompts to hit enter
-    if vim.env.SPIN == '1' then
-      -- Enable copy/paste on spin
-      vim.cmd([[
-      let g:clipboard = {
-        \ 'name': 'pbcopy',
-        \ 'copy': {'+': 'pbcopy', '*': 'pbcopy'},
-        \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
-        \ 'cache_enabled': 1 }
-        ]])
-    end
-  end,
 }
