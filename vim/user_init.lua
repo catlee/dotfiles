@@ -3,26 +3,28 @@ return {
     channel = "stable",
   },
   plugins = {
-      { "RRethy/nvim-treesitter-endwise" },
-      { "andymass/vim-matchup" },
-      { "tpope/vim-surround" },
-      { "tpope/vim-repeat" },
-      { "wellle/targets.vim" },
-      { "machakann/vim-textobj-delimited" },
-      { "vim-test/vim-test" },
-      { "justinmk/vim-sneak", lazy=false },
-      { "folke/tokyonight.nvim" },
-      { "junegunn/vim-easy-align" },
-      { "michaeljsmith/vim-indent-object" },
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "https://github.com/github/copilot.vim" },
-      { "windwp/nvim-autopairs" },
-      { "windwp/nvim-ts-autotag" },
-      (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
+    { "RRethy/nvim-treesitter-endwise" },
+    { "andymass/vim-matchup" },
+    { "tpope/vim-surround" },
+    { "tpope/vim-repeat" },
+    { "wellle/targets.vim" },
+    { "machakann/vim-textobj-delimited" },
+    {
+      "ggandor/leap.nvim",
+      init = function()
+        require("leap").add_default_mappings()
+      end,
+    },
+    { "folke/tokyonight.nvim" },
+    { "junegunn/vim-easy-align" },
+    { "michaeljsmith/vim-indent-object" },
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    { "https://github.com/github/copilot.vim" },
+    { "windwp/nvim-autopairs" },
+    { "windwp/nvim-ts-autotag" },
+    (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
-
   colorscheme = "tokyonight-night",
-
   mappings = {
     n = {
       ["<leader>E"]  = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },
@@ -42,7 +44,6 @@ return {
       ["<C-O>"] = { "<C-\\><C-n>" },
     }
   },
-
   lsp = {
     formatting = {
       timeout_ms = 10000,
@@ -54,10 +55,13 @@ return {
       },
     }
   },
-
+  options = {
+    opt = {
+      clipboard = "",
+      cmdhegiht = 1,
+    }
+  },
   polish = function()
-    vim.g['test#strategy'] = 'neovim'
-    vim.g['sneak#label'] = 1
     vim.api.nvim_set_option('cmdheight', 1) -- avoid annoying prompts to hit enter
     if vim.env.SPIN == '1' then
       -- Enable copy/paste on spin
@@ -70,10 +74,4 @@ return {
         ]])
     end
   end,
-
-  options = {
-    opt = {
-      clipboard = "",
-    }
-  },
 }
