@@ -22,45 +22,64 @@ return {
     channel = "stable",
   },
   plugins = {
-    { "RRethy/nvim-treesitter-endwise" },
-    { "andymass/vim-matchup" },
+    -- Undo tree
+    { "mbbill/undotree",                keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
+    -- Git integration
+    { "tpope/vim-fugitive",             cmd = { "G", "Git" } },
+    -- Adds `end` in Ruby, Lua, etc.
+    { "RRethy/nvim-treesitter-endwise", lazy = false },
+    -- Better % matching
+    { "andymass/vim-matchup",           lazy = false },
+    -- Manage surrounding characters
     { "tpope/vim-surround",             lazy = false },
+    -- Repeat stuff
     { "tpope/vim-repeat",               lazy = false },
-    { "wellle/targets.vim" },
-    { "machakann/vim-textobj-delimited" },
+    -- Better targest, incl. q for quoted strings
+    { "wellle/targets.vim",             lazy = false },
+    -- Jump to text with s/S
     {
       "ggandor/leap.nvim",
+      lazy = false,
       init = function()
         require("leap").add_default_mappings()
       end,
     },
+    -- Better f/t
     {
       "ggandor/flit.nvim",
+      lazy = false,
       init = function()
         require("flit").setup()
       end
     },
     { "folke/tokyonight.nvim" },
-    { "junegunn/vim-easy-align" },
-    { "michaeljsmith/vim-indent-object" },
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
-    { "https://github.com/github/copilot.vim" },
-    { "windwp/nvim-autopairs" },
-    { "windwp/nvim-ts-autotag" },
+    -- Align text based on content
+    { "junegunn/vim-easy-align",                     keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
+    -- Indentation text objects
+    { "michaeljsmith/vim-indent-object",             lazy = false },
+    -- Language aware text objects
+    { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
+    -- Copilot
+    { "https://github.com/github/copilot.vim",       lazy = false },
+    -- Automatically add closing brackets, etc.
+    { "windwp/nvim-autopairs",                       lazy = false },
+    -- Mason configuration
     {
       "williamboman/mason-lspconfig.nvim",
+      lazy = false,
       opts = {
         ensure_installed = {
           "lua_ls",
           "jsonls",
-          "yamlls"
+          "yamlls",
+          "ruby_ls",
         }
       }
     },
     {
       "nvim-treesitter/nvim-treesitter",
       opts = {
-        ensure_installed = { "lua" },
+        ensure_installed = { "lua", "ruby" },
       },
     },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
@@ -68,17 +87,9 @@ return {
   colorscheme = "tokyonight-night",
   mappings = {
     n = {
-      ["<leader>E"]  = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },
-      ["<leader>TA"] = { "<cmd>TestSuite<cr>", desc = "Test Suite" },
-      ["<leader>TT"] = { "<cmd>TestLast<cr>", desc = "Test Last" },
-      ["<leader>Tt"] = { "<cmd>TestNearest<cr>", desc = "Test Nearest" },
-      ["<leader>TF"] = { "<cmd>TestFile<cr>", desc = "Test File" },
-      ["n"]          = { "nzz" },
-      ["N"]          = { "Nzz" },
-    },
-    -- Visual mode
-    x = {
-      ["ga"] = { "<Plug>(EasyAlign)" },
+      ["<leader>E"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },
+      ["n"]         = { "nzz" },
+      ["N"]         = { "Nzz" },
     },
     t = {
       -- Ctrl-O in terminal to enter normal mode
@@ -89,12 +100,6 @@ return {
     formatting = {
       timeout_ms = 10000,
     },
-    config = {
-      ["ruby_ls"] = {
-        -- TODO: Only run this if we have a Gemfile with ruby-lsp in it
-        cmd = { "bundle", "exec", "ruby-lsp" }
-      },
-    }
   },
   options = {
     opt = {
