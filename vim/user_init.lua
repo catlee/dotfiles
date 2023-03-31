@@ -1,5 +1,5 @@
 local function get_clipboard()
-  if vim.env.spin == "1" then
+  if vim.env.SPIN == "1" then
     return {
       name = 'pbcopy',
       copy = {
@@ -102,9 +102,12 @@ return {
     },
   },
   options = {
+    g = {
+      clipboard = get_clipboard()
+    },
     opt = {
-      clipboard = get_clipboard(),
+      clipboard = "",
       cmdheight = 1,
-    }
+    },
   },
 }
