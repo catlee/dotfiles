@@ -82,6 +82,16 @@ return {
         ensure_installed = { "lua", "ruby" },
       },
     },
+    {
+      "nvim-telescope/telescope.nvim",
+      opts = {
+        pickers = {
+          find_files = {
+            hidden = true
+          }
+        }
+      }
+    },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
   colorscheme = "tokyonight-night",
