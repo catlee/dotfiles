@@ -13,7 +13,7 @@ local function get_clipboard()
       cache_enabled = 1,
     }
   else
-    return ""
+    return nil
   end
 end
 
