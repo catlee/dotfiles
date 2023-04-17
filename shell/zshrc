@@ -132,7 +132,7 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 
 [[ "$TERM" == "screen" && -n "$TMUX" ]] && export TERM=screen-256color
 
-[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
 
 if [ -d $HOME/.pyenv ]; then
     export PYENV_ROOT=$HOME/.pyenv
