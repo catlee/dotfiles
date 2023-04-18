@@ -61,32 +61,24 @@ return {
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
     -- Copilot
     {
+      "github/copilot.vim",
+      lazy = false,
+      keys = {
+        { "<Plug>(vimrc:copilot-dummy-map)", "copilot#Accept(\"\\<Tab>\")", expr = true, silent = true, mode = "i" }
+      },
+    },
+    {
       "hrsh7th/nvim-cmp",
-      dependencies = { "zbirenbaum/copilot-cmp" },
+      lazy = false,
       opts = function(_, opts)
-        local cmp = require "cmp"
-        opts.sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
-          { name = "copilot",  priority = 700 },
-        }
+        local cmp = require('cmp')
+        opts.mapping['<C-g>'] = cmp.mapping(function(fallback)
+          vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n',
+          true)
+        end)
+        opts.experimental = { ghost_text = true }
         return opts
       end,
-    },
-    {
-      "zbirenbaum/copilot.lua",
-      lazy = false,
-      opts = { suggestion = { enabled = false }, panel = { enabled = false } }
-    },
-    {
-      "zbirenbaum/copilot-cmp",
-      lazy = false,
-      after = { "copilot.lua" },
-      config = function()
-        require("copilot_cmp").setup()
-      end
     },
     -- Automatically add closing brackets, etc.
     { "windwp/nvim-autopairs", lazy = false },
@@ -141,6 +133,7 @@ return {
   options = {
     g = {
       clipboard = get_clipboard(),
+      copilot_no_tab_map = true,
     },
     opt = {
       clipboard = "",
