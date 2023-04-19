@@ -61,24 +61,18 @@ return {
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
     -- Copilot
     {
-      "github/copilot.vim",
+      "zbirenbaum/copilot.lua",
       lazy = false,
-      keys = {
-        { "<Plug>(vimrc:copilot-dummy-map)", "copilot#Accept(\"\\<Tab>\")", expr = true, silent = true, mode = "i" }
-      },
-    },
-    {
-      "hrsh7th/nvim-cmp",
-      lazy = false,
-      opts = function(_, opts)
-        local cmp = require('cmp')
-        opts.mapping['<C-g>'] = cmp.mapping(function(fallback)
-          vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n',
-          true)
-        end)
-        opts.experimental = { ghost_text = true }
-        return opts
-      end,
+      init = function()
+        require("copilot").setup({
+          suggestion = {
+            auto_trigger = true,
+            keymap = {
+              accept = "<C-l>",
+            }
+          }
+        })
+      end
     },
     -- Automatically add closing brackets, etc.
     { "windwp/nvim-autopairs", lazy = false },
