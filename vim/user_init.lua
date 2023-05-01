@@ -119,11 +119,6 @@ return {
       ["<C-O>"] = { "<C-\\><C-n>" },
     }
   },
-  lsp = {
-    formatting = {
-      timeout_ms = 10000,
-    },
-  },
   options = {
     g = {
       clipboard = get_clipboard(),
