@@ -10,10 +10,9 @@
 	path = shell/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh
 	shallow = true
-[submodule "shell/powerlevel10k"]
-	path = shell/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k
-	shallow = true
 [submodule "vim/astronvim"]
 	path = vim/astronvim
 	url = https://github.com/AstroNvim/AstroNvim
+[submodule "shell/dracula"]
+	path = shell/dracula
+	url = https://github.com/dracula/zsh.git

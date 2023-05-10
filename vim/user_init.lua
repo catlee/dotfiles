@@ -52,7 +52,7 @@ return {
         require("flit").setup()
       end
     },
-    { "folke/tokyonight.nvim" },
+    { "dracula/vim" },
     -- Align text based on content
     { "junegunn/vim-easy-align",                     keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
     -- Indentation text objects
@@ -107,7 +107,7 @@ return {
     },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
-  colorscheme = "tokyonight-night",
+  colorscheme = "dracula",
   mappings = {
     n = {
       ["<leader>E"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Edit init.lua" },

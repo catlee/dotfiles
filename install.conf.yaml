@@ -32,4 +32,4 @@
 
 # Force this to happen after the initial symlink is setup
 - link:
-    ~/.oh-my-zsh/custom/themes/powerlevel10k: shell/powerlevel10k/
+    ~/.oh-my-zsh/custom/themes/dracula: shell/dracula/
