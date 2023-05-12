@@ -2,7 +2,7 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 hs.hotkey.bind({ "cmd", "shift" }, "return", function()
-    hs.execute("nohup kitty -d $HOME $HOME/.cargo/bin/zellij attach -c < /dev/null &> /dev/null &", true)
+    hs.execute("nohup kitty -d $HOME zellij attach -c < /dev/null &> /dev/null &", true)
 end)
 
 hs.hotkey.bind({ "cmd", "shift" }, "h", function()
