@@ -16,3 +16,6 @@
 [submodule "shell/dracula"]
 	path = shell/dracula
 	url = https://github.com/dracula/zsh.git
+[submodule "shell/zsh-syntax-highlighting"]
+	path = shell/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

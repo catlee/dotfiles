@@ -5,11 +5,13 @@ export PATH=$HOME/.cargo/bin:$PATH
 ZSH=$HOME/.oh-my-zsh
 
 DRACULA_DISPLAY_FULL_CWD=1
+DRACULA_DISPLAY_TIME=1
+DRACULA_DISPLAY_CONTEXT=1
 ZSH_THEME="dracula/dracula"
 VI_MODE_SET_CURSOR=true
 MODE_INDICATOR="%F{green}(N)%f"
 
-plugins=(git vi-mode)
+plugins=(git vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

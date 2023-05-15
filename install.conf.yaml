@@ -35,3 +35,4 @@
 # Force this to happen after the initial symlink is setup
 - link:
     ~/.oh-my-zsh/custom/themes/dracula: shell/dracula/
+    ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: shell/zsh-syntax-highlighting
