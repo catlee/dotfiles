@@ -129,4 +129,13 @@ return {
       cmdheight = 1,
     },
   },
+  lsp = {
+    config = {
+      ruby_ls = {
+        init_options = {
+          formatter = 'auto',
+        }
+      }
+    }
+  },
 }
