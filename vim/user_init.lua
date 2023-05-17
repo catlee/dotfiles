@@ -105,6 +105,38 @@ return {
         }
       }
     },
+    -- Configure cmp sources
+    -- In particular, configure the buffer source to use all buffers
+    {
+      "hrsh7th/nvim-cmp",
+      opts = function(_, opts)
+        local cmp = require("cmp")
+        local cmp_buffer = require("cmp_buffer")
+        opts.sorting = {
+          comparators = {
+            -- Use cmp_buffer:compare_locality
+            function(...)
+              return cmp_buffer:compare_locality(...)
+            end,
+          }
+        }
+        opts.sources = cmp.config.sources({
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip",  priority = 750 },
+          {
+            name = "buffer",
+            priority = 500,
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+              end,
+            },
+          },
+          { name = "path", priority = 250 },
+        })
+        return opts
+      end,
+    },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
   colorscheme = "dracula",
