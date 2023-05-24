@@ -7,9 +7,7 @@
     - ~/.config/py3status
 
 - link:
-    ~/bin/disable_screensaver: linux/disable_screensaver
-    ~/bin/update_displays: linux/update_displays
-    ~/bin/fd: linux/fd
+    ~/.local/bin/fd: linux/fd
 
 - shell:
     - sudo apt -o DPkg::Lock::Timeout=300 -y install fd-find ripgrep fzf neovim tmux xsel cmake zsh
