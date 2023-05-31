@@ -52,6 +52,22 @@ return {
         require("flit").setup()
       end
     },
+    -- Use virtual lines to display diagnostic text
+    {
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      lazy = false,
+      init = function()
+        require("lsp_lines").setup()
+      end,
+    },
+    -- Show all your problems
+    {
+      "folke/trouble.nvim",
+      keys = {
+        { "<leader>T", function() require("trouble").toggle() end, desc = "Show trouble" },
+      }
+    },
+    -- Theme
     { "dracula/vim" },
     -- Align text based on content
     { "junegunn/vim-easy-align",                     keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
@@ -160,6 +176,10 @@ return {
       clipboard = "",
       cmdheight = 1,
     },
+  },
+  diagnostics = {
+    -- This is handled by the lsp_lines plugin
+    virtual_text = false,
   },
   lsp = {
     config = {
