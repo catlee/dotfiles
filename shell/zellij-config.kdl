@@ -1,2 +1,12 @@
 theme "dracula"
 default_layout "compact"
+
+keybinds {
+  unbind "Ctrl g"
+  normal {
+    bind "Alt g" { SwitchToMode "locked"; }
+  }
+  locked {
+    bind "Alt g" { SwitchToMode "normal"; }
+  }
+}
