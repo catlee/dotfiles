@@ -186,9 +186,16 @@ return {
       timeout_ms = 10000
     },
     config = {
-      ruby_ls = {
-        cmd = { 'bundle', 'exec', 'ruby-lsp' },
-      }
-    }
+      ruby_ls = function()
+        local util = require "lspconfig.util";
+        return {
+          cmd = { 'bundle', 'exec', 'ruby-lsp' },
+          root_dir = util.find_git_ancestor,
+          init_options = {
+            formatting = "auto"
+          }
+        }
+      end
+    },
   },
 }
