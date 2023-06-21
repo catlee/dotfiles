@@ -182,11 +182,12 @@ return {
     virtual_text = false,
   },
   lsp = {
+    formatting = {
+      timeout_ms = 10000
+    },
     config = {
       ruby_ls = {
-        init_options = {
-          formatter = 'auto',
-        }
+        cmd = { 'bundle', 'exec', 'ruby-lsp' },
       }
     }
   },
