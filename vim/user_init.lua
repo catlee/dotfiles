@@ -64,7 +64,7 @@ return {
     {
       "folke/trouble.nvim",
       keys = {
-        { "<leader>T", function() require("trouble").toggle() end, desc = "Show trouble" },
+        { "<leader>Tx", function() require("trouble").toggle() end, desc = "Show trouble" },
       }
     },
     -- Theme
@@ -91,7 +91,7 @@ return {
       end
     },
     -- Automatically add closing brackets, etc.
-    { "windwp/nvim-autopairs", lazy = false },
+    { "windwp/nvim-autopairs",             lazy = false },
     -- Mason configuration
     {
       "williamboman/mason-lspconfig.nvim",
@@ -113,12 +113,45 @@ return {
     },
     {
       "nvim-telescope/telescope.nvim",
+      keys = {
+        { '<C-a>', "<cmd>Telescope telescope-alternate alternate_file<cr>" }
+      },
       opts = {
         pickers = {
           find_files = {
             hidden = true
           }
+        },
+        extensions = {
+          ["telescope-alternate"] = {
+            presets = { "rails", "rspec" },
+            mappings = {
+              { 'components/(.*)/app/.*/(.*).rb', {
+                { 'components/[1]/test/**/[2]_test.rb', 'Test' }
+              } },
+              { 'components/(.*)/test/.*/(.*)_test.rb', {
+                { 'components/[1]/app/controllers/**/[2].rb', 'Controller' },
+                { 'components/[1]/app/models/**/[2].rb',      'Model' },
+              } },
+              { 'app/.*/(.*).rb', {
+                { 'test/**/[1]_test.rb', 'Test' }
+              } },
+              { 'test/.*/(.*)_test.rb', {
+                { 'app/**/[1].rb', 'Implementation' }
+              } }
+            }
+          }
         }
+      }
+    },
+    {
+      "vim-test/vim-test",
+      keys = {
+        { "<leader>TT", vim.cmd.TestNearest, desc = "Test nearest" },
+        { "<leader>Tf", vim.cmd.TestFile,    desc = "Test file" },
+        { "<leader>Ts", vim.cmd.TestSuite,   desc = "Test suite" },
+        { "<leader>Tl", vim.cmd.TestLast,    desc = "Test last" },
+        { "<leader>Tv", vim.cmd.TestVisit,   desc = "Test visit" },
       }
     },
     -- Configure cmp sources
@@ -153,6 +186,7 @@ return {
         return opts
       end,
     },
+    { "otavioschwanck/telescope-alternate" },
     (vim.env.SPIN == '1' and { "Shopify/spin-hud" }) or nil,
   },
   colorscheme = "dracula",
