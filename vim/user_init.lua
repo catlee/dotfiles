@@ -24,19 +24,19 @@ return {
   },
   plugins = {
     -- Undo tree
-    { "mbbill/undotree", keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
+    { "mbbill/undotree",                keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
     -- Git integration
-    { "tpope/vim-fugitive", cmd = { "G", "Git" } },
+    { "tpope/vim-fugitive",             cmd = { "G", "Git" } },
     -- Adds `end` in Ruby, Lua, etc.
     { "RRethy/nvim-treesitter-endwise", lazy = false },
     -- Better % matching
-    { "andymass/vim-matchup", lazy = false },
+    { "andymass/vim-matchup",           lazy = false },
     -- Manage surrounding characters
-    { "tpope/vim-surround", lazy = false },
+    { "tpope/vim-surround",             lazy = false },
     -- Repeat stuff
-    { "tpope/vim-repeat", lazy = false },
+    { "tpope/vim-repeat",               lazy = false },
     -- Better targest, incl. q for quoted strings
-    { "wellle/targets.vim", lazy = false },
+    { "wellle/targets.vim",             lazy = false },
     -- Jump to text with s/S
     {
       "ggandor/leap.nvim",
@@ -65,9 +65,9 @@ return {
     -- Theme
     { "dracula/vim" },
     -- Align text based on content
-    { "junegunn/vim-easy-align", keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
+    { "junegunn/vim-easy-align",                     keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
     -- Indentation text objects
-    { "michaeljsmith/vim-indent-object", lazy = false },
+    { "michaeljsmith/vim-indent-object",             lazy = false },
     -- Language aware text objects
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
     -- Copilot
@@ -138,7 +138,7 @@ return {
                 "components/(.*)/test/.*/(.*)_test.rb",
                 {
                   { "components/[1]/app/controllers/**/[2].rb", "Controller" },
-                  { "components/[1]/app/models/**/[2].rb", "Model" },
+                  { "components/[1]/app/models/**/[2].rb",      "Model" },
                 },
               },
               { "app/.*/(.*).rb", {
@@ -168,10 +168,10 @@ return {
       "vim-test/vim-test",
       keys = {
         { "<leader>Tn", vim.cmd.TestNearest, desc = "Test nearest" },
-        { "<leader>Tf", vim.cmd.TestFile, desc = "Test file" },
-        { "<leader>Ts", vim.cmd.TestSuite, desc = "Test suite" },
-        { "<leader>TT", vim.cmd.TestLast, desc = "Test last" },
-        { "<leader>Tv", vim.cmd.TestVisit, desc = "Test visit" },
+        { "<leader>Tf", vim.cmd.TestFile,    desc = "Test file" },
+        { "<leader>Ts", vim.cmd.TestSuite,   desc = "Test suite" },
+        { "<leader>TT", vim.cmd.TestLast,    desc = "Test last" },
+        { "<leader>Tv", vim.cmd.TestVisit,   desc = "Test visit" },
       },
       init = function()
         vim.cmd [[
@@ -184,7 +184,7 @@ return {
         ]]
       end,
     },
-    { "preservim/vimux", lazy = false },
+    { "preservim/vimux",       lazy = false },
     -- Configure cmp sources
     -- In particular, configure the buffer source to use all buffers
     {
@@ -200,7 +200,7 @@ return {
         }
         opts.sources = cmp.config.sources {
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip", priority = 750 },
+          { name = "luasnip",  priority = 750 },
           {
             name = "buffer",
             priority = 500,
