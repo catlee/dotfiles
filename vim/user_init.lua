@@ -52,7 +52,7 @@ local function setup_diagnostics(client, buffer)
 			if _timers[buffer] then
 				vim.fn.timer_stop(_timers[buffer])
 			end
-			_timers[buffer] = vim.fn.timer_start(100, diagnostic_handler)
+			_timers[buffer] = vim.fn.timer_start(200, diagnostic_handler)
 		end,
 		on_detach = function()
 			if _timers[buffer] then
@@ -363,13 +363,11 @@ return {
 			-- end,
 			sorbet = function(opts)
 				-- Only enable sorbet if the repo has it enabled
-			  local util = require "lspconfig.util"
-			  opts.root_dir = util.root_pattern("sorbet", "config")
+			  opts.root_dir = require("lspconfig.util").root_pattern("sorbet/config")
 			  return opts
 			end,
 			ruby_ls = function(opts)
-				local util = require("lspconfig.util")
-				opts.root_dir = util.find_git_ancestor
+				opts.root_dir = require("lspconfig.util").find_git_ancestor
 				opts.on_attach = function(client, buffer)
 					setup_diagnostics(client, buffer)
 				end
