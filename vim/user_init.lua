@@ -278,7 +278,12 @@ return {
       opts = {},
     },
     -- Handle git conflicts
-    { "akinsho/git-conflict.nvim", config = true, version = "*" },
+    {
+      "akinsho/git-conflict.nvim",
+      version = "*",
+      lazy = false,
+      opts = { highlights = { incoming = "DiffAdd", current = "DiffAdd", ancestor = "DiffAdd" } },
+    },
     {
       "nvim-neo-tree/neo-tree.nvim",
       opts = function(_, opts)
