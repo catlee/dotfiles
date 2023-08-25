@@ -4,7 +4,7 @@
       relink: true
 
 - create:
-    - ~/.config/py3status
+    - ~/.local/bin
 
 - link:
     ~/.local/bin/fd: linux/fd
