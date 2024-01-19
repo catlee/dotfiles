@@ -243,6 +243,13 @@ return {
       opts = { highlights = { incoming = "DiffAdd", current = "DiffAdd", ancestor = "DiffAdd" } },
     },
     {
+      "stevearc/oil.nvim",
+      opts = {},
+      -- Optional dependencies
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      lazy = false,
+    },
+    {
       "nvim-neo-tree/neo-tree.nvim",
       opts = function(_, opts)
         opts.window.width = "auto"
