@@ -24,19 +24,19 @@ return {
   },
   plugins = {
     -- Undo tree
-    { "mbbill/undotree", keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
+    { "mbbill/undotree",                keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
     -- Git integration
-    { "tpope/vim-fugitive", cmd = { "G", "Git" } },
+    { "tpope/vim-fugitive",             cmd = { "G", "Git" } },
     -- Adds `end` in Ruby, Lua, etc.
     { "RRethy/nvim-treesitter-endwise", lazy = false },
     -- Better % matching
-    { "andymass/vim-matchup", lazy = false },
+    { "andymass/vim-matchup",           lazy = false },
     -- Manage surrounding characters
-    { "tpope/vim-surround", lazy = false },
+    { "tpope/vim-surround",             lazy = false },
     -- Repeat stuff
-    { "tpope/vim-repeat", lazy = false },
+    { "tpope/vim-repeat",               lazy = false },
     -- Better targest, incl. q for quoted strings
-    { "wellle/targets.vim", lazy = false },
+    { "wellle/targets.vim",             lazy = false },
     -- Better search, jumping, etc.
     {
       "folke/flash.nvim",
@@ -50,31 +50,41 @@ return {
         {
           "s",
           mode = { "n", "x", "o" },
-          function() require("flash").jump() end,
+          function()
+            require("flash").jump()
+          end,
           desc = "Flash",
         },
         {
           "S",
           mode = { "n", "o", "x" },
-          function() require("flash").treesitter() end,
+          function()
+            require("flash").treesitter()
+          end,
           desc = "Flash Treesitter",
         },
         {
           "r",
           mode = "o",
-          function() require("flash").remote() end,
+          function()
+            require("flash").remote()
+          end,
           desc = "Remote Flash",
         },
         {
           "R",
           mode = { "o", "x" },
-          function() require("flash").treesitter_search() end,
+          function()
+            require("flash").treesitter_search()
+          end,
           desc = "Flash Treesitter Search",
         },
         {
           "<c-s>",
           mode = { "c" },
-          function() require("flash").toggle() end,
+          function()
+            require("flash").toggle()
+          end,
           desc = "Toggle Flash Search",
         },
       },
@@ -83,7 +93,9 @@ return {
     {
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       lazy = false,
-      init = function() require("lsp_lines").setup() end,
+      init = function()
+        require("lsp_lines").setup()
+      end,
     },
     -- Show all your problems
     {
@@ -91,7 +103,9 @@ return {
       keys = {
         {
           "<leader>Tx",
-          function() require("trouble").toggle() end,
+          function()
+            require("trouble").toggle()
+          end,
           desc = "Show trouble",
         },
       },
@@ -99,9 +113,9 @@ return {
     -- Theme
     { "dracula/vim" },
     -- Align text based on content
-    { "junegunn/vim-easy-align", keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
+    { "junegunn/vim-easy-align",                     keys = { { "ga", "<Plug>(EasyAlign)", mode = "x" } } },
     -- Indentation text objects
-    { "michaeljsmith/vim-indent-object", lazy = false },
+    { "michaeljsmith/vim-indent-object",             lazy = false },
     -- Language aware text objects
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
     -- Copilot
@@ -109,18 +123,18 @@ return {
       "zbirenbaum/copilot.lua",
       lazy = false,
       init = function()
-        require("copilot").setup {
+        require("copilot").setup({
           suggestion = {
             auto_trigger = true,
             keymap = {
               accept = "<C-l>",
             },
           },
-        }
+        })
       end,
     },
     -- Automatically add closing brackets, etc.
-    { "windwp/nvim-autopairs", lazy = false },
+    { "windwp/nvim-autopairs",             lazy = false },
     -- Mason configuration
     {
       "williamboman/mason-lspconfig.nvim",
@@ -178,7 +192,7 @@ return {
                 "components/(.*)/test/.*/(.*)_test.rb",
                 {
                   { "components/[1]/app/controllers/**/[2].rb", "Controller" },
-                  { "components/[1]/app/models/**/[2].rb", "Model" },
+                  { "components/[1]/app/models/**/[2].rb",      "Model" },
                 },
               },
               { "app/.*/(.*).rb", {
@@ -212,26 +226,30 @@ return {
     {
       "hrsh7th/nvim-cmp",
       opts = function(_, opts)
-        local cmp = require "cmp"
-        local cmp_buffer = require "cmp_buffer"
+        local cmp = require("cmp")
+        local cmp_buffer = require("cmp_buffer")
         opts.sorting = {
           comparators = {
             -- Use cmp_buffer:compare_locality
-            function(...) return cmp_buffer:compare_locality(...) end,
+            function(...)
+              return cmp_buffer:compare_locality(...)
+            end,
           },
         }
-        opts.sources = cmp.config.sources {
+        opts.sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip", priority = 750 },
+          { name = "luasnip",  priority = 750 },
           {
             name = "buffer",
             priority = 500,
             option = {
-              get_bufnrs = function() return vim.api.nvim_list_bufs() end,
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+              end,
             },
           },
           { name = "path", priority = 250 },
-        }
+        })
         return opts
       end,
     },
@@ -255,56 +273,6 @@ return {
         opts.window.width = "auto"
         return opts
       end,
-    },
-    {
-      "ThePrimeagen/harpoon",
-      keys = {
-        {
-          "<leader>hm",
-          function() require("harpoon.ui").toggle_quick_menu() end,
-          desc = "Harpoon Menu",
-        },
-        {
-          "<leader>ha",
-          function() require("harpoon.mark").add_file() end,
-          desc = "Add file",
-        },
-        {
-          "<leader>hr",
-          function() require("harpoon.mark").rm_file() end,
-          desc = "Remove file",
-        },
-        {
-          "<leader>hn",
-          function() require("harpoon.ui").nav_next() end,
-          desc = "Next file",
-        },
-        {
-          "<leader>hp",
-          function() require("harpoon.ui").nav_prev() end,
-          desc = "Previous file",
-        },
-        {
-          "<leader>h1",
-          function() require("harpoon.ui").nav_file(1) end,
-          desc = "Navigate to file 1",
-        },
-        {
-          "<leader>h2",
-          function() require("harpoon.ui").nav_file(2) end,
-          desc = "Navigate to file 2",
-        },
-        {
-          "<leader>h3",
-          function() require("harpoon.ui").nav_file(3) end,
-          desc = "Navigate to file 3",
-        },
-        {
-          "<leader>h4",
-          function() require("harpoon.ui").nav_file(4) end,
-          desc = "Navigate to file 4",
-        },
-      },
     },
     {
       "catlee/pull_diags.nvim",
@@ -347,7 +315,7 @@ return {
     config = {
       sorbet = function(opts)
         -- Only enable sorbet if the repo has it enabled
-        opts.root_dir = require("lspconfig.util").root_pattern "sorbet/config"
+        opts.root_dir = require("lspconfig.util").root_pattern("sorbet/config")
         return opts
       end,
       ruby_ls = function(opts)
