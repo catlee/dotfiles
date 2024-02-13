@@ -154,7 +154,7 @@ return {
       opts = {
         ensure_installed = {
           "jq",
-          "stylua",
+          -- "stylua",
         },
       },
     },
@@ -265,7 +265,7 @@ return {
       opts = {},
       -- Optional dependencies
       dependencies = { "nvim-tree/nvim-web-devicons" },
-      lazy = false,
+      keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } },
     },
     {
       "nvim-neo-tree/neo-tree.nvim",
@@ -280,7 +280,8 @@ return {
       event = "LspAttach",
       opts = {},
     },
-    (vim.env.SPIN == "1" and { "Shopify/spin-hud" }) or nil,
+    -- Open files with line and column numbers
+    { "wsdjeg/vim-fetch", lazy = false },
   },
   colorscheme = "dracula",
   options = {
