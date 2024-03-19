@@ -119,19 +119,10 @@ return {
     -- Language aware text objects
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false },
     -- Copilot
-    {
-      "zbirenbaum/copilot.lua",
-      lazy = false,
-      init = function()
-        require("copilot").setup({
-          suggestion = {
-            auto_trigger = true,
-            keymap = {
-              accept = "<C-l>",
-            },
-          },
-        })
-      end,
+    { "github/copilot.vim", lazy = false, keys = {
+        { "<C-l>", "<Plug>(copilot-accept-line)", mode = "i" },
+        { "<S-M-L>", "<Plug>(copilot-accept-word)", mode = "i" },
+      }
     },
     -- Automatically add closing brackets, etc.
     { "windwp/nvim-autopairs",             lazy = false },
