@@ -68,3 +68,8 @@ if [ -d $HOME/.pyenv ]; then
     export PATH=$PYENV_ROOT/bin:$PATH
     eval "$(pyenv init -)"
 fi
+
+# zoxide
+if [ -x "$(command -v zoxide)" ]; then
+    eval "$(zoxide init --cmd=cd zsh)"
+fi
