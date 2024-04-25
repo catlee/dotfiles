@@ -1,0 +1,21 @@
+-- Customizations for treesitter
+---@type LazySpec
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if not opts.ensure_installed then opts.ensure_installed = {} end
+      vim.list_extend(opts.ensure_installed, {
+        "lua",
+        "ruby",
+        "python",
+        "rust",
+        "javascript",
+        "markdown",
+        "markdown_inline",
+      })
+      opts.endwise = { enable = true }
+      opts.matchup = { enable = true }
+    end,
+  },
+}
