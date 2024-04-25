@@ -1,10 +1,10 @@
 ---
 - defaults:
     link:
-        relink: true
-        force: true
+      relink: true
+      force: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - create:
     - ~/bin
@@ -20,14 +20,8 @@
     ~/.oh-my-zsh: shell/ohmyzsh/
     ~/.gitconfig: gitconfig
     ~/.config/nvim:
-        path: vim/astronvim
-        create: true
-    ~/.config/nvim/lua/user/init.lua:
-        create: true
-        path: vim/user_init.lua
-    ~/.config/zellij/config.kdl:
-        create: true
-        path: shell/zellij-config.kdl
+      path: vim/astronvim
+      create: true
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
 
