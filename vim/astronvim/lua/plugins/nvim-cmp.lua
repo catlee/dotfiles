@@ -19,18 +19,18 @@ return {
           function(...) return cmp_buffer:compare_locality(...) end,
         },
       }
+      opts.snippet = function(args) require("luasnip").lsp_expand(args.body) end
       opts.sources = cmp.config.sources {
-        { name = "copilot", priority = 1200 },
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "luasnip", priority = 750 },
+        { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
         {
           name = "buffer",
-          priority = 500,
           option = {
             get_bufnrs = function() return vim.api.nvim_list_bufs() end,
           },
         },
-        { name = "path", priority = 250 },
+        { name = "path" },
       }
       return opts
     end,
