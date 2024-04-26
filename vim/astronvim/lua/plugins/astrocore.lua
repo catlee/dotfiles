@@ -3,25 +3,6 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
-local function get_clipboard()
-  if vim.env.SPIN == "1" then
-    return {
-      name = "pbcopy",
-      copy = {
-        ["+"] = "pbcopy",
-        ["*"] = "pbcopy",
-      },
-      paste = {
-        ["+"] = "pbpaste",
-        ["*"] = "pbpaste",
-      },
-      cache_enabled = 1,
-    }
-  else
-    return nil
-  end
-end
-
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -49,13 +30,12 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
-        clipboard = "",
+        clipboard = "", -- make clipboard use explicit
         cmdheight = 1,
       },
       g = { -- vim.g.<key>
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
-        clipboard = get_clipboard(),
         copilot_no_tab_map = true,
       },
     },
