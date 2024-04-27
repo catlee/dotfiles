@@ -13,3 +13,6 @@ if vim.g.started_by_firenvim then
     },
   }
 end
+
+-- Make <leader>/ repeatable
+vim.keymap.set("n", "<leader>/", require("Comment.api").call("toggle.linewise.current", "g@$"), { expr = true })
