@@ -33,3 +33,5 @@
     colorMoved = default
 [init]
 	defaultBranch = main
+[rerere]
+	enabled = true
