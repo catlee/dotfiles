@@ -5,7 +5,7 @@ return {
     "folke/trouble.nvim",
     keys = {
       {
-        "<leader>Tx",
+        "<leader>T",
         function() require("trouble").toggle() end,
         desc = "Show trouble",
       },

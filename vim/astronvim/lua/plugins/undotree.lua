@@ -1,4 +1,4 @@
 ---@type LazySpec
 return {
-  { "mbbill/undotree", keys = { { "<leader>u", vim.cmd.UndotreeToggle } } },
+  { "mbbill/undotree", keys = { { "<leader>uU", vim.cmd.UndotreeToggle, desc = "Toggle UndoTree" } } },
 }
