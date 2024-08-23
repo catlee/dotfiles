@@ -13,6 +13,7 @@ return {
         "javascript",
         "markdown",
         "markdown_inline",
+        "typescript",
       })
       opts.endwise = { enable = true }
       opts.matchup = { enable = true }

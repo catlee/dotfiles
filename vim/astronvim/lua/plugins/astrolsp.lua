@@ -30,6 +30,10 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
+        "yamlls",
+        "vtsls",
+        "tsserver",
+        "typescript-tools",
       },
       timeout_ms = 10000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -46,6 +50,9 @@ return {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       sorbet = {
         root_dir = require("lspconfig.util").root_pattern "sorbet/config",
+      },
+      eslint = {
+        root_dir = require("lspconfig.util").root_pattern "tsconfig.json",
       },
     },
     -- customize how language servers are attached
