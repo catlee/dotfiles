@@ -63,11 +63,11 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
 
 # Python stuff
-if [ -d $HOME/.pyenv ]; then
-    export PYENV_ROOT=$HOME/.pyenv
-    export PATH=$PYENV_ROOT/bin:$PATH
-    eval "$(pyenv init -)"
-fi
+# if [ -d $HOME/.pyenv ]; then
+#     export PYENV_ROOT=$HOME/.pyenv
+#     export PATH=$PYENV_ROOT/bin:$PATH
+#     eval "$(pyenv init -)"
+# fi
 
 # zoxide
 if [ -x "$(command -v zoxide)" ]; then

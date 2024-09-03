@@ -14,8 +14,11 @@
 	path = vim/astronvim
 	url = https://github.com/AstroNvim/AstroNvim
 [submodule "shell/dracula"]
-	path = shell/dracula
+	path = shell/dracula-zsh
 	url = https://github.com/dracula/zsh.git
 [submodule "shell/zsh-syntax-highlighting"]
 	path = shell/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "shell/dracula-kitty"]
+	path = shell/dracula-kitty
+	url = https://github.com/dracula/kitty

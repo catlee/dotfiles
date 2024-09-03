@@ -24,8 +24,9 @@
       create: true
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
+    ~/.config/kitty/dracula.conf: shell/dracula-kitty/dracula.conf
 
 # Force this to happen after the initial symlink is setup
 - link:
-    ~/.oh-my-zsh/custom/themes/dracula: shell/dracula/
+    ~/.oh-my-zsh/custom/themes/dracula: shell/dracula-zsh/
     ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: shell/zsh-syntax-highlighting
