@@ -8,7 +8,8 @@
 - link:
     ~/.config/kitty/kitty.conf: mac/kitty.conf
     ~/.hammerspoon/init.lua: mac/hammerspoon_init.lua
+    ~/.config/aerospace/aerospace.toml: mac/aerospace.toml
 
 - shell:
-    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty hammerspoon bash reattach-to-user-namespace cmake pyenv amethyst
+    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty hammerspoon bash reattach-to-user-namespace cmake pyenv aerospace
     - unzip -f -o mac/ReloadConfiguration.spoon.zip -d ~/.hammerspoon/Spoons
