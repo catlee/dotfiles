@@ -24,7 +24,9 @@
       create: true
     ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
     ~/bin/tmux_attach: linux/tmux_attach
-    ~/.config/kitty/dracula.conf: shell/dracula-kitty/dracula.conf
+    ~/.config/kitty/dracula.conf:
+      path: shell/dracula-kitty/dracula.conf
+      create: true
 
 # Force this to happen after the initial symlink is setup
 - link:

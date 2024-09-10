@@ -29,8 +29,6 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
-cmd-h = 'focus left' # disable
-
 # Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
 # alt-h = 'split horizontal'
 # alt-v = 'split vertical'
