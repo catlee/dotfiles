@@ -19,7 +19,7 @@ return {
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
-      virtual_text = false, -- handled by lsp_lines
+      -- virtual_text = false, -- handled by lsp_lines
       underline = true,
     },
     -- vim options can be configured here
@@ -72,6 +72,7 @@ return {
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+        ["<C-O>"] = { "<C-\\><C-N>", desc = "Enter normal mode" },
       },
       v = {
         -- Move selections up/down
