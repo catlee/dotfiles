@@ -6,5 +6,6 @@ return {
     -- dev = true,
     event = "LspAttach",
     opts = {},
+    enabled = false,
   },
 }
