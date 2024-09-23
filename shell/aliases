@@ -10,3 +10,4 @@ alias dsc="ds && dc"
 alias tnew="tmux new -As0"
 alias gpa="git pull --rebase && update"
 alias spinname='spin show -o fqdn'
+alias bx="bundle exec"

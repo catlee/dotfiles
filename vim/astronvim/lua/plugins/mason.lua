@@ -11,9 +11,9 @@ return {
       if ruby_version ~= nil then
         local path = require "mason-core.path"
         opts.install_root_dir = path.concat { tostring(vim.fn.stdpath "data"), "mason", "ruby", ruby_version }
-        vim.notify("setting mason dir to " .. opts.install_root_dir)
-      else
-        vim.notify("`ruby` is not executable. Using default Mason installation directory.", vim.log.levels.WARN)
+        -- vim.notify("setting mason dir to " .. opts.install_root_dir)
+        -- else
+        --   vim.notify("`ruby` is not executable. Using default Mason installation directory.", vim.log.levels.WARN)
       end
       return opts
     end,
