@@ -10,6 +10,8 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+start-at-login = true
+
 [mode.main.binding]
 # See: https://nikitabobko.github.io/AeroSpace/goodness#open-a-new-window-with-applescript
 # alt-enter = '''exec-and-forget osascript -e '
@@ -24,10 +26,10 @@ shift-alt-j = 'move down'
 shift-alt-k = 'move up'
 shift-alt-l = 'move right'
 
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
 # alt-h = 'split horizontal'

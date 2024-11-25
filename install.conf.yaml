@@ -13,7 +13,6 @@
 
 - link:
     ~/.tmux.conf: shell/tmux.conf
-    ~/.tmux/tmux.conf: shell/tmux.conf
     ~/.aliases: shell/aliases
     ~/.zshrc: shell/zshrc
     ~/.fzf.zsh: shell/fzf.zsh
