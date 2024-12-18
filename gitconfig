@@ -13,7 +13,7 @@
         di = diff -U8 --patch-with-stat
         st = status -uno
         fpush = push --force-with-lease
-        pullup = "!cd -- \"${GIT_PREFIX:-.}\" && git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | xargs basename) && /opt/dev/bin/dev up"
+        pullup = "!cd -- \"${GIT_PREFIX:-.}\" && git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | xargs basename) && $SHELL -i -c 'dev up'"
 
 [push]
 	default = current

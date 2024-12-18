@@ -19,7 +19,9 @@ return {
           function(...) return cmp_buffer:compare_locality(...) end,
         },
       }
-      opts.snippet = function(args) require("luasnip").lsp_expand(args.body) end
+      opts.snippet = {
+        expand = function(args) require("luasnip").lsp_expand(args.body) end,
+      }
       opts.sources = cmp.config.sources {
         { name = "copilot" },
         { name = "nvim_lsp" },

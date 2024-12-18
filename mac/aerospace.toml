@@ -1,59 +1,38 @@
-# Reference: https://github.com/i3/i3/blob/next/etc/config
-
-# i3 doesn't have "normalizations" feature that why we disable them here.
-# But the feature is very helpful.
-# Normalizations eliminate all sorts of weird tree configurations that don't make sense.
-# Give normalizations a chance and enable them back.
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 start-at-login = true
 
 [mode.main.binding]
-# See: https://nikitabobko.github.io/AeroSpace/goodness#open-a-new-window-with-applescript
-# alt-enter = '''exec-and-forget osascript -e '
-# tell application "Terminal"
-#     do script
-#     activate
-# end tell'
-# '''
+alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
+
+shift-cmd-h = 'join-with left'
+shift-cmd-l = 'join-with right'
+shift-cmd-j = 'join-with down'
+shift-cmd-k = 'join-with up'
 
 shift-alt-h = 'move left'
 shift-alt-j = 'move down'
 shift-alt-k = 'move up'
 shift-alt-l = 'move right'
 
-alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
-alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
-alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
-alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
+# hyper is cmd-alt-shift-ctrl
 
-# Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
-# alt-h = 'split horizontal'
-# alt-v = 'split vertical'
-shift-cmd-h = 'join-with left'
-shift-cmd-l = 'join-with right'
-shift-cmd-j = 'join-with down'
-shift-cmd-k = 'join-with up'
-
-shift-alt-f = 'fullscreen'
+cmd-alt-shift-ctrl-f = 'fullscreen'
+cmd-alt-shift-ctrl-c = 'reload-config'
+cmd-alt-shift-ctrl-space = 'layout floating tiling' # 'floating toggle' in i3
+cmd-alt-shift-ctrl-minus = 'resize smart -50'
+cmd-alt-shift-ctrl-equal = 'resize smart +50'
 
 alt-s = 'layout v_accordion' # 'layout stacking' in i3
-alt-w = 'layout h_accordion' # 'layout tabbed' in i3
 alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
-
-alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
-
-# Not supported, because this command is redundant in AeroSpace mental model.
-# See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
-#alt-space = 'focus toggle_tiling_floating'
-
-# `focus parent`/`focus child` are not yet supported, and it's not clear whether they
-# should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
-# alt-a = 'focus parent'
 
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -65,6 +44,7 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace 10'
+alt-m = 'workspace M'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -76,12 +56,11 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
-
-alt-shift-c = 'reload-config'
+alt-shift-m = 'move-node-to-workspace M'
 
 alt-r = 'mode resize'
-alt-tab = 'workspace-back-and-forth'
-shift-alt-tab = 'move-workspace-to-monitor --wrap-around next'
+# alt-tab = 'workspace-back-and-forth'
+# shift-alt-tab = 'move-workspace-to-monitor --wrap-around next'
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -92,4 +71,8 @@ enter = 'mode main'
 esc = 'mode main'
 
 [workspace-to-monitor-force-assignment]
-3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+M = 'secondary'
+
+[[on-window-detected]]
+if.app-id = "com.spotify.client"
+run = 'move-node-to-workspace M'
