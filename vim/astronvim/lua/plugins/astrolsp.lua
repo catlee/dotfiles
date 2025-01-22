@@ -34,6 +34,7 @@ return {
         "vtsls",
         "tsserver",
         "typescript-tools",
+        "ts_ls",
       },
       timeout_ms = 10000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function

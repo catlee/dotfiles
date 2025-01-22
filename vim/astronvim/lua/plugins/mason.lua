@@ -27,6 +27,7 @@ return {
         "jsonls",
         "yamlls",
         "eslint",
+        "ts_ls",
       })
 
       if ruby_version and ruby_version >= "2.7" then
