@@ -1,10 +1,13 @@
 - defaults:
     link:
       relink: true
+      force: true
+      create: true
 
 - link:
     ~/.config/kitty/kitty.conf: mac/kitty.conf
     ~/.config/aerospace/aerospace.toml: mac/aerospace.toml
 
 - shell:
-    - brew install fzf fd nvim tmux alt-tab git hyperfine ripgrep kitty bash reattach-to-user-namespace cmake pyenv aerospace
+    - brew install fzf fd nvim tmux git hyperfine ripgrep kitty bash reattach-to-user-namespace cmake pyenv rust npm cargo-binstall
+    - brew install --cask nikitabobko/tap/aerospace

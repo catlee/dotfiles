@@ -2,9 +2,7 @@
 - defaults:
     link:
       relink: true
-
-- create:
-    - ~/.local/bin
+      create: true
 
 - link:
     ~/.local/bin/fd: linux/fd
