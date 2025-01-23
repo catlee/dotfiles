@@ -1,0 +1,53 @@
+#!/bin/zsh
+# Spotify volume control
+# Copyright (c) 2025 Chris AtLee <chris@atlee.ca>
+set -e
+set -x
+
+# Function to control Spotify via AppleScript
+tellSpotify() {
+  osascript -e "tell application \"Spotify\" to $1"
+}
+
+if [[ $(osascript -e 'application "Spotify" is running') = "false" ]]; then
+  echo "Spotify is not running"
+  open -a Spotify.app
+  sleep 2
+fi
+
+# Amount to adjust volume by
+VOL_ADJUSTMENT=${VOL_ADJUSTMENT:-5}
+
+getVol() {
+  tellSpotify "sound volume"
+}
+
+volUp() {
+  vol=$(getVol)
+  newvol=$((vol + VOL_ADJUSTMENT))
+  if [[ $newvol -gt 100 ]]; then
+    newvol=100
+  fi
+  tellSpotify "set sound volume to $newvol"
+}
+
+volDown() {
+  vol=$(getVol)
+  newvol=$((vol - VOL_ADJUSTMENT))
+  if [[ $newvol -lt 0 ]]; then
+    newvol=0
+  fi
+  tellSpotify "set sound volume to $newvol"
+}
+
+case $1 in
+  "up")
+    volUp
+    ;;
+  "down")
+    volDown
+    ;;
+  "")
+    getVol
+    ;;
+esac
