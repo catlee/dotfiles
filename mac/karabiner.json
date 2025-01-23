@@ -15,12 +15,12 @@
                                     {
                                         "name": "hyper",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     },
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": false
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
@@ -34,9 +34,9 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "key_up_value": false,
+                                            "key_up_value": 0,
                                             "name": "hyper_w",
-                                            "value": true
+                                            "value": 1
                                         }
                                     }
                                 ],
@@ -57,12 +57,12 @@
                                     {
                                         "name": "hyper",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     },
                                     {
                                         "name": "hyper_w",
                                         "type": "variable_if",
-                                        "value": false
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
@@ -76,9 +76,9 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "key_up_value": false,
+                                            "key_up_value": 0,
                                             "name": "hyper_o",
-                                            "value": true
+                                            "value": 1
                                         }
                                     }
                                 ],
@@ -94,7 +94,7 @@
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Slack",
@@ -118,7 +118,7 @@
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Chrome (B) Browser",
@@ -142,7 +142,7 @@
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Logseq (n) notes",
@@ -166,7 +166,7 @@
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Google (V) Meet",
@@ -190,7 +190,7 @@
                                     {
                                         "name": "hyper_o",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Spotify (m) Music",
@@ -233,9 +233,9 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "key_up_value": false,
+                                            "key_up_value": 0,
                                             "name": "meh",
-                                            "value": true
+                                            "value": 1
                                         }
                                     }
                                 ],
@@ -298,9 +298,9 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "key_up_value": false,
+                                            "key_up_value": 0,
                                             "name": "hyper",
-                                            "value": true
+                                            "value": 1
                                         }
                                     }
                                 ],
@@ -316,7 +316,7 @@
                                     {
                                         "name": "hyper",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Kitty",
@@ -340,7 +340,7 @@
                                     {
                                         "name": "hyper",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Spotify volume up",
@@ -364,7 +364,7 @@
                                     {
                                         "name": "hyper",
                                         "type": "variable_if",
-                                        "value": true
+                                        "value": 1
                                     }
                                 ],
                                 "description": "Spotify volume down",
@@ -398,7 +398,6 @@
                     "ignore": false
                 }
             ],
-            "fn_function_keys": [],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": {

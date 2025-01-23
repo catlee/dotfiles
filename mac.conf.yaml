@@ -11,6 +11,6 @@
     ~/.local/bin/vol: mac/vol
 
 - shell:
-    - brew install fzf fd nvim tmux git hyperfine ripgrep kitty bash reattach-to-user-namespace cmake pyenv rust npm cargo-binstall logseq
+    - brew install fzf fd nvim tmux git hyperfine ripgrep kitty bash reattach-to-user-namespace cmake pyenv rust npm cargo-binstall karabiner-elements logseq
     - brew install --cask nikitabobko/tap/aerospace
     - cargo binstall zoxide
