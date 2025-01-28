@@ -8,7 +8,7 @@
     ~/.local/bin/fd: linux/fd
 
 - shell:
-    - sudo apt -o DPkg::Lock::Timeout=300 -y install fd-find ripgrep fzf neovim tmux xsel cmake zsh
+    - sudo apt -o DPkg::Lock::Timeout=300 -y install fd-find ripgrep fzf neovim tmux xsel cmake zsh zoxide
     - test -n "$SPIN" || (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile default -y)
     - test -n "$SPIN" || (cargo install cargo-binstall)
     - test -n "$SPIN" || (cargo binstall zoxide)
