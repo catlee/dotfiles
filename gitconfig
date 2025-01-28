@@ -16,25 +16,26 @@
         pullup = "!cd -- \"${GIT_PREFIX:-.}\" && git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | xargs basename) && $SHELL -i -c 'dev up'"
 
 [push]
-	default = current
+        default = current
 
 [include]
         path = ~/.gitsecrets
         path = /Users/catlee/.config/dev/gitconfig
+        path = /Users/chrisatlee/.config/dev/gitconfig
 
 [pull]
         ff = only
 [rebase]
-	autoStash = true
+        autoStash = true
 
 [merge]
-	conflictstyle = zdiff3
+        conflictstyle = zdiff3
 
 [diff]
     colorMoved = default
 [init]
-	defaultBranch = main
+        defaultBranch = main
 [rerere]
-	enabled = true
+        enabled = true
 [submodule]
-	recurse = true
+        recurse = true
