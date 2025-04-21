@@ -4,12 +4,3 @@
 
 -- Prevent dedenting in Ruby after typing '.'
 vim.cmd "autocmd FileType ruby setlocal indentkeys-=."
-
--- Don't start firenvim by default
-if vim.g.started_by_firenvim then
-  vim.g.firenvim_config = {
-    localSettings = {
-      [".*"] = { takeover = "never" },
-    },
-  }
-end

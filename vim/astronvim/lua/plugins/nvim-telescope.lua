@@ -28,6 +28,7 @@ return {
               {
                 { "components/[1]/app/controllers/**/[2].rb", "Controller" },
                 { "components/[1]/app/models/**/[2].rb", "Model" },
+                { "components/[1]/app/**/[2].rb", "Misc" },
               },
             },
             { "app/.*/(.*).rb", {

@@ -54,6 +54,18 @@ return {
         L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
+        -- yank current filename to clipboard
+        ["<Leader>yf"] = {
+          function() vim.fn.setreg("+", vim.fn.expand "%") end,
+          desc = "Yank relative path to clipboard",
+        },
+
+        -- edit vim config file
+        ["<Leader>ec"] = {
+          function() vim.cmd("edit " .. vim.fn.stdpath "config" .. "/lua/plugins/astrocore.lua") end,
+          desc = "Edit astrocore config",
+        },
+
         -- mappings seen under group name "Buffer"
         ["<Leader>bD"] = {
           function()
