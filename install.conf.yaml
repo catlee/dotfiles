@@ -27,6 +27,7 @@
     ~/.config/kitty/dracula.conf:
       path: shell/dracula-kitty/dracula.conf
       create: true
+    ~/.zsh/functions/ff: shell/ff
 
 # Force this to happen after the initial symlink is setup
 - link:

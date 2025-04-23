@@ -40,3 +40,12 @@
         enabled = true
 [submodule]
         recurse = true
+[maintenance]
+	repo = /Users/chrisatlee/world/trees/root/src
+	repo = /Users/chrisatlee/world/trees/render-snippets
+	repo = /Users/chrisatlee/world/trees/cleanup
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

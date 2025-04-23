@@ -1,0 +1,4 @@
+# Fuzzy focus on a window
+function ff() {
+    aerospace list-windows --all | fzf | cut -d'|' -f1 | xargs aerospace focus --window-id
+}

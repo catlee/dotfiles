@@ -1,6 +1,6 @@
 alias vi=nvim
 alias vim=nvim
-alias dt="dev test --include-branch-commits"
+alias dt="dev test changes --include-branch-commits"
 alias drt="dev retest"
 alias ds="dev style --include-branch-commits"
 alias dc="dev typecheck"
@@ -10,5 +10,3 @@ alias dsc="ds && dc"
 alias tnew='f() { tmux new -A -s ${1:-0} }; f'
 alias spinname='spin show -o fqdn'
 alias bx="bundle exec"
-alias core='(cd $HOME/world/trees/root/src/areas/core/shopify/; tmux new -A -s core)'
-alias sfr='(cd $HOME/world/trees/root/src/areas/core/storefront/; tmux new -A -s sfr)'
