@@ -3,7 +3,7 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  enabled = true,
+  enabled = false,
   -- version = false,
   config = function()
     local has_openai_key = vim.fn.executable "openai_key" == 1
@@ -21,17 +21,6 @@ return {
         } or nil,
       },
       hints = { enabled = true },
-      highlights = {
-        diff = {
-          incoming = "DiffChange",
-        },
-      },
-      mappings = {
-        suggestion = {
-          next = "]]",
-          prev = "[[",
-        },
-      },
     }
   end,
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

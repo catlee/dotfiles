@@ -41,9 +41,17 @@
 [submodule]
         recurse = true
 [maintenance]
-	repo = /Users/chrisatlee/world/trees/root/src
 	repo = /Users/chrisatlee/world/trees/render-snippets
-	repo = /Users/chrisatlee/world/trees/cleanup
+	repo = /Users/chrisatlee/world/trees/speculation/src
+	repo = /Users/chrisatlee/world/trees/tools/src
+	repo = /Users/chrisatlee/world/trees/sessions/src
+	repo = /Users/chrisatlee/world/trees/colours/src
+	repo = /Users/chrisatlee/world/trees/root/src
+	repo = /Users/chrisatlee/world/trees/update-references/src
+	repo = /Users/chrisatlee/world/trees/s3/src
+	repo = /Users/chrisatlee/world/trees/stable-ids/src
+	repo = /Users/chrisatlee/world/trees/session/src
+	repo = /Users/chrisatlee/world/trees/cleanup/src
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -14,10 +14,6 @@ case $(uname) in
         ;;
 esac
 
-if [ -n "$SPIN" ]; then
-    CONFIGS+=("spin.conf.yaml")
-fi
-
 CONFIGS+=("after.conf.yaml")
 
 DOTBOT_DIR="dotbot"
