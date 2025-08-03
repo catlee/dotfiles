@@ -225,23 +225,30 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "meh",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
                                         "key_code": "left_shift",
                                         "modifiers": [
                                             "left_control",
                                             "left_option"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "key_up_value": 0,
-                                            "name": "meh",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "to_if_alone": [
                                     {
                                         "key_code": "tab"
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "meh",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -289,24 +296,31 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "hyper",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
                                         "key_code": "left_shift",
                                         "modifiers": [
                                             "left_control",
                                             "left_option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "key_up_value": 0,
-                                            "name": "hyper",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "to_if_alone": [
                                     {
                                         "key_code": "escape"
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
