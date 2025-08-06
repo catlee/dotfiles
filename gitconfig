@@ -3,6 +3,16 @@
         email = chris.atlee@shopify.com
         signingKey = 84CD7E19
 
+[core]
+        pager = delta
+
+[interactive]
+        diffFilter = delta --color-only
+
+[delta]
+        navigate = true  # use n and N to move between diff sections
+        dark = true      # or light = true, or omit for auto-detection
+
 [color]
         diff = auto
 
@@ -37,7 +47,7 @@
 [init]
         defaultBranch = main
 [rerere]
-        enabled = true
+        enabled = false
 [submodule]
         recurse = true
 [maintenance]
@@ -46,12 +56,12 @@
 	repo = /Users/chrisatlee/world/trees/tools/src
 	repo = /Users/chrisatlee/world/trees/sessions/src
 	repo = /Users/chrisatlee/world/trees/colours/src
-	repo = /Users/chrisatlee/world/trees/root/src
-	repo = /Users/chrisatlee/world/trees/update-references/src
-	repo = /Users/chrisatlee/world/trees/s3/src
+	repo = /Users/chrisatlee/world/trees/perf/src
 	repo = /Users/chrisatlee/world/trees/stable-ids/src
-	repo = /Users/chrisatlee/world/trees/session/src
-	repo = /Users/chrisatlee/world/trees/cleanup/src
+	repo = /Users/chrisatlee/world/trees/theme-files/src
+	repo = /Users/chrisatlee/world/trees/root/src
+[lfs]
+	setlockablereadonly = 0
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

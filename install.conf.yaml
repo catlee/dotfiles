@@ -28,6 +28,9 @@
       path: shell/dracula-kitty/dracula.conf
       create: true
     ~/.zsh/functions/ff: shell/ff
+    ~/.config/zellij/config.kdl:
+      path: shell/zellij-config.kdl
+      create: true
 
 # Force this to happen after the initial symlink is setup
 - link:

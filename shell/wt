@@ -2,11 +2,60 @@
 # git worktrees
 function wt() {
     NAME=$1
+    BRANCH=$2
     if [ -z "$NAME" ]; then
         # If no argument is provided, show a list of existing worktrees to select from
         # or allow typing a new name
         echo "Select an existing worktree or type a new name:"
         NAME=$(cd $HOME/world/trees; find . -maxdepth 3 -name ".git" -type d -o -name ".git" -type f | sed 's/\/\.git$//' | sed 's/^\.\///' | fzf --print-query | tail -1)
+    else
+        # Name provided on command line - check for exact or fuzzy matches
+        # Get list of existing worktrees
+        # We want just the directory names, not the full paths
+        local worktrees=($(cd $HOME/world/trees; find . -maxdepth 1 -mindepth 1 -type d | sed 's/^\.\///' | sort))
+
+        # Check for exact match
+        local exact_match=""
+        for wt in "${worktrees[@]}"; do
+            if [[ "$wt" == "$NAME" ]]; then
+                exact_match="$wt"
+                break
+            fi
+        done
+
+        if [[ -n "$exact_match" ]]; then
+            # Exact match found
+            NAME="$exact_match"
+        else
+            # No exact match, do fuzzy matching
+            local matches=()
+            local fzf_output=$(printf '%s\n' "${worktrees[@]}" | fzf --filter="$NAME" | head -20)
+
+            if [[ -n "$fzf_output" ]]; then
+                # In zsh, we can use parameter expansion to split into array
+                matches=("${(@f)fzf_output}")
+            fi
+
+            local match_count=${#matches[@]}
+
+            if [[ $match_count -eq 0 ]]; then
+                # No matches found - NAME stays as provided, will prompt to create
+                :
+            elif [[ $match_count -eq 1 ]]; then
+                # Exactly one fuzzy match
+                # In zsh, arrays are 1-indexed
+                NAME="${matches[1]}"
+                echo "Found match: $NAME"
+            else
+                # Multiple matches - show fuzzy finder
+                echo "Multiple matches found. Select one:"
+                NAME=$(printf '%s\n' "${matches[@]}" | fzf --query="$NAME")
+                if [[ -z "$NAME" ]]; then
+                    echo "No selection made."
+                    return 1
+                fi
+            fi
+        fi
     fi
     WD="$HOME/world/trees/$NAME"
     if [ ! -d "$WD" ]; then
@@ -14,17 +63,50 @@ function wt() {
         read -q "REPLY?Worktree '$NAME' doesn't exist. Create it? (y/n) "
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            # Check if main is already checked out in another worktree
-            if (cd $HOME/world/git && git worktree list --porcelain | grep -q "refs/heads/main"); then
-                echo "Branch 'main' is already checked out in another worktree."
-                read "BRANCH?Enter a new branch name (will be created from main): "
-                if [[ -z "$BRANCH" ]]; then
-                    echo "No branch name provided. Cancelled."
-                    return 1
+            # Determine which branch to use
+            local target_branch=""
+            local create_new_branch=false
+
+            if [[ -n "$BRANCH" ]]; then
+                # Branch was specified - check if it exists
+                if (cd $HOME/world/git && git show-ref --verify --quiet "refs/heads/$BRANCH"); then
+                    # Branch exists - check if it's already checked out
+                    if (cd $HOME/world/git && git worktree list --porcelain | grep -q "refs/heads/$BRANCH"); then
+                        echo "Branch '$BRANCH' is already checked out in another worktree."
+                        return 1
+                    fi
+                    target_branch="$BRANCH"
+                else
+                    # Branch doesn't exist - create it from main
+                    echo "Branch '$BRANCH' doesn't exist. Creating from main..."
+                    target_branch="$BRANCH"
+                    create_new_branch=true
                 fi
-                (cd $HOME/world/git; git worktree add --no-checkout -b "$BRANCH" "$WD/src" main && cd "$WD/src" && git sparse-checkout set && git checkout "$BRANCH")
             else
-                (cd $HOME/world/git; git worktree add --no-checkout "$WD/src" main && cd "$WD/src" && git sparse-checkout set && git checkout main)
+                # No branch specified - try to use main
+                if (cd $HOME/world/git && git worktree list --porcelain | grep -q "refs/heads/main"); then
+                    echo "Branch 'main' is already checked out in another worktree."
+                    read "BRANCH?Enter a new branch name (will be created from main): "
+                    if [[ -z "$BRANCH" ]]; then
+                        echo "No branch name provided. Cancelled."
+                        return 1
+                    fi
+                    target_branch="$BRANCH"
+                    create_new_branch=true
+                else
+                    target_branch="main"
+                fi
+            fi
+
+            # Create the worktree
+            if [[ "$create_new_branch" == true ]]; then
+                # Create new branch from main
+                (cd $HOME/world/git; git worktree add --no-checkout -b "$target_branch" "$WD/src" main && cd "$WD/src" && git sparse-checkout set && git checkout "$target_branch")
+                # Set up graphite tracking for the new branch
+                (cd "$WD/src" && git config "branch.$target_branch.gt-base" main)
+            else
+                # Use existing branch
+                (cd $HOME/world/git; git worktree add --no-checkout "$WD/src" "$target_branch" && cd "$WD/src" && git sparse-checkout set && git checkout "$target_branch")
             fi
         else
             echo "Cancelled."
@@ -42,7 +124,7 @@ function wt() {
 # and add it to sparse checkout if needed
 function goto_sparse_dir() {
     local target_path="$1"
-    
+
     # Find our .git directory by traversing up
     local dir=$(pwd)
     while [[ "$dir" != "/" ]]; do
