@@ -49,8 +49,76 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      ruby_lsp = {
+        on_new_config = function(config)
+          -- Get the Ruby-specific Mason installation directory
+          local function get_ruby_env_hash()
+            local components = {}
+            local ruby_path = vim.fn.system("which ruby 2>/dev/null"):gsub("\n", "")
+            if ruby_path ~= "" then table.insert(components, ruby_path) end
+            local ruby_config = vim.fn
+              .system([[ruby -e "require 'digest'; puts Digest::SHA256.hexdigest(RbConfig::CONFIG.to_s)" 2>/dev/null]])
+              :gsub("\n", "")
+            if ruby_config ~= "" then table.insert(components, ruby_config) end
+            local env_vars = { "NIX_STORE", "NIX_PROFILES", "SHADOWENV_DATA", "RUBY_ROOT", "GEM_HOME", "GEM_PATH" }
+            for _, var in ipairs(env_vars) do
+              local value = vim.fn.getenv(var)
+              if value and value ~= vim.NIL then table.insert(components, var .. "=" .. value) end
+            end
+            local combined = table.concat(components, "|")
+            return vim.fn.sha256(combined):sub(1, 8)
+          end
+
+          local ruby_hash = get_ruby_env_hash()
+          local data_path = vim.fn.stdpath "data"
+          local mason_path = data_path .. "/mason-ruby-" .. ruby_hash
+          local ruby_lsp_bin = mason_path .. "/bin/ruby-lsp"
+
+          -- Check if the binary exists
+          if vim.fn.executable(ruby_lsp_bin) == 1 then
+            config.cmd = { ruby_lsp_bin }
+          else
+            -- Fallback to the default Mason bin path
+            local default_bin = vim.fn.stdpath "data" .. "/mason/bin/ruby-lsp"
+            if vim.fn.executable(default_bin) == 1 then config.cmd = { default_bin } end
+          end
+        end,
+      },
       sorbet = {
         root_dir = require("lspconfig.util").root_pattern "sorbet/config",
+        on_new_config = function(config)
+          -- Similar setup for sorbet
+          local function get_ruby_env_hash()
+            local components = {}
+            local ruby_path = vim.fn.system("which ruby 2>/dev/null"):gsub("\n", "")
+            if ruby_path ~= "" then table.insert(components, ruby_path) end
+            local ruby_config = vim.fn
+              .system([[ruby -e "require 'digest'; puts Digest::SHA256.hexdigest(RbConfig::CONFIG.to_s)" 2>/dev/null]])
+              :gsub("\n", "")
+            if ruby_config ~= "" then table.insert(components, ruby_config) end
+            local env_vars = { "NIX_STORE", "NIX_PROFILES", "SHADOWENV_DATA", "RUBY_ROOT", "GEM_HOME", "GEM_PATH" }
+            for _, var in ipairs(env_vars) do
+              local value = vim.fn.getenv(var)
+              if value and value ~= vim.NIL then table.insert(components, var .. "=" .. value) end
+            end
+            local combined = table.concat(components, "|")
+            return vim.fn.sha256(combined):sub(1, 8)
+          end
+
+          local ruby_hash = get_ruby_env_hash()
+          local data_path = vim.fn.stdpath "data"
+          local mason_path = data_path .. "/mason-ruby-" .. ruby_hash
+          local srb_bin = mason_path .. "/bin/srb"
+
+          -- Check if the binary exists
+          if vim.fn.executable(srb_bin) == 1 then
+            config.cmd = { srb_bin, "tc", "--lsp" }
+          else
+            -- Fallback to the default Mason bin path
+            local default_bin = vim.fn.stdpath "data" .. "/mason/bin/srb"
+            if vim.fn.executable(default_bin) == 1 then config.cmd = { default_bin, "tc", "--lsp" } end
+          end
+        end,
       },
       eslint = {
         root_dir = require("lspconfig.util").root_pattern "tsconfig.json",

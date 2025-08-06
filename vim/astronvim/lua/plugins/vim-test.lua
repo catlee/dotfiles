@@ -1,11 +1,18 @@
 return {
   { "preservim/vimux" },
   {
-    "janko-m/vim-test",
+    "vim-test/vim-test",
     config = function()
       vim.cmd [[
       " let test#strategy = 'neovim'
-      let test#strategy = 'vimux'
+      " Dynamically set test strategy based on terminal multiplexer
+      if exists('$TMUX')
+        let test#strategy = 'vimux'
+      elseif exists('$ZELLIJ')
+        let test#strategy = 'neovim'
+      else
+        let test#strategy = 'neovim'
+      endif
 
       function! ClearTransform(cmd) abort
         return 'clear; ' . a:cmd

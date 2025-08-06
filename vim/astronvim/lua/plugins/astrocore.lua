@@ -59,6 +59,10 @@ return {
           function() vim.fn.setreg("+", vim.fn.expand "%") end,
           desc = "Yank relative path to clipboard",
         },
+        ["<Leader>yF"] = {
+          function() vim.fn.setreg("+", vim.fn.expand "%" .. ":" .. vim.fn.line ".") end,
+          desc = "Yank relative path with line number to clipboard",
+        },
 
         -- edit vim config file
         ["<Leader>ec"] = {
@@ -80,6 +84,7 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        ["<Leader>th"] = { "<Cmd>ToggleTerm size=20 direction=horizontal<CR>", desc = "ToggleTerm horizontal split" },
       },
       t = {
         -- setting a mapping to false will disable it

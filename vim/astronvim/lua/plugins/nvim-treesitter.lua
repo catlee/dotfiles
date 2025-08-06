@@ -17,6 +17,10 @@ return {
       })
       opts.endwise = { enable = true }
       opts.matchup = { enable = true }
+
+      -- Disable treesitter keybindings
+      opts.incremental_selection = { enable = false }
+      opts.textobjects = { enable = false }
     end,
   },
 }
