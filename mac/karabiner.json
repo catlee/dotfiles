@@ -308,6 +308,13 @@
                                             "left_option",
                                             "left_command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": 0,
+                                            "name": "hyper",
+                                            "value": 1
+                                        }
                                     }
                                 ],
                                 "to_if_alone": [
@@ -333,7 +340,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "description": "Kitty",
+                                "description": "Ghostty",
                                 "from": {
                                     "key_code": "return_or_enter",
                                     "modifiers": {
@@ -344,7 +351,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -na Kitty.app --args -1 --directory $HOME"
+                                        "shell_command": "open -na Ghostty.app"
                                     }
                                 ],
                                 "type": "basic"

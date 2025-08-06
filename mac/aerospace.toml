@@ -1,16 +1,21 @@
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-
+automatically-unhide-macos-hidden-apps = true
+accordion-padding = 30
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
-exec-on-workspace-change = [
-  '/opt/homebrew/bin/bash',
-  '-c',
-  '$HOME/.local/bin/aerospace-workspace-change',
-]
 
 start-at-login = true
+
+
+[gaps]
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 [mode.main.binding]
 alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
@@ -18,10 +23,10 @@ alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
 alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
 alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
-shift-cmd-h = 'join-with left'
-shift-cmd-l = 'join-with right'
-shift-cmd-j = 'join-with down'
-shift-cmd-k = 'join-with up'
+shift-cmd-h = 'swap --swap-focus left'
+shift-cmd-l = 'swap --swap-focus right'
+shift-cmd-j = 'swap --swap-focus down'
+shift-cmd-k = 'swap --swap-focus up'
 
 shift-alt-g = ['move left', 'focus up', 'move right']
 
@@ -31,17 +36,16 @@ shift-alt-k = 'move up'
 shift-alt-l = 'move right'
 
 # hyper is cmd-alt-shift-ctrl
+# meh - alt-shift-ctrl
 
-cmd-alt-shift-ctrl-f = 'fullscreen'
-cmd-alt-shift-ctrl-c = 'reload-config'
-cmd-alt-shift-ctrl-space = 'layout floating tiling' # 'floating toggle' in i3
-cmd-alt-shift-ctrl-minus = 'resize smart -50'
-cmd-alt-shift-ctrl-equal = 'resize smart +50'
+shift-alt-ctrl-f = 'fullscreen'
+alt-shift-ctrl-c = 'reload-config'
+alt-shift-ctrl-space = 'layout floating tiling' # 'floating toggle' in i3
+alt-shift-ctrl-minus = 'resize smart -50'
+alt-shift-ctrl-equal = 'resize smart +50'
 
-# alt-slash = 'layout v_accordion' # 'layout stacking' in i3
-# alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-comma = 'layout accordion vertical'
 
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
