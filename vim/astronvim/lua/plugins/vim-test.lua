@@ -1,19 +1,17 @@
+local HAVE_TMUX = vim.fn.executable "tmux" == 1
+
 return {
-  { "preservim/vimux" },
+  { "preservim/vimux", enabled = HAVE_TMUX },
   {
     "vim-test/vim-test",
     config = function()
-      vim.cmd [[
-      " let test#strategy = 'neovim'
-      " Dynamically set test strategy based on terminal multiplexer
-      if exists('$TMUX')
-        let test#strategy = 'vimux'
-      elseif exists('$ZELLIJ')
-        let test#strategy = 'neovim'
+      if HAVE_TMUX then
+        vim.g["test#strategy"] = "vimux"
       else
-        let test#strategy = 'neovim'
-      endif
+        vim.g["test#strategy"] = "neovim"
+      end
 
+      vim.cmd [[
       function! ClearTransform(cmd) abort
         return 'clear; ' . a:cmd
       endfunction

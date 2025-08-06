@@ -5,15 +5,7 @@
       force: true
       create: true
 
-- clean: ["~"]
-
-- create:
-    - ~/bin
-    - ~/.tmux/plugins
-    - ~/.terminfo/x
-
 - link:
-    ~/.tmux.conf: shell/tmux.conf
     ~/.aliases: shell/aliases
     ~/.zshrc: shell/zshrc
     ~/.fzf.zsh: shell/fzf.zsh
@@ -22,8 +14,6 @@
     ~/.config/nvim:
       path: vim/astronvim
       create: true
-    ~/.terminfo/x/xterm-kitty: shell/xterm-kitty
-    ~/bin/tmux_attach: linux/tmux_attach
     ~/.config/kitty/dracula.conf:
       path: shell/dracula-kitty/dracula.conf
       create: true

@@ -6,12 +6,16 @@ set -x
 CONFIGS=("install.conf.yaml")
 
 case $(uname) in
-    Darwin*)
-        CONFIGS+=("mac.conf.yaml")
-        ;;
-    Linux*)
-        CONFIGS+=("linux.conf.yaml")
-        ;;
+Darwin*)
+  CONFIGS+=("mac.conf.yaml")
+  ;;
+Linux*)
+  if [[ -d "$HOME/.config/omarchy" ]]; then
+    CONFIGS+=("omarchy.conf.yaml")
+  else
+    CONFIGS+=("linux.conf.yaml")
+  fi
+  ;;
 esac
 
 CONFIGS+=("after.conf.yaml")
@@ -25,5 +29,5 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive --depth 1
 
 for CONFIG in "${CONFIGS[@]}"; do
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 done

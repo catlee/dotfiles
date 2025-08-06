@@ -1,0 +1,13 @@
+---
+- defaults:
+    link:
+      relink: true
+      create: true
+      force: true
+
+- link:
+    ~/.config/hypr: linux/omarchy/hypr
+
+
+- shell:
+  - sudo pacman --noconfirm -S zsh jq npm git-delta
