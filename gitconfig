@@ -51,14 +51,7 @@
 [submodule]
         recurse = true
 [maintenance]
-	repo = /Users/chrisatlee/world/trees/render-snippets
-	repo = /Users/chrisatlee/world/trees/speculation/src
-	repo = /Users/chrisatlee/world/trees/tools/src
-	repo = /Users/chrisatlee/world/trees/sessions/src
-	repo = /Users/chrisatlee/world/trees/colours/src
-	repo = /Users/chrisatlee/world/trees/perf/src
-	repo = /Users/chrisatlee/world/trees/stable-ids/src
-	repo = /Users/chrisatlee/world/trees/theme-files/src
+	repo = /Users/chrisatlee/world/trees/branches/src
 	repo = /Users/chrisatlee/world/trees/root/src
 [lfs]
 	setlockablereadonly = 0

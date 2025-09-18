@@ -1,11 +1,11 @@
-local HAVE_TMUX = vim.fn.executable "tmux" == 1
+local IN_TMUX = (vim.env.TMUX ~= nil)
 
 return {
-  { "preservim/vimux", enabled = HAVE_TMUX },
+  { "preservim/vimux", enabled = IN_TMUX },
   {
     "vim-test/vim-test",
     config = function()
-      if HAVE_TMUX then
+      if IN_TMUX then
         vim.g["test#strategy"] = "vimux"
       else
         vim.g["test#strategy"] = "neovim"

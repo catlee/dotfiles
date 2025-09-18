@@ -1,20 +1,13 @@
 ---@type LazySpec
 return {
   -- For alternate file support
-  { "otavioschwanck/telescope-alternate" },
-  {
-    "nvim-telescope/telescope.nvim",
+  { "otavioschwanck/telescope-alternate" ,
+    dependencies = {"ibhagwan/fzf-lua"} ,
     keys = {
       { "<C-a>", "<cmd>Telescope telescope-alternate alternate_file<cr>" },
     },
     opts = {
-      pickers = {
-        find_files = {
-          hidden = true,
-        },
-      },
-      extensions = {
-        ["telescope-alternate"] = {
+      picker = "fzf-lua",
           presets = { "rails", "rspec" },
           mappings = {
             {
@@ -54,7 +47,5 @@ return {
             },
           },
         },
-      },
-    },
-  },
+    }
 }

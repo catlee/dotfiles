@@ -11,6 +11,13 @@ return {
       vim.keymap.set("n", "<c-k>", "<cmd>ZellijNavigateUp<cr>", { silent = true, desc = "navigate up" })
       vim.keymap.set("n", "<c-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" })
       
+      -- Pass Ctrl-B through to Zellij for session management
+      vim.keymap.set({"n", "i", "v", "t"}, "<C-b>", function()
+        -- Temporarily unlock Zellij and send Ctrl-B
+        vim.fn.system("zellij action switch-mode normal")
+        vim.fn.system("zellij action write 2") -- Send Ctrl-B (ASCII code 2)
+      end, { silent = true, desc = "Pass Ctrl-B to Zellij" })
+      
       -- Tab navigation keybindings
       -- First, unmap any existing Alt-Tab bindings
       pcall(vim.keymap.del, "n", "<A-Tab>")
