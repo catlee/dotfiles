@@ -5,9 +5,9 @@ accordion-padding = 30
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
-
 start-at-login = true
-
+accordion-padding = 30
+automatically-unhide-macos-hidden-apps = true
 
 [gaps]
 inner.horizontal = 10
@@ -37,7 +37,8 @@ shift-alt-l = 'move right'
 
 # hyper is cmd-alt-shift-ctrl
 # meh - alt-shift-ctrl
-
+alt-shift-ctrl-l = 'reload-config'
+alt-shift-ctrl-r = 'mode resize'
 shift-alt-ctrl-f = 'fullscreen'
 alt-shift-ctrl-c = 'reload-config'
 alt-shift-ctrl-space = 'layout floating tiling' # 'floating toggle' in i3
@@ -73,7 +74,6 @@ alt-shift-0 = 'move-node-to-workspace 10'
 alt-shift-s = 'move-node-to-workspace S'
 alt-shift-p = 'move-node-to-workspace P'
 
-alt-r = 'mode resize'
 # alt-tab = 'workspace-back-and-forth'
 # shift-alt-tab = 'move-workspace-to-monitor --wrap-around next'
 
@@ -96,3 +96,7 @@ run = 'move-node-to-workspace S'
 [[on-window-detected]]
 if.app-id = "com.electron.logseq"
 run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout tiling"]
