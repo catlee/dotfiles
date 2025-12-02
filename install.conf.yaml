@@ -21,6 +21,9 @@
     ~/.config/zellij/config.kdl:
       path: shell/zellij-config.kdl
       create: true
+    ~/.config/ghostty/config:
+      path: shell/ghostty-config
+      create: true
 
 # Force this to happen after the initial symlink is setup
 - link:

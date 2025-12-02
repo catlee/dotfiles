@@ -50,9 +50,6 @@
         enabled = false
 [submodule]
         recurse = true
-[maintenance]
-	repo = /Users/chrisatlee/world/trees/branches/src
-	repo = /Users/chrisatlee/world/trees/root/src
 [lfs]
 	setlockablereadonly = 0
 [filter "lfs"]
@@ -60,9 +57,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
+[maintenance]
+	repo = /Users/chrisatlee/world/trees/drafts/src

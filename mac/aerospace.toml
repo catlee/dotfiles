@@ -94,9 +94,5 @@ if.app-id = "com.spotify.client"
 run = 'move-node-to-workspace S'
 
 [[on-window-detected]]
-if.app-id = "com.electron.logseq"
-run = 'move-node-to-workspace S'
-
-[[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
 run = ["layout tiling"]
