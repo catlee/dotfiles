@@ -163,4 +163,8 @@ function admin() {
     goto_sparse_dir "areas/clients/admin-web"
 }
 
+function osw() {
+    goto_sparse_dir "areas/apps/online-store-web"
+}
+
 $0 "$*"

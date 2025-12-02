@@ -1,6 +1,8 @@
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "Alt g" { WriteChars "\u{0007}"; } // ctrl-g (BEL character) - requires terminal to send Alt as Meta
+        bind "Ctrl q" { WriteChars "\u{0007}"; } // alternative: ctrl-g via Ctrl+Q
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -410,7 +412,7 @@ pane_frames false
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-// attach_to_session true
+attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -424,7 +426,7 @@ pane_frames false
 //   - true (default)
 //   - false
 // 
-// session_serialization false
+session_serialization false
  
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
