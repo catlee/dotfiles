@@ -26,6 +26,7 @@ return {
         "jq-lsp",
         "sorbet",
         "ruby-lsp",
+        "rust-analyzer",
       },
     },
   },

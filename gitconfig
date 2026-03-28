@@ -21,6 +21,7 @@
         renameLimit = 5000
 
 [alias]
+        co = checkout
         di = diff -U8 --patch-with-stat
         st = status -uno
         fpush = push --force-with-lease
@@ -57,5 +58,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[maintenance]
-	repo = /Users/chrisatlee/world/trees/drafts/src
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
