@@ -18,6 +18,7 @@
       path: shell/dracula-kitty/dracula.conf
       create: true
     ~/.zsh/functions/ff: shell/ff
+    ~/.zsh/functions/wt: shell/wt
     ~/.config/zellij/config.kdl:
       path: shell/zellij-config.kdl
       create: true

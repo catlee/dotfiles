@@ -7,11 +7,13 @@
 - link:
     ~/.config/kitty/kitty.conf: mac/kitty.conf
     ~/.config/aerospace/aerospace.toml: mac/aerospace.toml
+    ~/.config/aerospace/scripts: mac/aerospace-scripts
     ~/.config/karabiner/karabiner.json: mac/karabiner.json
     ~/.local/bin/vol: mac/vol
-    ~/.zsh/functions/wt: shell/wt
+    ~/.local/bin/toggle-liquid-glass: mac/toggle-liquid-glass.sh
 
 - shell:
     - brew install fzf fd nvim tmux git hyperfine ripgrep kitty bash reattach-to-user-namespace cmake pyenv rust npm cargo-binstall karabiner-elements logseq bluesnooze shortcat zellij
     - brew install --cask nikitabobko/tap/aerospace
     - cargo binstall zoxide
+    - swiftc -o ~/.config/aerospace/scripts/center-window ~/.config/aerospace/scripts/center-window.swift

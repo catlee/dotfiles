@@ -108,6 +108,8 @@ function wt() {
                 # Use existing branch
                 (cd $HOME/world/git; git worktree add --no-checkout "$WD/src" "$target_branch" && cd "$WD/src" && git sparse-checkout set && git checkout "$target_branch")
             fi
+            
+            (cd "$WD/src" && git sparse-checkout add .meta)
         else
             echo "Cancelled."
             return 1
@@ -167,4 +169,10 @@ function osw() {
     goto_sparse_dir "areas/apps/online-store-web"
 }
 
-$0 "$*"
+function shell() {
+    goto_sparse_dir "areas/clients/shell"
+}
+
+function identity() {
+    goto_sparse_dir "areas/platforms/identity"
+}

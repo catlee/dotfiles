@@ -1,7 +1,7 @@
 [user]
         name = Chris AtLee
         email = chris.atlee@shopify.com
-        signingKey = 84CD7E19
+        signingkey = 84CD7E19
 
 [core]
         pager = delta
@@ -32,8 +32,7 @@
 
 [include]
         path = ~/.gitsecrets
-        path = /Users/catlee/.config/dev/gitconfig
-        path = /Users/chrisatlee/.config/dev/gitconfig
+	path = /Users/chrisatlee/.config/dev/gitconfig
 
 [pull]
         ff = only
@@ -60,4 +59,8 @@
 	required = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
+[maintenance]
+	repo = /Users/chrisatlee/world/git
+[commit]
+	gpgsign = false

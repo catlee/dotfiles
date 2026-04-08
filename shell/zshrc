@@ -184,3 +184,10 @@ autoload -U $fpath[1]/*(@,.:t)
 # Added by tec agent
 [[ -x /Users/chrisatlee/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/chrisatlee/.local/state/tec/profiles/base/current/global/init zsh)"
 export PATH="$HOME/.npm-packages/bin:$PATH"
+
+if [ -x "$(command -v try)" ]; then
+    eval "$(try init ~/projects/tries/)"
+fi
+
+# cloudplatform: add Shopify clusters to your local kubernetes config
+export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/chrisatlee/.kube/config:/Users/chrisatlee/.kube/config.shopify.cloudplatform

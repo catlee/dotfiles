@@ -9,3 +9,6 @@ alias dsc="ds && dc"
 alias dsc="ds && dc"
 alias tnew='f() { tmux new -A -s ${1:-0} }; f'
 alias bx="bundle exec"
+alias dsw="zone-wait -t 600 && dev s"
+alias duw="dev up && zone-wait -t 600 && dev s"
+alias dus="dev up && dev s"
