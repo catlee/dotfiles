@@ -8,41 +8,143 @@
                 },
                 "rules": [
                     {
-                        "description": "Hyper + W (Window Management)",
+                        "description": "Hyper - ZSA",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "name": "hyper",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "name": "hyper_o",
-                                        "type": "variable_if",
-                                        "value": 0
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 6519,
+                                                "vendor_id": 12951
+                                            }
+                                        ],
+                                        "type": "device_if"
                                     }
                                 ],
+                                "description": "Hyper + O (Applications)",
                                 "from": {
-                                    "key_code": "w",
+                                    "key_code": "o",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift",
+                                            "left_control"
                                         ]
                                     }
                                 },
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "key_up_value": 0,
-                                            "name": "hyper_w",
+                                            "name": "hyper_o",
                                             "value": 1
                                         }
                                     }
                                 ],
-                                "to_if_alone": [
+                                "to_after_key_up": [
                                     {
-                                        "key_code": "w"
+                                        "set_variable": {
+                                            "name": "hyper_o",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 6519,
+                                                "vendor_id": 12951
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Ghostty",
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -na Ghostty.app"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 6519,
+                                                "vendor_id": 12951
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Spotify volume up",
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "$HOME/.local/bin/vol up"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 6519,
+                                                "vendor_id": 12951
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Spotify volume down",
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "$HOME/.local/bin/vol down"
                                     }
                                 ],
                                 "type": "basic"
@@ -412,9 +514,8 @@
                 {
                     "identifiers": {
                         "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 608,
-                        "vendor_id": 13364
+                        "product_id": 6519,
+                        "vendor_id": 12951
                     },
                     "ignore": false
                 }
