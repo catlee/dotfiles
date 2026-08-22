@@ -191,3 +191,5 @@ fi
 
 # cloudplatform: add Shopify clusters to your local kubernetes config
 export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/chrisatlee/.kube/config:/Users/chrisatlee/.kube/config.shopify.cloudplatform
+
+[ -f "/home/chris/.ghcup/env" ] && . "/home/chris/.ghcup/env" # ghcup-env

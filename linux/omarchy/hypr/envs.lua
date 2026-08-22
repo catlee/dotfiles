@@ -1,0 +1,3 @@
+-- Extra environment variables.
+-- Changes apply after relaunching Hyprland.
+-- hl.env("MY_GLOBAL_ENV", "setting")
