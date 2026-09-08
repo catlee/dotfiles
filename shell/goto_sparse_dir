@@ -1,0 +1,28 @@
+# Navigate to a specific directory in a git repository
+# and add it to sparse checkout if needed
+local target_path="$1"
+
+# Find our .git directory by traversing up
+local dir=$(pwd)
+while [[ "$dir" != "/" ]]; do
+    if [[ -e "$dir/.git" ]]; then
+        break
+    fi
+    dir=$(dirname "$dir")
+done
+
+if [[ "$dir" == "/" ]]; then
+    echo "Not in a git repository"
+    return 1
+fi
+
+# Check if target path is in sparse checkout
+local target_dir="$dir/$target_path"
+if [[ ! -d "$target_dir" ]]; then
+    echo "Adding $target_path to sparse checkout"
+    (cd "$dir" && git sparse-checkout add "$target_path")
+fi
+
+# cd to the target directory
+cd "$target_dir"
+echo "Changed to $(pwd)"
