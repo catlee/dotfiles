@@ -32,6 +32,9 @@
     ~/.config/ghostty/config:
       path: shell/ghostty-config
       create: true
+    ~/.config/herdr/config.toml:
+      path: shell/herdr-config.toml
+      create: true
 
 # Force this to happen after the initial symlink is setup
 - link:
