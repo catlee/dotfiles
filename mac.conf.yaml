@@ -8,6 +8,7 @@
     ~/.config/kitty/kitty.conf: mac/kitty.conf
     ~/.config/aerospace/aerospace.toml: mac/aerospace.toml
     ~/.config/aerospace/scripts: mac/aerospace-scripts
+    ~/.config/aerospace/workspaces.toml: mac/workspaces.toml
     ~/.config/karabiner/karabiner.json: mac/karabiner.json
     ~/.local/bin/vol: mac/vol
     ~/.local/bin/toggle-liquid-glass: mac/toggle-liquid-glass.sh

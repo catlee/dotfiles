@@ -40,6 +40,17 @@ alt-shift-ctrl-r = 'mode resize'
 shift-alt-ctrl-f = 'fullscreen'
 alt-shift-ctrl-c = 'reload-config'
 alt-shift-ctrl-space = 'layout floating tiling' # 'floating toggle' in i3
+
+# Workspace setup: meh+N launches the project environment for workspace N
+alt-shift-ctrl-1 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 1'
+alt-shift-ctrl-2 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 2'
+alt-shift-ctrl-3 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 3'
+alt-shift-ctrl-4 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 4'
+alt-shift-ctrl-5 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 5'
+alt-shift-ctrl-6 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 6'
+alt-shift-ctrl-7 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 7'
+alt-shift-ctrl-8 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 8'
+alt-shift-ctrl-9 = 'exec-and-forget ~/.config/aerospace/scripts/workspace-setup.sh 9'
 alt-shift-ctrl-minus = 'resize smart -50'
 alt-shift-ctrl-equal = 'resize smart +50'
 
@@ -99,3 +110,14 @@ run = 'move-node-to-workspace S'
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
 run = ["layout tiling"]
+
+# Chrome workspace routing (named windows persist across restarts)
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
+if.window-title-regex-substring = "^ws-2-es - "
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
+if.window-title-regex-substring = "^ws-3-shell - "
+run = 'move-node-to-workspace 3'

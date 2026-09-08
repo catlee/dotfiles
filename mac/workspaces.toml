@@ -1,0 +1,26 @@
+# Workspace definitions
+# Each [workspace.N] block defines what workspace N should look like.
+#
+# Fields:
+#   name       - Human-readable name (used for zellij session name)
+#   dir        - Working directory for the terminal
+#   urls       - Chrome URLs to open (array)
+#   branches   - Branch patterns to match for PR discovery (array, prefix match)
+
+[workspace.3]
+name = "shell"
+dir = "~/world/trees/gitdb/src"
+urls = ["https://app.graphite.com/#needs-your-review"]
+branches = ["catlee/shell-", "catlee/vfs-"]
+
+[workspace.2]
+name = "es"
+dir = "~/world/trees/stable-ids/src"
+urls = ["https://app.graphite.com/github/pr/shop/world/502526"]
+branches = []
+
+[workspace.6]
+name = "theme-manifest"
+dir = "~/world/trees/theme-manifest/src"
+urls = ["https://app.graphite.com/github/pr/shop/world/405572"]
+branches = ["catlee/manifest-"]
