@@ -1,6 +1,13 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.cache/.bun/bin:$PATH
+export PATH=$HOME/.bun/bin:$PATH
+
+# pnpm global binaries (hermes, qmd, etc.)
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 if [ -d $HOME/.local/share/omarchy/bin ]; then
     export PATH=$HOME/.local/share/omarchy/bin:$PATH
 fi
@@ -133,16 +140,35 @@ source ~/.aliases
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+# Homebrew (must come before tec so tec tools win PATH precedence)
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# tec profile (must come after Homebrew)
+if [[ -x "$HOME/.local/state/tec/profiles/base/current/global/init" ]]; then
+    eval "$("$HOME/.local/state/tec/profiles/base/current/global/init" zsh)"
+
+    # Move inherited tec profile entries ahead of Homebrew and de-dupe PATH.
+    path=(
+        "$HOME/.local/state/tec/toolchain/base_profile/bin"
+        "$HOME/.local/state/tec/toolchain/base_profile/share/dev/bin/user"
+        "$HOME/.local/state/tec/profiles/base/current/global/share/dev/bin/user"
+        "$HOME/.local/state/tec/profiles/base/current/global/bin"
+        "$HOME/.local/state/nix/profiles/tec/bin"
+        "${path[@]}"
+    )
+    typeset -U path
+fi
+
+# Legacy dev fallback; tec init normally provides dev now.
+if ! typeset -f dev >/dev/null && [[ -f /opt/dev/dev.sh ]]; then
+    source /opt/dev/dev.sh
+fi
 
 # Fuzzy finding
 export FZF_DEFAULT_OPTS='--height 40%'
 export FZF_CTRL_T_COMMAND="fd --type f --hidden"
 export FZF_DEFAULT_COMMAND="fd --type f"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Homebrew
-[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 # TERM setup
 [[ "$TERM" == "screen" && -n "$TMUX" ]] && export TERM=screen-256color
@@ -181,8 +207,6 @@ fi
 fpath=( ~/.zsh/functions/ "${fpath[@]}" )
 autoload -U $fpath[1]/*(@,.:t)
 
-# Added by tec agent
-[[ -x /Users/chrisatlee/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/chrisatlee/.local/state/tec/profiles/base/current/global/init zsh)"
 export PATH="$HOME/.npm-packages/bin:$PATH"
 
 if [ -x "$(command -v try)" ]; then
@@ -193,3 +217,6 @@ fi
 export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/chrisatlee/.kube/config:/Users/chrisatlee/.kube/config.shopify.cloudplatform
 
 [ -f "/home/chris/.ghcup/env" ] && . "/home/chris/.ghcup/env" # ghcup-env
+
+# Added by tec agent
+[[ -x /Users/chrisatlee/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/chrisatlee/.local/state/tec/profiles/base/current/global/init zsh)"

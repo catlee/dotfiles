@@ -12,3 +12,47 @@ alias bx="bundle exec"
 alias dsw="zone-wait -t 600 && dev s"
 alias duw="dev up && zone-wait -t 600 && dev s"
 alias dus="dev up && dev s"
+
+# Graphite + CI workflow aliases
+# gt-sync = pull trunk + restack with auto conflict resolution (via pi agent)
+# gt s -s = submit stack (no interactive)
+# gt s -s -d = submit stack as draft
+# gt s -s -p = submit stack, publish (triggers CI once)
+
+# Full workflow: sync, submit draft, run selective CI, dev up
+alias gscd="gt-sync && gt s -s -d && devx ci run && dev up"
+# Full workflow: sync, submit & publish (triggers CI), dev up
+alias gscp="gt-sync && gt s -s -p && devx ci run && dev up"
+# Sync, submit draft, full CI, dev up
+alias gscf="gt-sync && gt s -s -d && devx ci run --full && dev up"
+# Sync, submit & publish, merge-when-ready
+alias gscm="gt-sync && gt s -s -p && devx ci merge-when-ready"
+
+# Without dev up
+alias gsd="gt-sync && gt s -s -d"              # sync + submit draft
+alias gsp="gt-sync && gt s -s -p"              # sync + submit publish
+alias gsci="gt-sync && gt s -s && devx ci run" # sync + submit + selective CI
+
+# With local checks (da = test + style + typecheck) before submit
+alias gsacd="gt-sync && dev up && da && gt s -s -d && devx ci run"
+alias doit="gsacd"
+alias gsacp="gt-sync && dev up && da && gt s -s -p && devx ci run"
+alias gsacf="gt-sync && dev up && da && gt s -s -d && devx ci run --full"
+alias gsacm="gt-sync && dev up && da && gt s -s -p && devx ci merge-when-ready"
+
+# Without gt-sync (already up to date)
+alias scd="gt s -s -d && devx ci run"          # submit draft + selective CI
+alias scp="gt s -s -p && devx ci run"          # submit publish + CI
+alias scf="gt s -s -d && devx ci run --full"   # submit draft + full CI
+alias scm="gt s -s -p && devx ci merge-when-ready" # submit publish + merge
+alias sacd="dev up && da && gt s -s -d && devx ci run"   # dev up + checks + submit draft + CI
+alias sacp="dev up && da && gt s -s -p && devx ci run"   # dev up + checks + submit publish + CI
+
+# Amend (gt modify) + submit + CI
+alias msc="gt m --no-edit && gt s -s && devx ci run"          # amend + submit + CI
+alias mscd="gt m --no-edit && gt s -s -d && devx ci run"     # amend + submit draft + CI
+alias mscp="gt m --no-edit && gt s -s -p && devx ci run"     # amend + submit publish + CI
+alias mscf="gt m --no-edit && gt s -s -d && devx ci run --full" # amend + submit draft + full CI
+alias mscm="gt m --no-edit && gt s -s -p && devx ci merge-when-ready" # amend + submit publish + merge
+alias masc="dev up && da && gt m --no-edit && gt s -s && devx ci run" # dev up + checks + amend + submit + CI
+alias mascd="dev up && da && gt m --no-edit && gt s -s -d && devx ci run" # dev up + checks + amend + submit draft + CI
