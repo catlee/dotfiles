@@ -19,6 +19,13 @@
       create: true
     ~/.zsh/functions/ff: shell/ff
     ~/.zsh/functions/wt: shell/wt
+    ~/.zsh/functions/goto_sparse_dir: shell/goto_sparse_dir
+    ~/.zsh/functions/core: shell/core
+    ~/.zsh/functions/sfr: shell/sfr
+    ~/.zsh/functions/admin: shell/admin
+    ~/.zsh/functions/osw: shell/osw
+    ~/.zsh/functions/shell: shell/shell
+    ~/.zsh/functions/identity: shell/identity
     ~/.config/zellij/config.kdl:
       path: shell/zellij-config.kdl
       create: true
