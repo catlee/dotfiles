@@ -11,7 +11,18 @@
 
 [delta]
         navigate = true  # use n and N to move between diff sections
-        dark = true      # or light = true, or omit for auto-detection
+        dark = true
+        side-by-side = false
+        line-numbers = true
+        syntax-theme = Dracula
+        minus-style = syntax "#44101a"
+        minus-emph-style = syntax "#ff5555" bold
+        plus-style = syntax "#1a3a1a"
+        plus-emph-style = syntax "#50fa7b" bold
+        line-numbers-minus-style = "#ff5555"
+        line-numbers-plus-style = "#50fa7b"
+        hunk-header-style = syntax bold
+        hunk-header-decoration-style = "#6272a4" box
 
 [color]
         diff = auto
@@ -52,18 +63,25 @@
         recurse = true
 [lfs]
 	setlockablereadonly = 0
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/chris/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [maintenance]
 	repo = /Users/chrisatlee/world/git
 [commit]
 	gpgsign = false
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/chris/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
+	helper = !gh auth git-credential
+[shop-world "stale-pr-cutoff"]
+	main = 1788529860
+[credential "https://*.quick.shopify.io"]
+	helper = 
+	helper = /Users/chrisatlee/.config/quick/quick-git-credential.sh
+[http "https://*.quick.shopify.io/"]
+	extraHeader = X-Requested-With: XMLHttpRequest
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
