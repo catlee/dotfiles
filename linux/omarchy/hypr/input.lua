@@ -3,6 +3,14 @@
 
 -- Keyboard layout and options.
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
+hl.config({
+  input = {
+    kb_options = "caps:swapescape",
+    repeat_delay = 600,
+    repeat_rate = 25,
+  },
+})
+
 -- hl.config({
 --   input = {
 --     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.
@@ -55,10 +63,3 @@
 -- Enable touchpad gestures for moving focus (helpful on scrolling layout).
 -- hl.gesture({ fingers = 3, direction = "left", action = function() hl.dispatch(hl.dsp.focus({ direction = "l" })) end })
 -- hl.gesture({ fingers = 3, direction = "right", action = function() hl.dispatch(hl.dsp.focus({ direction = "r" })) end })
-
-hl.config({
-  input = {
-    kb_options = "caps:swapescape",
-    repeat_delay = 600,
-  },
-})

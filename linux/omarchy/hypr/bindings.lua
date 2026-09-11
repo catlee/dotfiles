@@ -28,6 +28,16 @@
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 --
+-- The ThinkPad gear/settings key only emits a tap, even when held.
+-- Use it to start and stop dictation.
+hl.unbind("F9")
+o.bind("XF86Tools", "Toggle dictation", "voxtype record toggle")
+
+-- Tap Print for a screenshot; hold it for 250 ms to dictate.
+hl.unbind("PRINT")
+o.bind("PRINT", "Screenshot or start dictation", "/home/chris/.local/bin/omarchy-print-dictate press")
+o.bind("PRINT", "Finish dictation", "/home/chris/.local/bin/omarchy-print-dictate release", { release = true })
+
 hl.unbind("SUPER + SHIFT + N")
 o.bind("SUPER + SHIFT + N", "Notes", "obsidian")
 
@@ -46,9 +56,43 @@ o.bind("SUPER + SHIFT + E", "Email", { webapp = "https://betaapp.fastmail.com" }
 hl.unbind("SUPER + SHIFT + SLASH") -- previously: Passwords (1Password)
 o.bind("SUPER + SHIFT + SLASH", "Bitwarden", { launch = "bitwarden-desktop" })
 
+hl.unbind("SUPER + O") -- previously: Pop window out (float & pin)
+o.bind("SUPER + O", "Pop window out (float & pin)", "omarchy-hyprland-window-pop")
+
 o.bind("XF86Bluetooth", "Previous track", "omarchy-shell media previous", { locked = true })
 o.bind("XF86Keyboard", "Play/pause", "omarchy-shell media playPause", { locked = true })
 o.bind("XF86Favorites", "Next track", "omarchy-shell media next", { locked = true })
 
 o.bind("SHIFT + XF86AudioRaiseVolume", "Spotify volume up", "omarchy-shell -q quickshell.spotify.player volumeUp", { locked = true, repeating = true })
 o.bind("SHIFT + XF86AudioLowerVolume", "Spotify volume down", "omarchy-shell -q quickshell.spotify.player volumeDown", { locked = true, repeating = true })
+
+-- Vim-style window management.
+for _, key in ipairs({
+  "SUPER + LEFT", "SUPER + RIGHT", "SUPER + UP", "SUPER + DOWN",
+  "SUPER + SHIFT + LEFT", "SUPER + SHIFT + RIGHT", "SUPER + SHIFT + UP", "SUPER + SHIFT + DOWN",
+  "SUPER + ALT + LEFT", "SUPER + ALT + RIGHT", "SUPER + ALT + UP", "SUPER + ALT + DOWN",
+  "SUPER + SHIFT + ALT + LEFT", "SUPER + SHIFT + ALT + RIGHT", "SUPER + SHIFT + ALT + UP", "SUPER + SHIFT + ALT + DOWN",
+  "SUPER + J", "SUPER + K", "SUPER + L",
+  "SUPER + ALT + K", "SUPER + CTRL + K", "SUPER + CTRL + L",
+}) do
+  hl.unbind(key)
+end
+
+for _, item in ipairs({
+  { key = "H", direction = "l", name = "left" },
+  { key = "J", direction = "d", name = "down" },
+  { key = "K", direction = "u", name = "up" },
+  { key = "L", direction = "r", name = "right" },
+}) do
+  o.bind("SUPER + " .. item.key, "Focus on " .. item.name .. " window", hl.dsp.focus({ direction = item.direction }))
+  o.bind("SUPER + SHIFT + " .. item.key, "Swap window " .. item.name, hl.dsp.window.swap({ direction = item.direction }))
+  o.bind("SUPER + ALT + " .. item.key, "Move window to group on " .. item.name, hl.dsp.window.move({ into_group = item.direction }))
+  o.bind("SUPER + SHIFT + ALT + " .. item.key, "Move workspace to " .. item.name .. " monitor", hl.dsp.workspace.move({ monitor = item.direction }))
+end
+
+o.bind("SUPER + CTRL + J", "Toggle window split", hl.dsp.layout("togglesplit"))
+o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
+o.bind("SUPER + CTRL + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+o.bind("SUPER + CTRL + ALT + K", "Tmux keybindings", "omarchy-menu-tmux-keybindings")
+o.bind("SUPER + SHIFT + CTRL + K", "Herdr keybindings", "omarchy-menu-herdr-keybindings")
+o.bind("SUPER + SHIFT + CTRL + L", "Lock system", "omarchy-system-lock")

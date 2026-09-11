@@ -7,6 +7,9 @@
 
 - link:
     ~/.aliases: shell/aliases
+    ~/.cargo/config.toml:
+      path: cargo/config.toml
+      create: true
     ~/.zshrc: shell/zshrc
     ~/.fzf.zsh: shell/fzf.zsh
     ~/.oh-my-zsh: shell/ohmyzsh/

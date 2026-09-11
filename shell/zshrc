@@ -139,6 +139,7 @@ source ~/.aliases
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+bindkey -M viins '^[.' insert-last-word
 
 # Homebrew (must come before tec so tec tools win PATH precedence)
 [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -32,3 +32,9 @@ require("default.hypr.toggles")
 
 -- Stop terminals from stealing focus
 o.window({ tag = "terminal" }, { focus_on_activate = false })
+
+-- Keep darktable fully opaque in every window state.
+o.window("^org\\.darktable\\.darktable$", {
+  tag = "-default-opacity",
+  opacity = "1 1",
+})
