@@ -2127,7 +2127,7 @@ macos-titlebar-proxy-icon = visible
 # key, respectively.
 #
 # This does not work with GLFW builds.
-macos-option-as-alt =
+macos-option-as-alt = true
 
 # Whether to enable the macOS window shadow. The default value is true.
 # With some window managers and window transparency settings, you may

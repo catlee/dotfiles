@@ -112,7 +112,39 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -na Ghostty.app --args zellij attach -c control"
+                                        "shell_command": "open -na Ghostty.app --args -e /opt/homebrew/bin/zellij attach -c control"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 6519,
+                                                "vendor_id": 12951
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Herdr",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -na Ghostty.app --args -e /opt/homebrew/bin/herdr"
                                     }
                                 ],
                                 "type": "basic"
@@ -509,7 +541,31 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -na Ghostty.app --args zellij attach -c control"
+                                        "shell_command": "open -na Ghostty.app --args -e /opt/homebrew/bin/zellij attach -c control"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Herdr",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -na Ghostty.app --args -e /opt/homebrew/bin/herdr"
                                     }
                                 ],
                                 "type": "basic"

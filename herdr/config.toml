@@ -62,6 +62,12 @@ close_workspace = "prefix+shift+k"
 previous_workspace = ["prefix+shift+p", "alt+up"]
 next_workspace = ["prefix+shift+n", "alt+down"]
 
+[[keys.command]]
+key = "prefix+a"
+type = "pane"
+command = "pi"
+description = "new pane running pi"
+
 # Seamless Vim/Neovim split and Herdr pane navigation.
 [[keys.command]]
 key = "ctrl+h"
