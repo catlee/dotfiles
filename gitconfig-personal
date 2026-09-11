@@ -1,0 +1,3 @@
+# Machine-local git identity: personal. Linked to ~/.gitconfig.local by dotbot (omarchy.conf.yaml).
+[user]
+	email = chris@atlee.ca

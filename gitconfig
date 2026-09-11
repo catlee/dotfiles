@@ -1,6 +1,5 @@
 [user]
         name = Chris AtLee
-	email = chris@atlee.ca
         signingkey = 84CD7E19
 
 [core]
@@ -44,6 +43,8 @@
 [include]
         path = ~/.gitsecrets
 	path = /Users/chrisatlee/.config/dev/gitconfig
+	# Machine-local identity (Shopify vs personal); linked per-machine by dotbot.
+	path = ~/.gitconfig.local
 
 [pull]
         ff = only
@@ -74,7 +75,7 @@
 	helper = 
 	helper = !gh auth git-credential
 [shop-world "stale-pr-cutoff"]
-	main = 1788529860
+	main = 1789000183
 [credential "https://*.quick.shopify.io"]
 	helper = 
 	helper = /Users/chrisatlee/.config/quick/quick-git-credential.sh

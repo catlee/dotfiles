@@ -1,0 +1,3 @@
+# Machine-local git identity: Shopify. Linked to ~/.gitconfig.local by dotbot (mac.conf.yaml).
+[user]
+	email = chris.atlee@shopify.com
