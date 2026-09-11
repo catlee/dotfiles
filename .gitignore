@@ -1,2 +1,4 @@
 *.sw?
+.codex
+linux/omarchy/hypr/*.lua.bak.*
 vim/astronvim/lazy-lock.json
