@@ -33,13 +33,10 @@
       path: shell/ghostty-config
       create: true
     ~/.config/herdr/config.toml:
-      path: shell/herdr-config.toml
+      path: herdr/config.toml
       create: true
 
 # Force this to happen after the initial symlink is setup
 - link:
     ~/.oh-my-zsh/custom/themes/dracula: shell/dracula-zsh/
     ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: shell/zsh-syntax-highlighting
-    ~/.config/herdr/config.toml:
-      path: herdr/config.toml
-      create: true
