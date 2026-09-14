@@ -14,6 +14,21 @@ herdr plugin install RooseveltAdvisors/vim-herdr-navigation
 The repository's Neovim configuration loads that plugin automatically when
 running inside Herdr. Reload Herdr after installing it (`Ctrl+Space`, then `q`).
 
+The `prefix+space` / `prefix+shift+space` layout-cycling bindings require the
+[`herdr-layout-cycle`](https://github.com/amiramay/herdr-layout-cycle) plugin:
+
+```sh
+herdr plugin install amiramay/herdr-layout-cycle
+```
+
+The `prefix+a` binding opens pi in a tiled split via the local `pi-pane`
+plugin in `plugins/pi-pane/`. `./install` links it automatically when `herdr`
+is on `PATH`; to link it manually:
+
+```sh
+herdr plugin link herdr/plugins/pi-pane
+```
+
 On macOS, configure the terminal to send Option as Meta/Esc for the `alt+…`
 bindings. The core `Ctrl+…` bindings work without that setting. If macOS binds
 `Ctrl+Space` to input-source switching, disable or change that system shortcut.

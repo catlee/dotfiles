@@ -1,0 +1,12 @@
+id = "pi-pane"
+name = "Pi Pane"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Open pi directly in a tiled split pane (no shell wrapper)"
+platforms = ["linux", "macos"]
+
+[[panes]]
+id = "pi"
+title = "pi"
+placement = "split"
+command = ["pi"]

@@ -62,11 +62,14 @@ close_workspace = "prefix+shift+k"
 previous_workspace = ["prefix+shift+p", "alt+up"]
 next_workspace = ["prefix+shift+n", "alt+down"]
 
+# type = "pane" always opens zoomed (no placement option in 0.9.0). The
+# pi-pane plugin (herdr/plugins/pi-pane, linked locally) declares a split pane
+# entrypoint that runs pi directly — no shell wrapper.
 [[keys.command]]
 key = "prefix+a"
-type = "pane"
-command = "pi"
-description = "new pane running pi"
+type = "shell"
+command = "herdr plugin pane open --plugin pi-pane --entrypoint pi --direction right --focus --cwd \"$PWD\""
+description = "new split pane running pi"
 
 # Seamless Vim/Neovim split and Herdr pane navigation.
 [[keys.command]]
@@ -92,6 +95,19 @@ key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "Navigate right (Vim/Herdr)"
+
+# Cycle tab panes through preset layouts (tmux prefix+space style).
+[[keys.command]]
+key = "prefix+space"
+type = "plugin_action"
+command = "herdr-layout-cycle.cycle-layout"
+description = "cycle layout"
+
+[[keys.command]]
+key = "prefix+shift+space"
+type = "plugin_action"
+command = "herdr-layout-cycle.cycle-layout-back"
+description = "cycle layout (back)"
 
 [ui]
 accent = "blue"

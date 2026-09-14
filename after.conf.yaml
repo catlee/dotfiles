@@ -3,3 +3,4 @@
 # Set up some of our tools here, after the packages have been installed
 - shell:
     - nvim --headless -c quitall
+    - if command -v herdr >/dev/null 2>&1; then herdr plugin link herdr/plugins/pi-pane; fi
