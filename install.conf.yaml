@@ -13,7 +13,6 @@
     ~/.zshrc: shell/zshrc
     ~/.fzf.zsh: shell/fzf.zsh
     ~/.oh-my-zsh: shell/ohmyzsh/
-    ~/.gitconfig: gitconfig
     ~/.config/nvim:
       path: vim/astronvim
       create: true

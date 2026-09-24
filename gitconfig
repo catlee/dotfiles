@@ -42,9 +42,6 @@
 
 [include]
         path = ~/.gitsecrets
-	path = /Users/chrisatlee/.config/dev/gitconfig
-	# Machine-local identity (Shopify vs personal); linked per-machine by dotbot.
-	path = ~/.gitconfig.local
 
 [pull]
         ff = only
@@ -74,15 +71,8 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !gh auth git-credential
-[shop-world "stale-pr-cutoff"]
-	main = 1789000183
 [credential "https://*.quick.shopify.io"]
 	helper = 
 	helper = /Users/chrisatlee/.config/quick/quick-git-credential.sh
 [http "https://*.quick.shopify.io/"]
 	extraHeader = X-Requested-With: XMLHttpRequest
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true

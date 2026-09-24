@@ -23,6 +23,15 @@ CONFIGS+=("after.conf.yaml")
 DOTBOT_DIR="dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GITCONFIG="${HOME}/.gitconfig"
+
+# Keep machine- and tool-local global Git settings out of the tracked config.
+if [[ -L "${GITCONFIG}" && "$(realpath "${GITCONFIG}")" == "${BASEDIR}/gitconfig" ]]; then
+  rm "${GITCONFIG}"
+fi
+if [[ ! -e "${GITCONFIG}" ]]; then
+  printf '# Machine-local Git config. Tool-managed global settings stay here.\n[include]\n\tpath = %s/gitconfig\n\tpath = ~/.gitconfig.local\n' "${BASEDIR}" > "${GITCONFIG}"
+fi
 
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
