@@ -326,8 +326,9 @@ default_mode "normal"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
+// Default: ~/.config/zellij/themes (Omarchy links its theme dir there; see omarchy.conf.yaml)
 // 
-theme_dir "/home/chris/.config/omarchy/themes/dracula"
+// theme_dir "/tmp"
  
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could

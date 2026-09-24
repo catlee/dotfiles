@@ -8,6 +8,7 @@
 - link:
     ~/.config/hypr: linux/omarchy/hypr
     ~/.gitconfig.local: gitconfig-personal
+    ~/.config/zellij/themes: ~/.config/omarchy/themes/dracula
 
 
 - shell:
