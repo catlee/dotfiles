@@ -298,7 +298,7 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "dracula"
+theme "ansi"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -326,7 +326,7 @@ default_mode "normal"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
-// Default: ~/.config/zellij/themes (Omarchy links its theme dir there; see omarchy.conf.yaml)
+// Default: ~/.config/zellij/themes
 // 
 // theme_dir "/tmp"
  

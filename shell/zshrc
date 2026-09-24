@@ -15,10 +15,7 @@ fi
 # oh-my-zsh
 ZSH=$HOME/.oh-my-zsh
 
-DRACULA_DISPLAY_FULL_CWD=0
-DRACULA_DISPLAY_TIME=1
-DRACULA_DISPLAY_CONTEXT=0
-ZSH_THEME="dracula/dracula"
+ZSH_THEME="robbyrussell"
 VI_MODE_SET_CURSOR=true
 MODE_INDICATOR="%F{green}(N)%f"
 
@@ -80,9 +77,7 @@ function _worktree_prompt_info() {
 
 # Inject worktree info into the prompt after the directory segment
 # We do this once after the theme loads
-if [[ "$PROMPT" == *'%F{blue}%B$(dracula_directory)'* ]]; then
-    PROMPT=${PROMPT//'%F{blue}%B$(dracula_directory)'/'%F{blue}%B$(dracula_directory)$(_worktree_prompt_info)'}
-fi
+PROMPT=${PROMPT/'%c'/'%c$(_worktree_prompt_info)'}
 
 export EDITOR=nvim
 export PAGER=less
