@@ -7,6 +7,7 @@
 
 - link:
     ~/.config/hypr: linux/omarchy/hypr
+    ~/.local/bin/omarchy-adjust-window: linux/omarchy/adjust-window.sh
     ~/.gitconfig.local: gitconfig-personal
 
 

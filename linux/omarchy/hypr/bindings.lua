@@ -22,6 +22,8 @@
 
 -- Disable a default binding without replacing it.
 -- hl.unbind("SUPER + SHIFT + B")
+hl.unbind("SUPER + SHIFT + RETURN") -- previously: Browser
+hl.unbind("SUPER + SHIFT + RETURN") -- previously: Browser
 
 -- Logitech MX Keys examples:
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
@@ -93,6 +95,24 @@ end
 o.bind("SUPER + CTRL + J", "Toggle window split", hl.dsp.layout("togglesplit"))
 o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
 o.bind("SUPER + CTRL + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+-- Previously: Agent picker.
+hl.unbind("SUPER + SHIFT + CTRL + A")
+o.bind("SUPER + SHIFT + CTRL + A", "Codex (Herdr)", "omarchy-launch-terminal /home/chris/.local/bin/herdr-codex")
 o.bind("SUPER + CTRL + ALT + K", "Tmux keybindings", "omarchy-menu-tmux-keybindings")
 o.bind("SUPER + SHIFT + CTRL + K", "Herdr keybindings", "omarchy-menu-herdr-keybindings")
 o.bind("SUPER + SHIFT + CTRL + L", "Lock system", "omarchy-system-lock")
+
+hl.unbind("SUPER + CTRL + SPACE")
+o.bind("SUPER + CTRL + SPACE", "Background switcher", 'background=$(omarchy-theme-bg-switcher); [[ -n $background ]] && omarchy-theme-bg-set "$background"')
+
+-- Super+Alt+arrows avoids Omarchy's keycode-based resize bindings.
+for _, key in ipairs({
+  "SUPER + ALT + LEFT", "SUPER + ALT + RIGHT",
+  "SUPER + SHIFT + ALT + LEFT", "SUPER + SHIFT + ALT + RIGHT",
+}) do
+  hl.unbind(key)
+end
+o.bind("SUPER + ALT + RIGHT", "Increase window gaps", "omarchy-adjust-window gaps up")
+o.bind("SUPER + ALT + LEFT", "Decrease window gaps", "omarchy-adjust-window gaps down")
+o.bind("SUPER + SHIFT + ALT + RIGHT", "Increase active window opacity", "omarchy-adjust-window opacity up")
+o.bind("SUPER + SHIFT + ALT + LEFT", "Decrease active window opacity", "omarchy-adjust-window opacity down")
