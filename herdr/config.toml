@@ -15,6 +15,7 @@ new_cwd = "follow"
 
 [keys]
 prefix = "ctrl+space"
+cycle_pane_next = "prefix+alt+o"
 
 # Config and help
 reload_config = "prefix+q"
@@ -70,6 +71,12 @@ key = "prefix+a"
 type = "shell"
 command = "herdr plugin pane open --plugin pi-pane --entrypoint pi --direction right --focus --cwd \"$PWD\""
 description = "new split pane running pi"
+
+[[keys.command]]
+key = "prefix+tab"
+type = "plugin_action"
+command = "herdr-extrakto.open"
+description = "Pick text from pane output"
 
 # Seamless Vim/Neovim split and Herdr pane navigation.
 [[keys.command]]
