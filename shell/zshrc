@@ -23,6 +23,9 @@ plugins=(git vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+# Prefer an exact match before case-insensitive matching (e.g. projects vs Projects).
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+
 # Git worktree detection for prompt
 function _get_worktree_name() {
     # Check if we're in a git repository
