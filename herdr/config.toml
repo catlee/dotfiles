@@ -75,7 +75,7 @@ description = "new split pane running pi"
 [[keys.command]]
 key = "prefix+tab"
 type = "plugin_action"
-command = "herdr-extrakto.open"
+command = "herdr-snatch.open"
 description = "Pick text from pane output"
 
 # Seamless Vim/Neovim split and Herdr pane navigation.
