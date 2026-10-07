@@ -50,8 +50,6 @@
         defaultBranch = main
 [rerere]
         enabled = false
-[submodule]
-        recurse = true
 [lfs]
 	setlockablereadonly = 0
 [credential "https://github.com"]

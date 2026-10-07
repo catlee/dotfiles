@@ -36,6 +36,7 @@ fi
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive --depth 1
+git config --local submodule.recurse true
 
 for CONFIG in "${CONFIGS[@]}"; do
   "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
