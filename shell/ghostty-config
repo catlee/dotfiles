@@ -2445,3 +2445,6 @@ auto-update =
 auto-update-channel =
 
 keybind = super+n=new_window
+# Let Herdr receive Alt+Left/Right for tab navigation.
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
