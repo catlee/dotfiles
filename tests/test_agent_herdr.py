@@ -100,6 +100,61 @@ class LaunchTests(unittest.TestCase):
         self.assertEqual(call.call_count, 3)
         popen.assert_called_once_with(["omarchy-launch-terminal", "herdr"])
 
+    def test_lua_focus_command_reuses_client_without_terminal_fallback(self):
+        def run(args, **kwargs):
+            if args == ["omarchy-cmd-terminal-cwd"]:
+                return subprocess.CompletedProcess(args, 0, "", "")
+            if args[:4] == ["herdr", "workspace", "create", "--cwd"]:
+                return subprocess.CompletedProcess(args, 0, json.dumps({"result": {
+                    "workspace": {"workspace_id": "w1"}, "root_pane": {"pane_id": "w1:p1"}
+                }}), "")
+            if args[:3] == ["herdr", "pane", "run"]:
+                return subprocess.CompletedProcess(args, 0, "", "")
+            if args == ["herdr", "workspace", "focus", "w1"]:
+                return subprocess.CompletedProcess(args, 0, "", "")
+            if args == ["hyprctl", "dispatch", 'hl.dsp.focus({ window = "address:0xab" })']:
+                return subprocess.CompletedProcess(args, 0, "ok", "")
+            if args == ["hyprctl", "-j", "activewindow"]:
+                return subprocess.CompletedProcess(args, 0, json.dumps({"address": "0xab"}), "")
+            self.fail(f"unexpected subprocess argv: {args!r}")
+
+        with patch.object(agent.subprocess, "run", side_effect=run) as run_call, \
+             patch.object(agent, "attached_window", return_value="0xab"), \
+             patch.object(agent.subprocess, "Popen") as popen:
+            agent.launch(["--pick"])
+
+        self.assertIn(
+            ["hyprctl", "dispatch", 'hl.dsp.focus({ window = "address:0xab" })'],
+            [call.args[0] for call in run_call.call_args_list],
+        )
+        self.assertIn(["herdr", "workspace", "focus", "w1"], [call.args[0] for call in run_call.call_args_list])
+        self.assertIn(["hyprctl", "-j", "activewindow"], [call.args[0] for call in run_call.call_args_list])
+        popen.assert_not_called()
+
+    def test_compositor_rejection_falls_back_once(self):
+        def run(args, **kwargs):
+            if args == ["omarchy-cmd-terminal-cwd"]:
+                return subprocess.CompletedProcess(args, 0, "", "")
+            if args[:4] == ["herdr", "workspace", "create", "--cwd"]:
+                return subprocess.CompletedProcess(args, 0, json.dumps({"result": {
+                    "workspace": {"workspace_id": "w1"}, "root_pane": {"pane_id": "w1:p1"}
+                }}), "")
+            if args[:3] == ["herdr", "pane", "run"] or args == ["herdr", "workspace", "focus", "w1"]:
+                return subprocess.CompletedProcess(args, 0, "", "")
+            if args[:2] == ["hyprctl", "dispatch"]:
+                return subprocess.CompletedProcess(args, 0, "error: [string \"return hl.dispatch(...)\"]:1: ')' expected near 'address'", "")
+            self.fail(f"unexpected subprocess argv: {args!r}")
+
+        with patch.object(agent.subprocess, "run", side_effect=run) as run_call, \
+             patch.object(agent, "attached_window", return_value="0xab"), \
+             patch.object(agent.subprocess, "Popen") as popen:
+            agent.launch(["--pick"])
+
+        self.assertEqual(
+            sum(call.args[0][:2] == ["hyprctl", "dispatch"] for call in run_call.call_args_list), 1
+        )
+        popen.assert_called_once_with(["omarchy-launch-terminal", "herdr"])
+
     def test_missing_hyprctl_and_herdr_focus_commands_fail_closed(self):
         with patch.object(agent, "call", side_effect=FileNotFoundError):
             self.assertIsNone(agent.attached_window())
