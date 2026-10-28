@@ -95,6 +95,7 @@ end
 o.bind("SUPER + CTRL + J", "Toggle window split", hl.dsp.layout("togglesplit"))
 o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
 o.bind("SUPER + CTRL + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+o.rebind("SUPER + CTRL + RETURN", "Herdr (reuse terminal)", "/home/chris/.local/bin/omarchy-agent-herdr --attach")
 -- Previously: Agent picker.
 hl.unbind("SUPER + SHIFT + CTRL + A")
 o.bind("SUPER + SHIFT + CTRL + A", "Agent (Herdr)", "/home/chris/.local/bin/omarchy-agent --pick")

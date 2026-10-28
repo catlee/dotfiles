@@ -169,6 +169,40 @@ class LaunchTests(unittest.TestCase):
             self.assertIsNone(agent.attached_window())
             self.assertFalse(agent.focus_workspace("w1", "0xab"))
 
+    def test_attach_focuses_existing_window_without_workspace_or_agent_mutation(self):
+        with patch.object(agent, "attached_window", return_value="0xab"), \
+             patch.object(agent, "call", return_value=subprocess.CompletedProcess([], 0, json.dumps({"address": "0xab"}), "")) as call, \
+             patch.object(agent.subprocess, "Popen") as popen:
+            agent.attach()
+        self.assertEqual([c.args[0] for c in call.call_args_list], [
+            ["hyprctl", "dispatch", 'hl.dsp.focus({ window = "address:0xab" })'],
+            ["hyprctl", "-j", "activewindow"],
+        ])
+        popen.assert_not_called()
+
+    def test_attach_missing_or_failed_focus_opens_one_terminal_without_mutation(self):
+        for address, active in [(None, None), ("0xab", {"address": "0xcd"})]:
+            with self.subTest(address=address), \
+                 patch.object(agent, "attached_window", return_value=address), \
+                 patch.object(agent, "call", return_value=subprocess.CompletedProcess([], 0, json.dumps(active or {}), "")) as call, \
+                 patch.object(agent.subprocess, "Popen") as popen:
+                agent.attach()
+            self.assertEqual(call.call_count, 0 if address is None else 2)
+            self.assertTrue(all(c.args[0][0] != "herdr" for c in call.call_args_list))
+            popen.assert_called_once_with(["omarchy-launch-terminal", "herdr"])
+
+    def test_attach_mode_requires_exact_argv(self):
+        with patch.object(agent, "attach") as attach, patch.object(agent, "launch") as launch:
+            agent.main(["--attach"])
+            attach.assert_called_once_with()
+            launch.assert_not_called()
+
+        with patch.object(agent, "attach") as attach, patch.object(agent, "launch") as launch:
+            args = ["--prompt", "--attach"]
+            agent.main(args)
+            attach.assert_not_called()
+            launch.assert_called_once_with(args)
+
     def test_uncertain_pane_run_timeout_preserves_workspace_and_does_not_fallback(self):
         responses = self.prepare()
         def run(*args, **kwargs):
