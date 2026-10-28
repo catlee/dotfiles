@@ -9,7 +9,7 @@
     ~/.config/hypr: linux/omarchy/hypr
     ~/.local/bin/omarchy-adjust-window: linux/omarchy/adjust-window.sh
     ~/.local/bin/omarchy-agent: linux/omarchy/agent.sh
-    ~/.local/bin/omarchy-agent-herdr: linux/omarchy/agent-herdr.sh
+    ~/.local/bin/omarchy-agent-herdr: linux/omarchy/agent-herdr.py
     ~/.gitconfig.local: gitconfig-personal
 
 

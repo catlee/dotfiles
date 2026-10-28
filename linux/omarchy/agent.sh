@@ -12,4 +12,4 @@ for ((i = 0; i < ${#args[@]}; i++)); do
   esac
 done
 
-exec omarchy-launch-terminal "$HOME/.local/bin/omarchy-agent-herdr" "${args[@]}"
+exec "$HOME/.local/bin/omarchy-agent-herdr" "${args[@]}"

@@ -97,7 +97,7 @@ o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
 o.bind("SUPER + CTRL + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
 -- Previously: Agent picker.
 hl.unbind("SUPER + SHIFT + CTRL + A")
-o.bind("SUPER + SHIFT + CTRL + A", "Codex (Herdr)", "omarchy-launch-terminal /home/chris/.local/bin/herdr-codex")
+o.bind("SUPER + SHIFT + CTRL + A", "Agent (Herdr)", "/home/chris/.local/bin/omarchy-agent --pick")
 o.bind("SUPER + CTRL + ALT + K", "Tmux keybindings", "omarchy-menu-tmux-keybindings")
 o.bind("SUPER + SHIFT + CTRL + K", "Herdr keybindings", "omarchy-menu-herdr-keybindings")
 o.bind("SUPER + SHIFT + CTRL + L", "Lock system", "omarchy-system-lock")
