@@ -10,9 +10,9 @@
     ~/.local/bin/omarchy-adjust-window: linux/omarchy/adjust-window.sh
     ~/.local/bin/omarchy-agent: linux/omarchy/agent.sh
     ~/.local/bin/omarchy-agent-herdr: linux/omarchy/agent-herdr.sh
-    ~/.config/omarchy/plugins/chris.agents: linux/omarchy/agents-plugin
     ~/.gitconfig.local: gitconfig-personal
 
 
 - shell:
   - sudo pacman --noconfirm -S zsh jq npm git-delta
+  - mkdir -p "$HOME/.config/omarchy/plugins/chris.agents" && cp -a linux/omarchy/agents-plugin/. "$HOME/.config/omarchy/plugins/chris.agents/"
