@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -47,6 +48,13 @@ class MatchingWindowTests(unittest.TestCase):
             add_process(root, 31, 30, ["herdr"])
             add_process(root, 32, 30, ["herdr"])
             self.assertIsNone(agent.matching_window([{"pid": 30, "address": "0xab"}], root, {}))
+
+    def test_rejects_two_windows_for_one_eligible_client(self):
+        with tempfile.TemporaryDirectory() as root:
+            add_process(root, 40, 1, ["ghostty"], exe="ghostty")
+            add_process(root, 41, 40, ["herdr"])
+            windows = [{"pid": 40, "address": "0x1"}, {"pid": 40, "address": "0x2"}]
+            self.assertIsNone(agent.matching_window(windows, root, {}))
 
 
 class LaunchTests(unittest.TestCase):
@@ -113,6 +121,53 @@ class LaunchTests(unittest.TestCase):
         self.assertFalse(any(c.args[0][:3] == ["herdr", "workspace", "close"] for c in call.call_args_list))
         detect.assert_not_called()
         popen.assert_not_called()
+
+
+class WrapperTests(unittest.TestCase):
+    def run_wrapper(self, args):
+        temporary = tempfile.TemporaryDirectory()
+        root = Path(temporary.name)
+        home_bin = root / "home/.local/bin"
+        fake_bin = root / "fake-bin"
+        home_bin.mkdir(parents=True)
+        fake_bin.mkdir()
+        agent_log = root / "agent.json"
+        terminal_log = root / "terminal.json"
+        logger = "#!/usr/bin/env python3\nimport json, os, sys\nwith open(os.environ['AGENT_LOG'], 'w') as f: json.dump(sys.argv[1:], f)\n"
+        terminal = "#!/usr/bin/env python3\nimport json, os, sys\nwith open(os.environ['TERMINAL_LOG'], 'w') as f: json.dump(sys.argv[1:], f)\n"
+        helper = home_bin / "omarchy-agent-herdr"
+        fallback = fake_bin / "omarchy-launch-terminal"
+        for path, source in ((helper, logger), (fallback, terminal)):
+            path.write_text(source)
+            path.chmod(0o755)
+        env = os.environ | {
+            "HOME": str(root / "home"),
+            "PATH": f"{fake_bin}:{os.environ['PATH']}",
+            "AGENT_LOG": str(agent_log),
+            "TERMINAL_LOG": str(terminal_log),
+        }
+        result = subprocess.run(
+            [str(MODULE_PATH.parent / "agent.sh"), *args], env=env, capture_output=True, text=True, timeout=5
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        received = json.loads(agent_log.read_text())
+        terminal_was_launched = terminal_log.exists()
+        temporary.cleanup()
+        return received, terminal_was_launched
+
+    def test_wrapper_preserves_literal_arguments_without_terminal_fallback(self):
+        with tempfile.TemporaryDirectory() as root:
+            marker = Path(root) / "should-not-run"
+            payload = f"quote ' \"\n; $(touch {marker}) `touch {marker}`"
+            received, terminal_was_launched = self.run_wrapper(["--pick", "--prompt", payload])
+            self.assertEqual(received, ["--pick", "--prompt", payload])
+            self.assertFalse(terminal_was_launched)
+            self.assertFalse(marker.exists())
+
+    def test_inline_prompt_value_does_not_activate_inline_mode(self):
+        received, terminal_was_launched = self.run_wrapper(["--prompt", "--inline"])
+        self.assertEqual(received, ["--prompt", "--inline"])
+        self.assertFalse(terminal_was_launched)
 
 
 if __name__ == "__main__":
