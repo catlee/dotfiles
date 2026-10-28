@@ -103,28 +103,14 @@ def attached_window():
     return matching_window(windows) if isinstance(windows, list) else None
 
 
-def focus_window(address):
+def focus_workspace(workspace_id, address):
     try:
+        call(["herdr", "workspace", "focus", workspace_id])
         call(["hyprctl", "dispatch", f'hl.dsp.focus({{ window = "address:{address}" }})'])
         active = json.loads(call(["hyprctl", "-j", "activewindow"]).stdout)
         return active.get("address") == address
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError, AttributeError):
         return False
-
-
-def focus_workspace(workspace_id, address):
-    try:
-        call(["herdr", "workspace", "focus", workspace_id])
-    except (OSError, subprocess.SubprocessError):
-        return False
-    return focus_window(address)
-
-
-def attach():
-    address = attached_window()
-    if address and focus_window(address):
-        return
-    subprocess.Popen(["omarchy-launch-terminal", "herdr"])
 
 
 def launch(args):
@@ -158,16 +144,9 @@ def launch(args):
     subprocess.Popen(["omarchy-launch-terminal", "herdr"])
 
 
-def main(args):
-    if args == ["--attach"]:
-        attach()
-    else:
-        launch(args)
-
-
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        launch(sys.argv[1:])
     except (OSError, RuntimeError, subprocess.SubprocessError, json.JSONDecodeError) as error:
         print(f"omarchy-agent: {error}", file=sys.stderr)
         sys.exit(1)
