@@ -2,6 +2,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import shlex
 import subprocess
 import tempfile
 import unittest
@@ -70,15 +71,18 @@ class LaunchTests(unittest.TestCase):
 
     def test_reuses_client_without_opening_terminal_and_starts_args_once(self):
         responses = self.prepare()
+        args = ["--pick", "--prompt", "quote ' \"\n; `touch /tmp/nope` $(touch /tmp/nope)"]
         with patch.object(agent, "call", side_effect=lambda *a, **kw: next(responses)) as call, \
              patch.object(agent, "attached_window", return_value="0xab"), \
              patch.object(agent, "focus_workspace", return_value=True), \
              patch.object(agent.subprocess, "Popen") as popen:
-            agent.launch(["--pick", "--prompt", "hello world"])
+            agent.launch(args)
         self.assertEqual(call.call_count, 3)
         run_args = call.call_args_list[2].args[0]
         self.assertEqual(run_args[:3], ["herdr", "pane", "run"])
-        self.assertIn("'hello world'", run_args[4])
+        self.assertEqual(
+            shlex.split(run_args[4]), ["exec", "/usr/bin/omarchy-agent", "--inline", *args]
+        )
         popen.assert_not_called()
 
     def test_missing_client_opens_terminal_after_one_agent_start(self):

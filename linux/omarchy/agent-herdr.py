@@ -131,7 +131,7 @@ def launch(args):
     if not isinstance(workspace_id, str) or not isinstance(pane_id, str):
         raise RuntimeError("Herdr did not return a workspace and root pane")
 
-    shell_command = shlex.join(["/usr/bin/omarchy-agent", "--inline", *args])
+    shell_command = "exec " + shlex.join(["/usr/bin/omarchy-agent", "--inline", *args])
     try:
         call(["herdr", "pane", "run", pane_id, shell_command])
     except subprocess.CalledProcessError:
