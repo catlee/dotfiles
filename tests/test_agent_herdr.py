@@ -142,7 +142,12 @@ class LaunchTests(unittest.TestCase):
             if args[:3] == ["herdr", "pane", "run"] or args == ["herdr", "workspace", "focus", "w1"]:
                 return subprocess.CompletedProcess(args, 0, "", "")
             if args[:2] == ["hyprctl", "dispatch"]:
-                return subprocess.CompletedProcess(args, 0, "error: [string \"return hl.dispatch(...)\"]:1: ')' expected near 'address'", "")
+                self.assertTrue(kwargs.get("check"))
+                raise subprocess.CalledProcessError(
+                    7,
+                    args,
+                    output='error: [string "return hl.dispatch(focuswindow address:0xab)..."]:1: \')\' expected near \'address\'',
+                )
             self.fail(f"unexpected subprocess argv: {args!r}")
 
         with patch.object(agent.subprocess, "run", side_effect=run) as run_call, \

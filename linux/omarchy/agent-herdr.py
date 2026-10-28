@@ -106,12 +106,7 @@ def attached_window():
 def focus_workspace(workspace_id, address):
     try:
         call(["herdr", "workspace", "focus", workspace_id])
-        result = call(
-            ["hyprctl", "dispatch", f'hl.dsp.focus({{ window = "address:{address}" }})'],
-            check=False,
-        )
-        if result.returncode != 0 or result.stdout.lstrip().lower().startswith("error:"):
-            return False
+        call(["hyprctl", "dispatch", f'hl.dsp.focus({{ window = "address:{address}" }})'])
         active = json.loads(call(["hyprctl", "-j", "activewindow"]).stdout)
         return active.get("address") == address
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError, AttributeError):
